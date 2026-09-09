@@ -1,0 +1,10 @@
+[
+  {
+    "repositorio": "https://github.com/asashiho/ml-jupyter-python3.git",
+    "commit": "c197905e6b4e122bad5e22d2289a7ec25403f974"
+  },
+  {
+    "repositorio": "https://github.com/omondragon/docker-flask-example.git",
+    "commit": "731dac74345d07d54dec60cfb0b4a52ebf7a2bb6"
+  }
+]
