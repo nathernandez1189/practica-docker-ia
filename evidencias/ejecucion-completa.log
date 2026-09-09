@@ -1,0 +1,1256 @@
++ hostname
+servidorUbuntu
++ date -Iseconds
+2026-09-09T05:51:57+00:00
++ docker search apache --limit 5
+NAME              DESCRIPTION                                     STARS     OFFICIAL
+apache/airflow    Apache Airflow                                  635       
+apache/superset   Apache Superset                                 331       
+apache/kafka      Apache Kafka                                    218       
+apache/tika       Container images for Apache Tika Server (htt…   56        
+apache/spark      Apache Spark                                    100       
++ docker pull httpd:2.4
+2.4: Pulling from library/httpd
+fff91e36faf1: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+bf7af0229701: Pulling fs layer
+01289bdb7344: Pulling fs layer
+cea950926c89: Pulling fs layer
+91eac6ee2743: Pulling fs layer
+d461d957ad8a: Download complete
+e78b009430d6: Download complete
+fff91e36faf1: Download complete
+4f4fb700ef54: Download complete
+01289bdb7344: Download complete
+91eac6ee2743: Download complete
+cea950926c89: Download complete
+bf7af0229701: Download complete
+4f4fb700ef54: Pull complete
+01289bdb7344: Pull complete
+bf7af0229701: Pull complete
+cea950926c89: Pull complete
+fff91e36faf1: Pull complete
+91eac6ee2743: Pull complete
+Digest: sha256:979c38c2228d28c2edfd45c6e27dcee1c7b4a101a5526721ae8ece454e89e99e
+Status: Downloaded newer image for httpd:2.4
+docker.io/library/httpd:2.4
++ docker images
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   5dd0d3e6e255       22.6kB         10.3kB        
+httpd:2.4            979c38c2228d        207MB         47.9MB        
++ docker run -d --name web1 -p 192.168.100.3:8800:80 httpd:2.4
+68a986ebb71d81ca83abe7c2bfe87c559aff3ca995e616ac516de7e6a1fdfec2
++ sleep 2
++ curl --fail http://192.168.100.3:8800
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   191  100   191    0     0   291k      0 --:--:-- --:--:-- --:--:--  186k
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>It works! Apache httpd</title>
+</head>
+<body>
+<p>It works!</p>
+</body>
+</html>
++ docker ps
+CONTAINER ID   IMAGE       COMMAND              CREATED         STATUS         PORTS                        NAMES
+68a986ebb71d   httpd:2.4   "httpd-foreground"   3 seconds ago   Up 2 seconds   192.168.100.3:8800->80/tcp   web1
++ docker stop web1
+web1
++ docker rm web1
+web1
++ docker container ls -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
++ docker search ubuntu --limit 5
+NAME           DESCRIPTION                                     STARS     OFFICIAL
+ubuntu         Ubuntu is a Debian-based Linux operating sys…   17871     [OK]
+ubuntu/squid   Squid is a caching proxy for the Web. Long-t…   130       
+ubuntu/nginx   Nginx, a high-performance reverse proxy & we…   143       
+ubuntu/bind9   BIND 9 is a very flexible, full-featured DNS…   120       
+ubuntu/kafka   Apache Kafka, a distributed event streaming …   62        
++ docker build -t practica/ubuntuweb:base ./test_docker
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 274B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 1.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 117B done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/ubuntu:22.04@sha256:2edbbc5dc405e9612ba3584ce95480277e3eb374407b5505fe26f17df77c7dbc
+#5 resolve docker.io/library/ubuntu:22.04@sha256:2edbbc5dc405e9612ba3584ce95480277e3eb374407b5505fe26f17df77c7dbc done
+#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 0B / 27.62MB 0.2s
+#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 4.19MB / 27.62MB 0.3s
+#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 17.83MB / 27.62MB 0.5s
+#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 26.21MB / 27.62MB 0.6s
+#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 27.62MB / 27.62MB 0.7s done
+#5 extracting sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e
+#5 extracting sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 0.4s done
+#5 DONE 1.1s
+
+#6 [2/3] RUN apt-get update && apt-get install -y --no-install-recommends apache2 apache2-utils     && apt-get clean && rm -rf /var/lib/apt/lists/*
+#6 0.409 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+#6 0.953 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+#6 1.075 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+#6 1.208 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+#6 1.337 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+#6 1.399 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+#6 1.658 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+#6 2.087 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+#6 2.088 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [4427 kB]
+#6 2.179 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [8081 kB]
+#6 2.362 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1703 kB]
+#6 2.406 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [70.2 kB]
+#6 2.407 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [33.7 kB]
+#6 2.408 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [82.4 kB]
+#6 2.410 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [62.9 kB]
+#6 2.411 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [4110 kB]
+#6 2.498 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [7777 kB]
+#6 2.670 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1406 kB]
+#6 3.334 Fetched 47.6 MB in 3s (14.8 MB/s)
+#6 3.334 Reading package lists...
+#6 3.981 Reading package lists...
+#6 4.542 Building dependency tree...
+#6 4.692 Reading state information...
+#6 4.819 The following additional packages will be installed:
+#6 4.819   apache2-bin apache2-data libapr1 libaprutil1 libaprutil1-dbd-sqlite3
+#6 4.819   libaprutil1-ldap libbrotli1 libcurl4 libexpat1 libgdbm-compat4 libgdbm6
+#6 4.819   libicu70 libjansson4 libldap-2.5-0 liblua5.3-0 libnghttp2-14 libperl5.34
+#6 4.819   libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db libsqlite3-0 libssh-4
+#6 4.819   libxml2 mailcap media-types mime-support perl perl-base perl-modules-5.34
+#6 4.819 Suggested packages:
+#6 4.819   apache2-doc apache2-suexec-pristine | apache2-suexec-custom www-browser ufw
+#6 4.819   gdbm-l10n perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
+#6 4.819   make libtap-harness-archive-perl
+#6 4.819 Recommended packages:
+#6 4.819   ssl-cert ca-certificates libldap-common publicsuffix libsasl2-modules bzip2
+#6 4.819   file xz-utils netbase
+#6 4.862 The following NEW packages will be installed:
+#6 4.863   apache2 apache2-bin apache2-data apache2-utils libapr1 libaprutil1
+#6 4.863   libaprutil1-dbd-sqlite3 libaprutil1-ldap libbrotli1 libcurl4 libexpat1
+#6 4.863   libgdbm-compat4 libgdbm6 libicu70 libjansson4 libldap-2.5-0 liblua5.3-0
+#6 4.863   libnghttp2-14 libperl5.34 libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db
+#6 4.863   libsqlite3-0 libssh-4 libxml2 mailcap media-types mime-support perl
+#6 4.863   perl-modules-5.34
+#6 4.864 The following packages will be upgraded:
+#6 4.864   perl-base
+#6 5.337 1 upgraded, 31 newly installed, 0 to remove and 25 not upgraded.
+#6 5.337 Need to get 25.0 MB of archives.
+#6 5.337 After this operation, 98.0 MB of additional disk space will be used.
+#6 5.337 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl-base arm64 5.34.0-3ubuntu1.9 [1711 kB]
+#6 7.111 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl-modules-5.34 all 5.34.0-3ubuntu1.9 [2977 kB]
+#6 7.417 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libgdbm6 arm64 1.23-1 [34.1 kB]
+#6 7.419 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libgdbm-compat4 arm64 1.23-1 [6294 B]
+#6 7.425 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libperl5.34 arm64 5.34.0-3ubuntu1.9 [4724 kB]
+#6 7.663 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl arm64 5.34.0-3ubuntu1.9 [232 kB]
+#6 7.680 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libapr1 arm64 1.7.0-8ubuntu0.22.04.2 [106 kB]
+#6 7.687 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libexpat1 arm64 2.4.7-1ubuntu0.7 [77.5 kB]
+#6 7.692 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1 arm64 1.6.1-5ubuntu4.22.04.3 [94.5 kB]
+#6 7.700 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsqlite3-0 arm64 3.37.2-2ubuntu0.7 [636 kB]
+#6 7.730 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1-dbd-sqlite3 arm64 1.6.1-5ubuntu4.22.04.3 [11.2 kB]
+#6 7.731 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-modules-db arm64 2.1.27+dfsg2-3ubuntu1.2 [21.1 kB]
+#6 7.734 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-2 arm64 2.1.27+dfsg2-3ubuntu1.2 [55.6 kB]
+#6 7.737 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libldap-2.5-0 arm64 2.5.20+dfsg-0ubuntu0.22.04.1 [182 kB]
+#6 7.869 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1-ldap arm64 1.6.1-5ubuntu4.22.04.3 [9082 B]
+#6 7.883 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libbrotli1 arm64 1.0.9-2build6 [314 kB]
+#6 7.892 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libnghttp2-14 arm64 1.43.0-1ubuntu0.4 [76.2 kB]
+#6 7.896 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libpsl5 arm64 0.21.0-1.2build2 [58.3 kB]
+#6 7.904 Get:19 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2build4 [59.2 kB]
+#6 7.934 Get:20 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libssh-4 arm64 0.9.6-2ubuntu0.22.04.8 [187 kB]
+#6 7.937 Get:21 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libcurl4 arm64 7.81.0-1ubuntu1.27 [286 kB]
+#6 7.941 Get:22 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libjansson4 arm64 2.13.1-1.1build3 [33.6 kB]
+#6 7.942 Get:23 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 liblua5.3-0 arm64 5.3.6-1build1 [135 kB]
+#6 7.951 Get:24 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libicu70 arm64 70.1-2 [10.5 MB]
+#6 8.409 Get:25 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libxml2 arm64 2.9.13+dfsg-1ubuntu0.12 [729 kB]
+#6 8.419 Get:26 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-bin arm64 2.4.52-1ubuntu4.23 [1318 kB]
+#6 8.566 Get:27 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-data all 2.4.52-1ubuntu4.23 [165 kB]
+#6 8.568 Get:28 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-utils arm64 2.4.52-1ubuntu4.23 [88.9 kB]
+#6 8.568 Get:29 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 media-types all 7.0.0 [25.5 kB]
+#6 8.569 Get:30 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 mailcap all 3.70+nmu1ubuntu1.22.04.1 [23.9 kB]
+#6 8.570 Get:31 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 mime-support all 3.66 [3696 B]
+#6 8.570 Get:32 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2 arm64 2.4.52-1ubuntu4.23 [97.9 kB]
+#6 8.647 debconf: delaying package configuration, since apt-utils is not installed
+#6 8.667 Fetched 25.0 MB in 4s (6741 kB/s)
+#6 8.679 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4387 files and directories currently installed.)
+#6 8.679 Preparing to unpack .../perl-base_5.34.0-3ubuntu1.9_arm64.deb ...
+#6 8.685 Unpacking perl-base (5.34.0-3ubuntu1.9) over (5.34.0-3ubuntu1.7) ...
+#6 9.009 Setting up perl-base (5.34.0-3ubuntu1.9) ...
+#6 9.018 Selecting previously unselected package perl-modules-5.34.
+#6 9.018 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4387 files and directories currently installed.)
+#6 9.020 Preparing to unpack .../00-perl-modules-5.34_5.34.0-3ubuntu1.9_all.deb ...
+#6 9.021 Unpacking perl-modules-5.34 (5.34.0-3ubuntu1.9) ...
+#6 9.132 Selecting previously unselected package libgdbm6:arm64.
+#6 9.133 Preparing to unpack .../01-libgdbm6_1.23-1_arm64.deb ...
+#6 9.134 Unpacking libgdbm6:arm64 (1.23-1) ...
+#6 9.142 Selecting previously unselected package libgdbm-compat4:arm64.
+#6 9.142 Preparing to unpack .../02-libgdbm-compat4_1.23-1_arm64.deb ...
+#6 9.143 Unpacking libgdbm-compat4:arm64 (1.23-1) ...
+#6 9.148 Selecting previously unselected package libperl5.34:arm64.
+#6 9.149 Preparing to unpack .../03-libperl5.34_5.34.0-3ubuntu1.9_arm64.deb ...
+#6 9.150 Unpacking libperl5.34:arm64 (5.34.0-3ubuntu1.9) ...
+#6 9.261 Selecting previously unselected package perl.
+#6 9.261 Preparing to unpack .../04-perl_5.34.0-3ubuntu1.9_arm64.deb ...
+#6 9.265 Unpacking perl (5.34.0-3ubuntu1.9) ...
+#6 9.275 Selecting previously unselected package libapr1:arm64.
+#6 9.275 Preparing to unpack .../05-libapr1_1.7.0-8ubuntu0.22.04.2_arm64.deb ...
+#6 9.276 Unpacking libapr1:arm64 (1.7.0-8ubuntu0.22.04.2) ...
+#6 9.282 Selecting previously unselected package libexpat1:arm64.
+#6 9.283 Preparing to unpack .../06-libexpat1_2.4.7-1ubuntu0.7_arm64.deb ...
+#6 9.285 Unpacking libexpat1:arm64 (2.4.7-1ubuntu0.7) ...
+#6 9.292 Selecting previously unselected package libaprutil1:arm64.
+#6 9.293 Preparing to unpack .../07-libaprutil1_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
+#6 9.293 Unpacking libaprutil1:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#6 9.300 Selecting previously unselected package libsqlite3-0:arm64.
+#6 9.301 Preparing to unpack .../08-libsqlite3-0_3.37.2-2ubuntu0.7_arm64.deb ...
+#6 9.301 Unpacking libsqlite3-0:arm64 (3.37.2-2ubuntu0.7) ...
+#6 9.313 Selecting previously unselected package libaprutil1-dbd-sqlite3:arm64.
+#6 9.313 Preparing to unpack .../09-libaprutil1-dbd-sqlite3_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
+#6 9.314 Unpacking libaprutil1-dbd-sqlite3:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#6 9.319 Selecting previously unselected package libsasl2-modules-db:arm64.
+#6 9.320 Preparing to unpack .../10-libsasl2-modules-db_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
+#6 9.320 Unpacking libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 9.328 Selecting previously unselected package libsasl2-2:arm64.
+#6 9.329 Preparing to unpack .../11-libsasl2-2_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
+#6 9.329 Unpacking libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 9.336 Selecting previously unselected package libldap-2.5-0:arm64.
+#6 9.336 Preparing to unpack .../12-libldap-2.5-0_2.5.20+dfsg-0ubuntu0.22.04.1_arm64.deb ...
+#6 9.337 Unpacking libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
+#6 9.344 Selecting previously unselected package libaprutil1-ldap:arm64.
+#6 9.344 Preparing to unpack .../13-libaprutil1-ldap_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
+#6 9.345 Unpacking libaprutil1-ldap:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#6 9.352 Selecting previously unselected package libbrotli1:arm64.
+#6 9.353 Preparing to unpack .../14-libbrotli1_1.0.9-2build6_arm64.deb ...
+#6 9.353 Unpacking libbrotli1:arm64 (1.0.9-2build6) ...
+#6 9.362 Selecting previously unselected package libnghttp2-14:arm64.
+#6 9.364 Preparing to unpack .../15-libnghttp2-14_1.43.0-1ubuntu0.4_arm64.deb ...
+#6 9.365 Unpacking libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
+#6 9.373 Selecting previously unselected package libpsl5:arm64.
+#6 9.374 Preparing to unpack .../16-libpsl5_0.21.0-1.2build2_arm64.deb ...
+#6 9.374 Unpacking libpsl5:arm64 (0.21.0-1.2build2) ...
+#6 9.381 Selecting previously unselected package librtmp1:arm64.
+#6 9.382 Preparing to unpack .../17-librtmp1_2.4+20151223.gitfa8646d.1-2build4_arm64.deb ...
+#6 9.382 Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
+#6 9.390 Selecting previously unselected package libssh-4:arm64.
+#6 9.391 Preparing to unpack .../18-libssh-4_0.9.6-2ubuntu0.22.04.8_arm64.deb ...
+#6 9.392 Unpacking libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
+#6 9.399 Selecting previously unselected package libcurl4:arm64.
+#6 9.400 Preparing to unpack .../19-libcurl4_7.81.0-1ubuntu1.27_arm64.deb ...
+#6 9.400 Unpacking libcurl4:arm64 (7.81.0-1ubuntu1.27) ...
+#6 9.408 Selecting previously unselected package libjansson4:arm64.
+#6 9.410 Preparing to unpack .../20-libjansson4_2.13.1-1.1build3_arm64.deb ...
+#6 9.410 Unpacking libjansson4:arm64 (2.13.1-1.1build3) ...
+#6 9.416 Selecting previously unselected package liblua5.3-0:arm64.
+#6 9.417 Preparing to unpack .../21-liblua5.3-0_5.3.6-1build1_arm64.deb ...
+#6 9.418 Unpacking liblua5.3-0:arm64 (5.3.6-1build1) ...
+#6 9.425 Selecting previously unselected package libicu70:arm64.
+#6 9.426 Preparing to unpack .../22-libicu70_70.1-2_arm64.deb ...
+#6 9.427 Unpacking libicu70:arm64 (70.1-2) ...
+#6 9.545 Selecting previously unselected package libxml2:arm64.
+#6 9.547 Preparing to unpack .../23-libxml2_2.9.13+dfsg-1ubuntu0.12_arm64.deb ...
+#6 9.548 Unpacking libxml2:arm64 (2.9.13+dfsg-1ubuntu0.12) ...
+#6 9.562 Selecting previously unselected package apache2-bin.
+#6 9.562 Preparing to unpack .../24-apache2-bin_2.4.52-1ubuntu4.23_arm64.deb ...
+#6 9.563 Unpacking apache2-bin (2.4.52-1ubuntu4.23) ...
+#6 9.596 Selecting previously unselected package apache2-data.
+#6 9.597 Preparing to unpack .../25-apache2-data_2.4.52-1ubuntu4.23_all.deb ...
+#6 9.597 Unpacking apache2-data (2.4.52-1ubuntu4.23) ...
+#6 9.617 Selecting previously unselected package apache2-utils.
+#6 9.618 Preparing to unpack .../26-apache2-utils_2.4.52-1ubuntu4.23_arm64.deb ...
+#6 9.619 Unpacking apache2-utils (2.4.52-1ubuntu4.23) ...
+#6 9.628 Selecting previously unselected package media-types.
+#6 9.629 Preparing to unpack .../27-media-types_7.0.0_all.deb ...
+#6 9.629 Unpacking media-types (7.0.0) ...
+#6 9.637 Selecting previously unselected package mailcap.
+#6 9.638 Preparing to unpack .../28-mailcap_3.70+nmu1ubuntu1.22.04.1_all.deb ...
+#6 9.639 Unpacking mailcap (3.70+nmu1ubuntu1.22.04.1) ...
+#6 9.647 Selecting previously unselected package mime-support.
+#6 9.648 Preparing to unpack .../29-mime-support_3.66_all.deb ...
+#6 9.649 Unpacking mime-support (3.66) ...
+#6 9.656 Selecting previously unselected package apache2.
+#6 9.657 Preparing to unpack .../30-apache2_2.4.52-1ubuntu4.23_arm64.deb ...
+#6 9.659 Unpacking apache2 (2.4.52-1ubuntu4.23) ...
+#6 9.680 Setting up libexpat1:arm64 (2.4.7-1ubuntu0.7) ...
+#6 9.683 Setting up media-types (7.0.0) ...
+#6 9.688 Setting up libpsl5:arm64 (0.21.0-1.2build2) ...
+#6 9.690 Setting up libbrotli1:arm64 (1.0.9-2build6) ...
+#6 9.692 Setting up libsqlite3-0:arm64 (3.37.2-2ubuntu0.7) ...
+#6 9.694 Setting up libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
+#6 9.697 Setting up libapr1:arm64 (1.7.0-8ubuntu0.22.04.2) ...
+#6 9.699 Setting up perl-modules-5.34 (5.34.0-3ubuntu1.9) ...
+#6 9.701 Setting up libjansson4:arm64 (2.13.1-1.1build3) ...
+#6 9.703 Setting up libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 9.705 Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
+#6 9.708 Setting up libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#6 9.710 Setting up libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
+#6 9.712 Setting up liblua5.3-0:arm64 (5.3.6-1build1) ...
+#6 9.714 Setting up apache2-data (2.4.52-1ubuntu4.23) ...
+#6 9.716 Setting up libgdbm6:arm64 (1.23-1) ...
+#6 9.718 Setting up libicu70:arm64 (70.1-2) ...
+#6 9.719 Setting up libaprutil1:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#6 9.721 Setting up libaprutil1-dbd-sqlite3:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#6 9.723 Setting up libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
+#6 9.725 Setting up libgdbm-compat4:arm64 (1.23-1) ...
+#6 9.727 Setting up libcurl4:arm64 (7.81.0-1ubuntu1.27) ...
+#6 9.730 Setting up libxml2:arm64 (2.9.13+dfsg-1ubuntu0.12) ...
+#6 9.731 Setting up apache2-utils (2.4.52-1ubuntu4.23) ...
+#6 9.734 Setting up libperl5.34:arm64 (5.34.0-3ubuntu1.9) ...
+#6 9.736 Setting up libaprutil1-ldap:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#6 9.737 Setting up perl (5.34.0-3ubuntu1.9) ...
+#6 9.741 Setting up mailcap (3.70+nmu1ubuntu1.22.04.1) ...
+#6 9.750 Setting up mime-support (3.66) ...
+#6 9.752 Setting up apache2-bin (2.4.52-1ubuntu4.23) ...
+#6 9.754 Setting up apache2 (2.4.52-1ubuntu4.23) ...
+#6 9.881 Enabling module mpm_event.
+#6 9.892 Enabling module authz_core.
+#6 9.894 Enabling module authz_host.
+#6 9.905 Enabling module authn_core.
+#6 9.906 Enabling module auth_basic.
+#6 9.917 Enabling module access_compat.
+#6 9.929 Enabling module authn_file.
+#6 9.940 Enabling module authz_user.
+#6 9.952 Enabling module alias.
+#6 9.963 Enabling module dir.
+#6 9.974 Enabling module autoindex.
+#6 9.984 Enabling module env.
+#6 9.996 Enabling module mime.
+#6 10.01 Enabling module negotiation.
+#6 10.02 Enabling module setenvif.
+#6 10.03 Enabling module filter.
+#6 10.04 Enabling module deflate.
+#6 10.05 Enabling module status.
+#6 10.06 Enabling module reqtimeout.
+#6 10.07 Enabling conf charset.
+#6 10.08 Enabling conf localized-error-pages.
+#6 10.10 Enabling conf other-vhosts-access-log.
+#6 10.11 Enabling conf security.
+#6 10.12 Enabling conf serve-cgi-bin.
+#6 10.13 Enabling site 000-default.
+#6 10.13 invoke-rc.d: could not determine current runlevel
+#6 10.14 invoke-rc.d: policy-rc.d denied execution of start.
+#6 10.25 Processing triggers for libc-bin (2.35-0ubuntu3.14) ...
+#6 DONE 10.5s
+
+#7 [3/3] COPY html1/ /var/www/html/
+#7 DONE 0.0s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 2.2s done
+#8 exporting manifest sha256:7d33cffe8e75d98f6150b9c002ab1142a0169492c6ef5dc9ad6ff5a831ac87d2 done
+#8 exporting config sha256:04bd5b386dc789a97499def99dd98982d3610dd4f34c75fb4c2c9b20a4d63620 done
+#8 exporting attestation manifest sha256:27c60f5da3ebe05c295e302863abc03b5e1fe22c17cbb45ab1c0fa7eb47a584d done
+#8 exporting manifest list sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177 done
+#8 naming to docker.io/practica/ubuntuweb:base done
+#8 unpacking to docker.io/practica/ubuntuweb:base
+#8 unpacking to docker.io/practica/ubuntuweb:base 0.5s done
+#8 DONE 2.7s
++ docker tag practica/ubuntuweb:base practica/ubuntuweb:v1
++ docker run -d --name webprueba -p 192.168.100.3:9000:80 practica/ubuntuweb:base
+351fde8e1d0060011c93e0c20768ed610e6b40c191c7710fa63cc6f8d44cd1e7
++ docker build -t practica/sitio-docker:v1 ./sitio-personalizado
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 142B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/practica/ubuntuweb:base
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 2.29kB done
+#4 DONE 0.0s
+
+#5 [1/2] FROM docker.io/practica/ubuntuweb:base@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177
+#5 resolve docker.io/practica/ubuntuweb:base@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177 done
+#5 DONE 0.0s
+
+#6 [2/2] COPY html1/ /var/www/html/
+#6 DONE 0.0s
+
+#7 exporting to image
+#7 exporting layers 0.0s done
+#7 exporting manifest sha256:eb9c22bf291ab0d6fde0dfc9616110546c9d97246d691b068070ea51e381032c done
+#7 exporting config sha256:17a7b321e7c8596dfdde5ff2bfcfee3413c8aa3e0712ea61bdee1561c90d53c3 done
+#7 exporting attestation manifest sha256:d50d155dad274448dee5e9a9b0b2fb3dfea8d2863576571597c2ce7da6638b26
+#7 exporting attestation manifest sha256:d50d155dad274448dee5e9a9b0b2fb3dfea8d2863576571597c2ce7da6638b26 done
+#7 exporting manifest list sha256:3b9de05d882a240b123220873e907bca2cba592592e1e1591f8fe80049e8a383 done
+#7 naming to docker.io/practica/sitio-docker:v1 done
+#7 unpacking to docker.io/practica/sitio-docker:v1 done
+#7 DONE 0.1s
++ docker run -d --name webpersonal -p 192.168.100.3:9001:80 practica/sitio-docker:v1
+dd9bbdb304a17450e0e526cee7c3ba856aa66ff2be63d6586534816656c3091d
++ docker build -t practica/testdir:v1 ./test_docker2
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 220B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/practica/ubuntuweb:base
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 418B done
+#4 DONE 0.0s
+
+#5 [1/2] FROM docker.io/practica/ubuntuweb:base@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177
+#5 resolve docker.io/practica/ubuntuweb:base@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177 0.0s done
+#5 CACHED
+
+#6 [2/2] COPY voldocker/ /var/www/html/
+#6 DONE 0.0s
+
+#7 exporting to image
+#7 exporting layers 0.0s done
+#7 exporting manifest sha256:ca46e3b0bf9fad486299b3407fa0cde0c1f3c90fd31c09ce33b92fff60aed90a
+#7 exporting manifest sha256:ca46e3b0bf9fad486299b3407fa0cde0c1f3c90fd31c09ce33b92fff60aed90a done
+#7 exporting config sha256:903424b44a55e0edde15686e7f79a52b4f26c425f7fa96028055e1eacd652819 done
+#7 exporting attestation manifest sha256:ab686c1ad7d1d6240652bb2b80304df51a9fff0d386cb43a09efcaf6dfee8c46 done
+#7 exporting manifest list sha256:8fee9ee58b50eec6a9505960fec6802574f3732adad0e02259a2458ebdad0be2 done
+#7 naming to docker.io/practica/testdir:v1 done
+#7 unpacking to docker.io/practica/testdir:v1 0.0s done
+#7 DONE 0.1s
++ docker run -d --name webcontainer -p 192.168.100.3:9910:80 practica/testdir:v1
+127cddc7bf4d5d420399af5560d1fc4266e112ae5a1313a6395dc2ba8ebaa366
++ sleep 2
++ curl --fail http://192.168.100.3:9000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    45  100    45    0     0  23809      0 --:--:-- --:--:-- --:--:-- 45000
+<h1> Bienvenidos al servidor de prueba </h1>
++ curl --fail http://192.168.100.3:9001
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2218  100  2218    0     0  1596k      0 --:--:-- --:--:-- --:--:-- 2166k
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Natalia Hernández · Laboratorio Docker e IA</title>
+<style>
+:root{color-scheme:light;--ink:#122d43;--accent:#096c70}*{box-sizing:border-box}body{margin:0;background:#f3f5ef;color:var(--ink);font:18px/1.6 system-ui,sans-serif}main{max-width:1000px;margin:auto;padding:60px 28px}.eyebrow{font-size:13px;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(36px,6vw,68px);line-height:1.08;max-width:800px;margin:20px 0}h2{font-size:23px}p{max-width:690px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:42px}article{border:1px solid #cdd8cd;padding:24px;border-radius:12px;background:#fff}article span{font:700 14px ui-monospace,monospace;color:var(--accent)}footer{margin-top:50px;border-top:1px solid #cdd8cd;padding-top:18px;font-size:14px}.tag{display:inline-block;background:#dcece1;border-radius:30px;padding:6px 15px;font-size:14px}
+</style></head><body><main><div class="eyebrow">Natalia Hernández / Práctica de contenedores</div>
+<h1>Un laboratorio de ideas.<br>Dentro de Docker.</h1>
+<p>Sitio personalizado del laboratorio de Docker e inteligencia artificial. Una imagen propia con Ubuntu y Apache permite llevar esta página a otro equipo conservando el mismo entorno.</p>
+<div class="tag">Ubuntu 22.04 · Apache · Docker</div>
+<section class="grid" aria-label="Componentes del laboratorio">
+<article><span>01 / WEB</span><h2>Imágenes propias</h2><p>El Dockerfile instala Apache y copia esta página. La imagen se puede versionar y distribuir mediante Docker Hub.</p></article>
+<article><span>02 / DATOS</span><h2>Data Science e IA</h2><p>Notebooks con TensorFlow, scikit-learn y preprocesamiento de datos para ejecutar experimentos reproducibles.</p></article>
+<article><span>03 / PERSISTENCIA</span><h2>Volúmenes</h2><p>Directorios compartidos y volúmenes con nombre permiten conservar archivos al recrear un contenedor.</p></article>
+</section><footer>Laboratorio académico · Natalia Hernández · Ingeniería e inteligencia artificial</footer></main></body></html>
++ curl --fail http://192.168.100.3:9910
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    68  100    68    0     0  74725      0 --:--:-- --:--:-- --:--:-- 68000
+<h1>Prueba directorios</h1>
+<a href="pagina1.html">Ir a pagina1</a>
++ curl --fail http://192.168.100.3:9910/pagina1.html
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   217  100   217    0     0   344k      0 --:--:-- --:--:-- --:--:--  211k
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Página 1</title>
+<h1>Página 1</h1><p>Este archivo fue copiado desde voldocker al construir la imagen.</p>
+<a href="index.html">Volver al inicio</a></html>
++ docker logs webcontainer
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.4. Set the 'ServerName' directive globally to suppress this message
++ docker exec webcontainer bash -c 'hostname; ls -l /var/www/html; apache2ctl -v'
+127cddc7bf4d
+total 8
+-rw-r--r-- 1 root root  68 Sep  9 05:46 index.html
+-rw-r--r-- 1 root root 217 Sep  9 05:46 pagina1.html
+Server version: Apache/2.4.52 (Ubuntu)
+Server built:   2026-07-06T16:41:46
++ docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                        NAMES
+127cddc7bf4d   practica/testdir:v1        "apache2ctl -D FOREG…"   2 seconds ago   Up 2 seconds   192.168.100.3:9910->80/tcp   webcontainer
+dd9bbdb304a1   practica/sitio-docker:v1   "apache2ctl -D FOREG…"   2 seconds ago   Up 2 seconds   192.168.100.3:9001->80/tcp   webpersonal
+351fde8e1d00   practica/ubuntuweb:base    "apache2ctl -D FOREG…"   3 seconds ago   Up 2 seconds   192.168.100.3:9000->80/tcp   webprueba
++ docker run -d --name webvolumen -p 192.168.100.3:9920:80 --mount type=bind,source=/home/vagrant/practica-docker-ia/volumenes,target=/var/www/html,readonly practica/ubuntuweb:base
+42e141ab715f303db5fbf4be266c3c4d32ccf3d250616fe162caa304b6db4c43
++ sleep 2
++ curl --fail http://192.168.100.3:9920
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   237  100   237    0     0  72654      0 --:--:-- --:--:-- --:--:--  115k
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Volúmenes Docker</title>
+<h1>Directorio compartido entre Ubuntu y Docker</h1>
+<p>Este archivo vive en el anfitrión Ubuntu y Apache lo sirve mediante un bind mount.</p></html>
++ printf 'Cambio realizado desde el anfitrión Ubuntu\n'
++ curl --fail http://192.168.100.3:9920/cambio.txt
++ grep 'Cambio realizado'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    44  100    44    0     0  70400      0 --:--:-- --:--:-- --:--:-- 44000
+Cambio realizado desde el anfitrión Ubuntu
++ docker inspect webvolumen --format '{{json .Mounts}}'
+[{"Type":"bind","Source":"/home/vagrant/practica-docker-ia/volumenes","Destination":"/var/www/html","Mode":"","RW":false,"Propagation":"rprivate"}]
++ docker run --rm --mount type=bind,source=/home/vagrant/practica-docker-ia/volumenes,target=/datos practica/ubuntuweb:base sh -c 'echo "Archivo escrito desde un contenedor" > /datos/desde-contenedor.txt'
++ cat volumenes/desde-contenedor.txt
+Archivo escrito desde un contenedor
++ docker volume create practica_ia_datos
+practica_ia_datos
++ docker run --rm --name escritor-persistencia --mount source=practica_ia_datos,target=/datos practica/ubuntuweb:base sh -c 'echo "Los datos sobreviven al contenedor" > /datos/evidencia.txt'
++ docker run --rm --name lector-persistencia --mount source=practica_ia_datos,target=/datos,readonly practica/ubuntuweb:base cat /datos/evidencia.txt
++ grep 'Los datos sobreviven'
+Los datos sobreviven al contenedor
++ docker volume inspect practica_ia_datos
+[
+    {
+        "CreatedAt": "2026-09-09T05:52:27Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/practica_ia_datos/_data",
+        "Name": "practica_ia_datos",
+        "Options": null,
+        "Scope": "local"
+    }
+]
++ docker build -t practica/data-science:local ./data-science
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 459B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#2 DONE 1.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 6.49kB done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#5 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.0s done
+#5 sha256:81b1678c3acf80a3f4c5287648e98ae53b3ea788b2d7c2dd9a84bb7d7b1cefb8 250B / 250B 0.1s done
+#5 sha256:23ea1c0152c2bf05438b20ce3235b7e73ce77973bb7b5541f6365c5e741f0fa7 0B / 15.96MB 0.2s
+#5 sha256:1ebecbcc5fdf937f1ed80f7185d7ed7a402840182bd0c84b7b4dd5f9cd539dc0 0B / 3.37MB 0.2s
+#5 sha256:75782e20ea1f4a9d9259bc20a5ecbbea8d5943bf5370bf0f5727900728f1cc9a 0B / 28.12MB 0.2s
+#5 sha256:23ea1c0152c2bf05438b20ce3235b7e73ce77973bb7b5541f6365c5e741f0fa7 5.24MB / 15.96MB 0.5s
+#5 sha256:23ea1c0152c2bf05438b20ce3235b7e73ce77973bb7b5541f6365c5e741f0fa7 10.49MB / 15.96MB 0.6s
+#5 sha256:23ea1c0152c2bf05438b20ce3235b7e73ce77973bb7b5541f6365c5e741f0fa7 15.96MB / 15.96MB 0.7s done
+#5 sha256:1ebecbcc5fdf937f1ed80f7185d7ed7a402840182bd0c84b7b4dd5f9cd539dc0 3.37MB / 3.37MB 0.7s done
+#5 sha256:75782e20ea1f4a9d9259bc20a5ecbbea8d5943bf5370bf0f5727900728f1cc9a 2.10MB / 28.12MB 0.8s
+#5 sha256:75782e20ea1f4a9d9259bc20a5ecbbea8d5943bf5370bf0f5727900728f1cc9a 5.24MB / 28.12MB 0.9s
+#5 sha256:75782e20ea1f4a9d9259bc20a5ecbbea8d5943bf5370bf0f5727900728f1cc9a 12.58MB / 28.12MB 1.1s
+#5 sha256:75782e20ea1f4a9d9259bc20a5ecbbea8d5943bf5370bf0f5727900728f1cc9a 24.12MB / 28.12MB 1.2s
+#5 sha256:75782e20ea1f4a9d9259bc20a5ecbbea8d5943bf5370bf0f5727900728f1cc9a 28.12MB / 28.12MB 1.3s done
+#5 extracting sha256:75782e20ea1f4a9d9259bc20a5ecbbea8d5943bf5370bf0f5727900728f1cc9a
+#5 extracting sha256:75782e20ea1f4a9d9259bc20a5ecbbea8d5943bf5370bf0f5727900728f1cc9a 0.7s done
+#5 DONE 2.0s
+
+#5 [1/5] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#5 extracting sha256:1ebecbcc5fdf937f1ed80f7185d7ed7a402840182bd0c84b7b4dd5f9cd539dc0 0.1s done
+#5 DONE 2.1s
+
+#5 [1/5] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#5 extracting sha256:23ea1c0152c2bf05438b20ce3235b7e73ce77973bb7b5541f6365c5e741f0fa7
+#5 extracting sha256:23ea1c0152c2bf05438b20ce3235b7e73ce77973bb7b5541f6365c5e741f0fa7 0.3s done
+#5 DONE 2.4s
+
+#5 [1/5] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#5 extracting sha256:81b1678c3acf80a3f4c5287648e98ae53b3ea788b2d7c2dd9a84bb7d7b1cefb8 0.0s done
+#5 DONE 2.4s
+
+#6 [2/5] WORKDIR /notebooks
+#6 DONE 0.2s
+
+#7 [3/5] COPY requirements.txt /tmp/requirements.txt
+#7 DONE 0.0s
+
+#8 [4/5] RUN pip install --no-cache-dir -r /tmp/requirements.txt
+#8 1.506 Collecting tensorflow==2.20.0 (from -r /tmp/requirements.txt (line 1))
+#8 1.915   Downloading tensorflow-2.20.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.5 kB)
+#8 2.139 Collecting scikit-learn==1.7.2 (from -r /tmp/requirements.txt (line 2))
+#8 2.241   Downloading scikit_learn-1.7.2-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (11 kB)
+#8 2.393 Collecting notebook==7.4.7 (from -r /tmp/requirements.txt (line 3))
+#8 2.482   Downloading notebook-7.4.7-py3-none-any.whl.metadata (10 kB)
+#8 2.611 Collecting nbconvert==7.16.6 (from -r /tmp/requirements.txt (line 4))
+#8 2.688   Downloading nbconvert-7.16.6-py3-none-any.whl.metadata (8.5 kB)
+#8 3.132 Collecting numpy==2.2.6 (from -r /tmp/requirements.txt (line 5))
+#8 3.232   Downloading numpy-2.2.6-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (63 kB)
+#8 3.326      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.4/63.4 kB 642.6 kB/s eta 0:00:00
+#8 3.600 Collecting pandas==2.3.3 (from -r /tmp/requirements.txt (line 6))
+#8 3.686   Downloading pandas-2.3.3-cp311-cp311-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl.metadata (91 kB)
+#8 3.718      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.2/91.2 kB 2.7 MB/s eta 0:00:00
+#8 4.007 Collecting matplotlib==3.10.7 (from -r /tmp/requirements.txt (line 7))
+#8 4.102   Downloading matplotlib-3.10.7-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (11 kB)
+#8 4.208 Collecting sympy==1.14.0 (from -r /tmp/requirements.txt (line 8))
+#8 4.288   Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+#8 4.436 Collecting absl-py>=1.0.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 4.522   Downloading absl_py-2.5.0-py3-none-any.whl.metadata (3.3 kB)
+#8 4.613 Collecting astunparse>=1.6.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 4.703   Downloading astunparse-1.6.3-py2.py3-none-any.whl.metadata (4.4 kB)
+#8 4.815 Collecting flatbuffers>=24.3.25 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 4.904   Downloading flatbuffers-25.12.19-py2.py3-none-any.whl.metadata (1.0 kB)
+#8 5.002 Collecting gast!=0.5.0,!=0.5.1,!=0.5.2,>=0.2.1 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 5.089   Downloading gast-0.7.0-py3-none-any.whl.metadata (1.5 kB)
+#8 5.185 Collecting google_pasta>=0.1.1 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 5.268   Downloading google_pasta-0.2.0-py3-none-any.whl.metadata (814 bytes)
+#8 5.367 Collecting libclang>=13.0.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 5.462   Downloading libclang-18.1.1-py2.py3-none-manylinux2014_aarch64.whl.metadata (5.2 kB)
+#8 5.556 Collecting opt_einsum>=2.3.2 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 5.642   Downloading opt_einsum-3.4.0-py3-none-any.whl.metadata (6.3 kB)
+#8 5.644 Requirement already satisfied: packaging in /usr/local/lib/python3.11/site-packages (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1)) (26.3)
+#8 5.942 Collecting protobuf>=5.28.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 6.027   Downloading protobuf-7.36.1-cp310-abi3-manylinux2014_aarch64.whl.metadata (595 bytes)
+#8 6.142 Collecting requests<3,>=2.21.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 6.230   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#8 6.232 Requirement already satisfied: setuptools in /usr/local/lib/python3.11/site-packages (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1)) (79.0.1)
+#8 6.328 Collecting six>=1.12.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 6.423   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#8 6.526 Collecting termcolor>=1.1.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 6.613   Downloading termcolor-3.3.0-py3-none-any.whl.metadata (6.5 kB)
+#8 6.718 Collecting typing_extensions>=3.6.6 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 6.805   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#8 7.402 Collecting wrapt>=1.11.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 7.496   Downloading wrapt-2.4.0-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (7.4 kB)
+#8 8.335 Collecting grpcio<2.0,>=1.24.3 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 8.422   Downloading grpcio-1.83.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (3.7 kB)
+#8 8.514 Collecting tensorboard~=2.20.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 8.603   Downloading tensorboard-2.20.0-py3-none-any.whl.metadata (1.8 kB)
+#8 8.703 Collecting keras>=3.10.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 8.789   Downloading keras-3.15.1-py3-none-any.whl.metadata (6.4 kB)
+#8 8.934 Collecting h5py>=3.11.0 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 9.021   Downloading h5py-3.16.0-cp311-cp311-manylinux_2_28_aarch64.whl.metadata (3.0 kB)
+#8 9.136 Collecting ml_dtypes<1.0.0,>=0.5.1 (from tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 9.215   Downloading ml_dtypes-0.6.0-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (8.8 kB)
+#8 9.578 Collecting scipy>=1.8.0 (from scikit-learn==1.7.2->-r /tmp/requirements.txt (line 2))
+#8 9.657   Downloading scipy-1.17.1-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (62 kB)
+#8 9.675      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.1/62.1 kB 3.4 MB/s eta 0:00:00
+#8 9.778 Collecting joblib>=1.2.0 (from scikit-learn==1.7.2->-r /tmp/requirements.txt (line 2))
+#8 9.868   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+#8 9.963 Collecting threadpoolctl>=3.1.0 (from scikit-learn==1.7.2->-r /tmp/requirements.txt (line 2))
+#8 10.04   Downloading threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+#8 10.19 Collecting jupyter-server<3,>=2.4.0 (from notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 10.27   Downloading jupyter_server-2.21.0-py3-none-any.whl.metadata (8.5 kB)
+#8 10.39 Collecting jupyterlab-server<3,>=2.27.1 (from notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 10.48   Downloading jupyterlab_server-2.28.0-py3-none-any.whl.metadata (5.9 kB)
+#8 10.67 Collecting jupyterlab<4.5,>=4.4.9 (from notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 10.76   Downloading jupyterlab-4.4.10-py3-none-any.whl.metadata (16 kB)
+#8 10.86 Collecting notebook-shim<0.3,>=0.2 (from notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 10.95   Downloading notebook_shim-0.2.4-py3-none-any.whl.metadata (4.0 kB)
+#8 11.09 Collecting tornado>=6.2.0 (from notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 11.19   Downloading tornado-6.5.8-cp39-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.8 kB)
+#8 11.31 Collecting beautifulsoup4 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 11.39   Downloading beautifulsoup4-4.15.0-py3-none-any.whl.metadata (3.8 kB)
+#8 11.49 Collecting bleach!=5.0.0 (from bleach[css]!=5.0.0->nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 11.57   Downloading bleach-6.4.0-py3-none-any.whl.metadata (32 kB)
+#8 11.68 Collecting defusedxml (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 11.76   Downloading defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+#8 11.87 Collecting jinja2>=3.0 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 11.96   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#8 12.07 Collecting jupyter-core>=4.7 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 12.16   Downloading jupyter_core-5.9.1-py3-none-any.whl.metadata (1.5 kB)
+#8 12.25 Collecting jupyterlab-pygments (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 12.33   Downloading jupyterlab_pygments-0.3.0-py3-none-any.whl.metadata (4.4 kB)
+#8 12.48 Collecting markupsafe>=2.0 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 12.56   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)
+#8 12.66 Collecting mistune<4,>=2.0.3 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 12.75   Downloading mistune-3.3.4-py3-none-any.whl.metadata (1.9 kB)
+#8 12.87 Collecting nbclient>=0.5.0 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 12.95   Downloading nbclient-0.11.0-py3-none-any.whl.metadata (7.3 kB)
+#8 13.06 Collecting nbformat>=5.7 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 13.15   Downloading nbformat-5.11.1-py3-none-any.whl.metadata (3.7 kB)
+#8 13.24 Collecting pandocfilters>=1.4.1 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 13.32   Downloading pandocfilters-1.5.1-py2.py3-none-any.whl.metadata (9.0 kB)
+#8 13.43 Collecting pygments>=2.4.1 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 13.52   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#8 13.65 Collecting traitlets>=5.1 (from nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 13.74   Downloading traitlets-5.16.1-py3-none-any.whl.metadata (10 kB)
+#8 13.87 Collecting python-dateutil>=2.8.2 (from pandas==2.3.3->-r /tmp/requirements.txt (line 6))
+#8 13.95   Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+#8 14.10 Collecting pytz>=2020.1 (from pandas==2.3.3->-r /tmp/requirements.txt (line 6))
+#8 14.18   Downloading pytz-2026.3.post1-py2.py3-none-any.whl.metadata (22 kB)
+#8 14.28 Collecting tzdata>=2022.7 (from pandas==2.3.3->-r /tmp/requirements.txt (line 6))
+#8 14.36   Downloading tzdata-2026.3-py2.py3-none-any.whl.metadata (1.4 kB)
+#8 14.62 Collecting contourpy>=1.0.1 (from matplotlib==3.10.7->-r /tmp/requirements.txt (line 7))
+#8 14.71   Downloading contourpy-1.3.3-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl.metadata (5.5 kB)
+#8 14.80 Collecting cycler>=0.10 (from matplotlib==3.10.7->-r /tmp/requirements.txt (line 7))
+#8 14.89   Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+#8 15.17 Collecting fonttools>=4.22.0 (from matplotlib==3.10.7->-r /tmp/requirements.txt (line 7))
+#8 15.25   Downloading fonttools-4.64.0-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (123 kB)
+#8 15.28      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.6/123.6 kB 4.2 MB/s eta 0:00:00
+#8 15.45 Collecting kiwisolver>=1.3.1 (from matplotlib==3.10.7->-r /tmp/requirements.txt (line 7))
+#8 15.53   Downloading kiwisolver-1.5.1-cp311-cp311-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl.metadata (5.2 kB)
+#8 15.86 Collecting pillow>=8 (from matplotlib==3.10.7->-r /tmp/requirements.txt (line 7))
+#8 15.94   Downloading pillow-12.3.0-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (9.1 kB)
+#8 16.06 Collecting pyparsing>=3 (from matplotlib==3.10.7->-r /tmp/requirements.txt (line 7))
+#8 16.15   Downloading pyparsing-3.3.2-py3-none-any.whl.metadata (5.8 kB)
+#8 16.27 Collecting mpmath<1.4,>=1.1.0 (from sympy==1.14.0->-r /tmp/requirements.txt (line 8))
+#8 16.35   Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+#8 16.36 Requirement already satisfied: wheel<1.0,>=0.23.0 in /usr/local/lib/python3.11/site-packages (from astunparse>=1.6.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1)) (0.46.3)
+#8 16.45 Collecting webencodings (from bleach!=5.0.0->bleach[css]!=5.0.0->nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 16.55   Downloading webencodings-0.6.1-py3-none-any.whl.metadata (3.4 kB)
+#8 16.65 Collecting tinycss2>=1.1.0 (from bleach[css]!=5.0.0->nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 16.74   Downloading tinycss2-1.5.1-py3-none-any.whl.metadata (3.0 kB)
+#8 16.89 Collecting cloudpickle>=3.0 (from joblib>=1.2.0->scikit-learn==1.7.2->-r /tmp/requirements.txt (line 2))
+#8 16.98   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+#8 17.12 Collecting platformdirs>=2.5 (from jupyter-core>=4.7->nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 17.21   Downloading platformdirs-4.11.8-py3-none-any.whl.metadata (5.5 kB)
+#8 17.33 Collecting anyio>=3.1.0 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 17.42   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#8 17.52 Collecting argon2-cffi>=21.1 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 17.61   Downloading argon2_cffi-25.1.0-py3-none-any.whl.metadata (4.1 kB)
+#8 17.73 Collecting jupyter-client>=7.4.4 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 17.81   Downloading jupyter_client-8.10.0-py3-none-any.whl.metadata (8.5 kB)
+#8 17.91 Collecting jupyter-events>=0.11.0 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 18.00   Downloading jupyter_events-0.12.1-py3-none-any.whl.metadata (5.8 kB)
+#8 18.10 Collecting jupyter-server-terminals>=0.4.4 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 18.19   Downloading jupyter_server_terminals-0.5.4-py3-none-any.whl.metadata (5.9 kB)
+#8 18.29 Collecting overrides>=5.0 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 18.38   Downloading overrides-7.7.0-py3-none-any.whl.metadata (5.8 kB)
+#8 18.48 Collecting prometheus-client>=0.9 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 18.57   Downloading prometheus_client-0.26.0-py3-none-any.whl.metadata (2.1 kB)
+#8 19.05 Collecting pyzmq>=24 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 19.15   Downloading pyzmq-27.2.0-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl.metadata (3.8 kB)
+#8 19.24 Collecting send2trash>=1.8.2 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 19.33   Downloading send2trash-2.1.0-py3-none-any.whl.metadata (4.1 kB)
+#8 19.45 Collecting terminado>=0.8.3 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 19.54   Downloading terminado-0.18.1-py3-none-any.whl.metadata (5.8 kB)
+#8 19.65 Collecting websocket-client>=1.7 (from jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 19.72   Downloading websocket_client-1.9.2-py3-none-any.whl.metadata (8.3 kB)
+#8 19.84 Collecting async-lru>=1.0.0 (from jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 19.93   Downloading async_lru-2.3.0-py3-none-any.whl.metadata (7.6 kB)
+#8 20.03 Collecting httpx<1,>=0.25.0 (from jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 20.12   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#8 20.25 Collecting ipykernel!=6.30.0,>=6.5.0 (from jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 20.34   Downloading ipykernel-7.3.0-py3-none-any.whl.metadata (4.5 kB)
+#8 20.43 Collecting jupyter-lsp>=2.0.0 (from jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 20.51   Downloading jupyter_lsp-2.3.1-py3-none-any.whl.metadata (1.8 kB)
+#8 20.62 Collecting babel>=2.10 (from jupyterlab-server<3,>=2.27.1->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 20.71   Downloading babel-2.18.0-py3-none-any.whl.metadata (2.2 kB)
+#8 20.82 Collecting json5>=0.9.0 (from jupyterlab-server<3,>=2.27.1->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 20.90   Downloading json5-0.15.0-py3-none-any.whl.metadata (37 kB)
+#8 21.01 Collecting jsonschema>=4.18.0 (from jupyterlab-server<3,>=2.27.1->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 21.10   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+#8 21.25 Collecting rich (from keras>=3.10.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 21.33   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+#8 21.43 Collecting namex (from keras>=3.10.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 21.51   Downloading namex-0.1.0-py3-none-any.whl.metadata (322 bytes)
+#8 21.71 Collecting optree (from keras>=3.10.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 21.79   Downloading optree-0.20.0-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl.metadata (32 kB)
+#8 21.95 Collecting fastjsonschema>=2.15 (from nbformat>=5.7->nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 22.02   Downloading fastjsonschema-2.22.2-py3-none-any.whl.metadata (2.1 kB)
+#8 22.31 Collecting charset_normalizer<4,>=2 (from requests<3,>=2.21.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 22.39   Downloading charset_normalizer-3.5.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (45 kB)
+#8 22.39      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.9/45.9 kB 5.7 MB/s eta 0:00:00
+#8 22.49 Collecting idna<4,>=2.5 (from requests<3,>=2.21.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 22.57   Downloading idna-3.19-py3-none-any.whl.metadata (9.2 kB)
+#8 22.69 Collecting urllib3<3,>=1.26 (from requests<3,>=2.21.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 22.78   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#8 22.88 Collecting certifi>=2023.5.7 (from requests<3,>=2.21.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 22.97   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#8 23.12 Collecting markdown>=2.6.8 (from tensorboard~=2.20.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 23.21   Downloading markdown-3.10.3-py3-none-any.whl.metadata (5.1 kB)
+#8 23.32 Collecting tensorboard-data-server<0.8.0,>=0.7.0 (from tensorboard~=2.20.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 23.40   Downloading tensorboard_data_server-0.7.2-py3-none-any.whl.metadata (1.1 kB)
+#8 23.51 Collecting werkzeug>=1.0.1 (from tensorboard~=2.20.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 23.60   Downloading werkzeug-3.1.8-py3-none-any.whl.metadata (4.0 kB)
+#8 23.74 Collecting soupsieve>=1.6.1 (from beautifulsoup4->nbconvert==7.16.6->-r /tmp/requirements.txt (line 4))
+#8 23.83   Downloading soupsieve-2.9.2-py3-none-any.whl.metadata (4.6 kB)
+#8 23.96 Collecting argon2-cffi-bindings (from argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 24.05   Downloading argon2_cffi_bindings-26.1.0-cp310-abi3-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl.metadata (7.5 kB)
+#8 24.20 Collecting httpcore==1.* (from httpx<1,>=0.25.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 24.28   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#8 24.38 Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.25.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 24.46   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#8 24.58 Collecting comm>=0.1.1 (from ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 24.67   Downloading comm-0.2.3-py3-none-any.whl.metadata (3.7 kB)
+#8 25.01 Collecting debugpy>=1.6.5 (from ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 25.10   Downloading debugpy-1.8.21-py2.py3-none-any.whl.metadata (1.5 kB)
+#8 25.24 Collecting ipython>=7.23.1 (from ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 25.33   Downloading ipython-9.17.1-py3-none-any.whl.metadata (4.6 kB)
+#8 25.43 Collecting matplotlib-inline>=0.1 (from ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 25.52   Downloading matplotlib_inline-0.2.2-py3-none-any.whl.metadata (2.4 kB)
+#8 25.61 Collecting nest-asyncio2>=1.7.0 (from ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 25.71   Downloading nest_asyncio2-1.7.2-py3-none-any.whl.metadata (6.3 kB)
+#8 25.88 Collecting psutil>=5.7 (from ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 25.96   Downloading psutil-7.2.2-cp36-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (22 kB)
+#8 26.09 Collecting attrs>=22.2.0 (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 26.17   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#8 26.27 Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 26.36   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+#8 26.47 Collecting referencing>=0.28.4 (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 26.56   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+#8 27.04 Collecting rpds-py>=0.25.0 (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 27.14   Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.1 kB)
+#8 27.26 Collecting python-json-logger>=2.0.4 (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 27.35   Downloading python_json_logger-4.2.0-py3-none-any.whl.metadata (2.9 kB)
+#8 27.48 Collecting pyyaml>=5.3 (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 27.57   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.4 kB)
+#8 27.66 Collecting rfc3339-validator (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 27.75   Downloading rfc3339_validator-0.1.4-py2.py3-none-any.whl.metadata (1.5 kB)
+#8 27.84 Collecting rfc3986-validator>=0.1.1 (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 27.93   Downloading rfc3986_validator-0.1.1-py2.py3-none-any.whl.metadata (1.7 kB)
+#8 28.15 Collecting ptyprocess (from terminado>=0.8.3->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 28.24   Downloading ptyprocess-0.7.0-py2.py3-none-any.whl.metadata (1.3 kB)
+#8 28.41 Collecting markdown-it-py>=2.2.0 (from rich->keras>=3.10.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 28.50   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+#8 28.64 Collecting ipython-pygments-lexers>=1.0.0 (from ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 28.72   Downloading ipython_pygments_lexers-1.1.1-py3-none-any.whl.metadata (1.1 kB)
+#8 28.82 Collecting jedi>=0.18.2 (from ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 28.91   Downloading jedi-0.20.0-py2.py3-none-any.whl.metadata (23 kB)
+#8 29.01 Collecting pexpect>4.6 (from ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 29.10   Downloading pexpect-4.9.0-py2.py3-none-any.whl.metadata (2.5 kB)
+#8 29.23 Collecting prompt_toolkit<3.1.0,>=3.0.41 (from ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 29.31   Downloading prompt_toolkit-3.0.53-py3-none-any.whl.metadata (6.4 kB)
+#8 29.42 Collecting stack_data>=0.6.0 (from ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 29.49   Downloading stack_data-0.6.3-py3-none-any.whl.metadata (18 kB)
+#8 29.63 Collecting fqdn (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 29.71   Downloading fqdn-1.5.1-py3-none-any.whl.metadata (1.4 kB)
+#8 29.81 Collecting isoduration (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 29.90   Downloading isoduration-20.11.0-py3-none-any.whl.metadata (5.7 kB)
+#8 30.01 Collecting jsonpointer>1.13 (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 30.09   Downloading jsonpointer-3.1.1-py3-none-any.whl.metadata (2.4 kB)
+#8 30.20 Collecting rfc3987-syntax>=1.1.0 (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 30.28   Downloading rfc3987_syntax-1.1.0-py3-none-any.whl.metadata (7.7 kB)
+#8 30.38 Collecting uri-template (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 30.46   Downloading uri_template-1.3.0-py3-none-any.whl.metadata (8.8 kB)
+#8 30.56 Collecting webcolors>=24.6.0 (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 30.65   Downloading webcolors-25.10.0-py3-none-any.whl.metadata (2.2 kB)
+#8 30.77 Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich->keras>=3.10.0->tensorflow==2.20.0->-r /tmp/requirements.txt (line 1))
+#8 30.86   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+#8 31.19 Collecting cffi>=1.0.1 (from argon2-cffi-bindings->argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 31.28   Downloading cffi-2.1.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.whl.metadata (2.5 kB)
+#8 31.39 Collecting pycparser (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 31.48   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+#8 31.60 Collecting parso<0.9.0,>=0.8.6 (from jedi>=0.18.2->ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 31.69   Downloading parso-0.8.7-py2.py3-none-any.whl.metadata (8.2 kB)
+#8 31.82 Collecting wcwidth>=0.1.4 (from prompt_toolkit<3.1.0,>=3.0.41->ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 31.90   Downloading wcwidth-0.8.3-py3-none-any.whl.metadata (43 kB)
+#8 31.90      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.3/43.3 kB 14.8 MB/s eta 0:00:00
+#8 32.01 Collecting lark>=1.2.2 (from rfc3987-syntax>=1.1.0->jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 32.10   Downloading lark-1.3.1-py3-none-any.whl.metadata (1.8 kB)
+#8 32.21 Collecting executing>=1.2.0 (from stack_data>=0.6.0->ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 32.29   Downloading executing-2.2.1-py2.py3-none-any.whl.metadata (8.9 kB)
+#8 32.39 Collecting asttokens>=2.1.0 (from stack_data>=0.6.0->ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 32.48   Downloading asttokens-3.0.2-py3-none-any.whl.metadata (5.7 kB)
+#8 32.57 Collecting pure-eval (from stack_data>=0.6.0->ipython>=7.23.1->ipykernel!=6.30.0,>=6.5.0->jupyterlab<4.5,>=4.4.9->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 32.66   Downloading pure_eval-0.2.3-py3-none-any.whl.metadata (6.3 kB)
+#8 32.81 Collecting arrow>=0.15.0 (from isoduration->jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook==7.4.7->-r /tmp/requirements.txt (line 3))
+#8 32.89   Downloading arrow-1.4.0-py3-none-any.whl.metadata (7.7 kB)
+#8 33.09 Downloading tensorflow-2.20.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (259.5 MB)
+#8 38.59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 259.5/259.5 MB 49.8 MB/s eta 0:00:00
+#8 38.67 Downloading scikit_learn-1.7.2-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (9.5 MB)
+#8 38.87    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.5/9.5 MB 47.9 MB/s eta 0:00:00
+#8 38.95 Downloading notebook-7.4.7-py3-none-any.whl (14.3 MB)
+#8 39.22    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.3/14.3 MB 49.7 MB/s eta 0:00:00
+#8 39.30 Downloading nbconvert-7.16.6-py3-none-any.whl (258 kB)
+#8 39.31    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 258.5/258.5 kB 37.6 MB/s eta 0:00:00
+#8 39.40 Downloading numpy-2.2.6-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (14.3 MB)
+#8 39.68    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.3/14.3 MB 49.2 MB/s eta 0:00:00
+#8 39.77 Downloading pandas-2.3.3-cp311-cp311-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl (12.2 MB)
+#8 40.13    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.2/12.2 MB 30.4 MB/s eta 0:00:00
+#8 40.21 Downloading matplotlib-3.10.7-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (9.5 MB)
+#8 40.39    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.5/9.5 MB 53.3 MB/s eta 0:00:00
+#8 40.47 Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+#8 40.58    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 54.6 MB/s eta 0:00:00
+#8 40.66 Downloading absl_py-2.5.0-py3-none-any.whl (137 kB)
+#8 40.66    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.4/137.4 kB 324.8 MB/s eta 0:00:00
+#8 40.74 Downloading astunparse-1.6.3-py2.py3-none-any.whl (12 kB)
+#8 40.83 Downloading bleach-6.4.0-py3-none-any.whl (165 kB)
+#8 40.84    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 165.1/165.1 kB 19.9 MB/s eta 0:00:00
+#8 40.92 Downloading contourpy-1.3.3-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl (329 kB)
+#8 40.93    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 329.2/329.2 kB 69.7 MB/s eta 0:00:00
+#8 41.01 Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+#8 41.10 Downloading flatbuffers-25.12.19-py2.py3-none-any.whl (26 kB)
+#8 41.18 Downloading fonttools-4.64.0-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (5.5 MB)
+#8 41.29    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 55.5 MB/s eta 0:00:00
+#8 41.37 Downloading gast-0.7.0-py3-none-any.whl (22 kB)
+#8 41.48 Downloading google_pasta-0.2.0-py3-none-any.whl (57 kB)
+#8 41.48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.5/57.5 kB 146.3 MB/s eta 0:00:00
+#8 41.56 Downloading grpcio-1.83.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (6.9 MB)
+#8 41.70    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 54.6 MB/s eta 0:00:00
+#8 41.78 Downloading h5py-3.16.0-cp311-cp311-manylinux_2_28_aarch64.whl (4.8 MB)
+#8 41.88    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.8/4.8 MB 47.7 MB/s eta 0:00:00
+#8 41.96 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#8 41.97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 29.9 MB/s eta 0:00:00
+#8 42.04 Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+#8 42.05    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 306.1/306.1 kB 40.5 MB/s eta 0:00:00
+#8 42.13 Downloading jupyter_core-5.9.1-py3-none-any.whl (29 kB)
+#8 42.22 Downloading jupyter_server-2.21.0-py3-none-any.whl (393 kB)
+#8 42.23    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 394.0/394.0 kB 67.2 MB/s eta 0:00:00
+#8 42.31 Downloading jupyterlab-4.4.10-py3-none-any.whl (12.3 MB)
+#8 42.54    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 52.2 MB/s eta 0:00:00
+#8 42.62 Downloading jupyterlab_server-2.28.0-py3-none-any.whl (59 kB)
+#8 42.63    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.8/59.8 kB 6.5 MB/s eta 0:00:00
+#8 42.71 Downloading keras-3.15.1-py3-none-any.whl (2.4 MB)
+#8 42.74    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 74.2 MB/s eta 0:00:00
+#8 42.82 Downloading kiwisolver-1.5.1-cp311-cp311-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl (1.2 MB)
+#8 42.84    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 77.1 MB/s eta 0:00:00
+#8 42.92 Downloading libclang-18.1.1-py2.py3-none-manylinux2014_aarch64.whl (23.8 MB)
+#8 43.37    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.8/23.8 MB 51.4 MB/s eta 0:00:00
+#8 43.45 Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)
+#8 43.55 Downloading mistune-3.3.4-py3-none-any.whl (66 kB)
+#8 43.55    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.9/66.9 kB 59.0 MB/s eta 0:00:00
+#8 43.63 Downloading ml_dtypes-0.6.0-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (356 kB)
+#8 43.64    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 356.9/356.9 kB 86.6 MB/s eta 0:00:00
+#8 43.72 Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+#8 43.73    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 241.6 MB/s eta 0:00:00
+#8 43.81 Downloading nbclient-0.11.0-py3-none-any.whl (25 kB)
+#8 43.89 Downloading nbformat-5.11.1-py3-none-any.whl (79 kB)
+#8 43.90    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.8/79.8 kB 8.8 MB/s eta 0:00:00
+#8 43.98 Downloading notebook_shim-0.2.4-py3-none-any.whl (13 kB)
+#8 44.07 Downloading opt_einsum-3.4.0-py3-none-any.whl (71 kB)
+#8 44.08    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 71.9/71.9 kB 8.4 MB/s eta 0:00:00
+#8 44.16 Downloading pandocfilters-1.5.1-py2.py3-none-any.whl (8.7 kB)
+#8 44.25 Downloading pillow-12.3.0-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (6.3 MB)
+#8 44.45    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 31.7 MB/s eta 0:00:00
+#8 44.53 Downloading protobuf-7.36.1-cp310-abi3-manylinux2014_aarch64.whl (344 kB)
+#8 44.54    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 344.2/344.2 kB 51.3 MB/s eta 0:00:00
+#8 44.62 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#8 44.65    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 54.5 MB/s eta 0:00:00
+#8 44.73 Downloading pyparsing-3.3.2-py3-none-any.whl (122 kB)
+#8 44.73    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 122.8/122.8 kB 97.7 MB/s eta 0:00:00
+#8 44.81 Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+#8 44.82    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 25.4 MB/s eta 0:00:00
+#8 44.90 Downloading pytz-2026.3.post1-py2.py3-none-any.whl (508 kB)
+#8 44.92    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 508.3/508.3 kB 31.3 MB/s eta 0:00:00
+#8 45.00 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#8 45.00    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 11.9 MB/s eta 0:00:00
+#8 45.08 Downloading scipy-1.17.1-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (33.1 MB)
+#8 45.90    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 33.1/33.1 MB 40.3 MB/s eta 0:00:00
+#8 45.98 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#8 46.07 Downloading tensorboard-2.20.0-py3-none-any.whl (5.5 MB)
+#8 46.21    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 39.2 MB/s eta 0:00:00
+#8 46.31 Downloading termcolor-3.3.0-py3-none-any.whl (7.7 kB)
+#8 46.39 Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+#8 46.48 Downloading tornado-6.5.8-cp39-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (451 kB)
+#8 46.49    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 451.7/451.7 kB 30.6 MB/s eta 0:00:00
+#8 46.58 Downloading traitlets-5.16.1-py3-none-any.whl (86 kB)
+#8 46.59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 86.2/86.2 kB 18.0 MB/s eta 0:00:00
+#8 46.67 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#8 46.67    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 6.3 MB/s eta 0:00:00
+#8 46.76 Downloading tzdata-2026.3-py2.py3-none-any.whl (348 kB)
+#8 46.76    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 348.2/348.2 kB 223.0 MB/s eta 0:00:00
+#8 46.86 Downloading wrapt-2.4.0-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (219 kB)
+#8 46.87    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 219.9/219.9 kB 25.3 MB/s eta 0:00:00
+#8 46.95 Downloading beautifulsoup4-4.15.0-py3-none-any.whl (109 kB)
+#8 46.96    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 109.9/109.9 kB 13.3 MB/s eta 0:00:00
+#8 47.04 Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+#8 47.12 Downloading jupyterlab_pygments-0.3.0-py3-none-any.whl (15 kB)
+#8 47.21 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#8 47.22    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 132.1/132.1 kB 17.2 MB/s eta 0:00:00
+#8 47.31 Downloading argon2_cffi-25.1.0-py3-none-any.whl (14 kB)
+#8 47.39 Downloading async_lru-2.3.0-py3-none-any.whl (8.4 kB)
+#8 47.47 Downloading babel-2.18.0-py3-none-any.whl (10.2 MB)
+#8 47.72    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 41.7 MB/s eta 0:00:00
+#8 47.80 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#8 47.81    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 137.0/137.0 kB 37.8 MB/s eta 0:00:00
+#8 47.89 Downloading charset_normalizer-3.5.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (251 kB)
+#8 47.89    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 251.2/251.2 kB 46.8 MB/s eta 0:00:00
+#8 47.97 Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+#8 48.06 Downloading fastjsonschema-2.22.2-py3-none-any.whl (27 kB)
+#8 48.15 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#8 48.16    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.5/73.5 kB 14.2 MB/s eta 0:00:00
+#8 48.24 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#8 48.25    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.8/78.8 kB 10.4 MB/s eta 0:00:00
+#8 48.32 Downloading idna-3.19-py3-none-any.whl (68 kB)
+#8 48.33    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.5/68.5 kB 8.9 MB/s eta 0:00:00
+#8 48.41 Downloading ipykernel-7.3.0-py3-none-any.whl (120 kB)
+#8 48.42    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 120.6/120.6 kB 26.1 MB/s eta 0:00:00
+#8 48.50 Downloading json5-0.15.0-py3-none-any.whl (36 kB)
+#8 48.58 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#8 48.59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.6/90.6 kB 12.6 MB/s eta 0:00:00
+#8 48.67 Downloading jupyter_client-8.10.0-py3-none-any.whl (110 kB)
+#8 48.68    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 110.2/110.2 kB 36.9 MB/s eta 0:00:00
+#8 48.76 Downloading jupyter_events-0.12.1-py3-none-any.whl (19 kB)
+#8 48.85 Downloading jupyter_lsp-2.3.1-py3-none-any.whl (77 kB)
+#8 48.85    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 77.5/77.5 kB 17.7 MB/s eta 0:00:00
+#8 48.93 Downloading jupyter_server_terminals-0.5.4-py3-none-any.whl (13 kB)
+#8 49.02 Downloading markdown-3.10.3-py3-none-any.whl (110 kB)
+#8 49.03    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 110.8/110.8 kB 37.3 MB/s eta 0:00:00
+#8 49.11 Downloading overrides-7.7.0-py3-none-any.whl (17 kB)
+#8 49.19 Downloading platformdirs-4.11.8-py3-none-any.whl (24 kB)
+#8 49.28 Downloading prometheus_client-0.26.0-py3-none-any.whl (64 kB)
+#8 49.29    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.5/64.5 kB 7.2 MB/s eta 0:00:00
+#8 49.37 Downloading pyzmq-27.2.0-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl (714 kB)
+#8 49.39    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 714.3/714.3 kB 36.3 MB/s eta 0:00:00
+#8 49.47 Downloading send2trash-2.1.0-py3-none-any.whl (17 kB)
+#8 49.55 Downloading soupsieve-2.9.2-py3-none-any.whl (37 kB)
+#8 49.65 Downloading tensorboard_data_server-0.7.2-py3-none-any.whl (2.4 kB)
+#8 49.73 Downloading terminado-0.18.1-py3-none-any.whl (14 kB)
+#8 49.82 Downloading tinycss2-1.5.1-py3-none-any.whl (28 kB)
+#8 49.91 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#8 49.91    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 131.1/131.1 kB 246.8 MB/s eta 0:00:00
+#8 49.99 Downloading webencodings-0.6.1-py3-none-any.whl (8.7 kB)
+#8 50.07 Downloading websocket_client-1.9.2-py3-none-any.whl (95 kB)
+#8 50.09    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 95.8/95.8 kB 9.0 MB/s eta 0:00:00
+#8 50.17 Downloading werkzeug-3.1.8-py3-none-any.whl (226 kB)
+#8 50.17    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 226.5/226.5 kB 55.1 MB/s eta 0:00:00
+#8 50.26 Downloading namex-0.1.0-py3-none-any.whl (5.9 kB)
+#8 50.34 Downloading optree-0.20.0-cp311-cp311-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl (434 kB)
+#8 50.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 434.4/434.4 kB 178.4 MB/s eta 0:00:00
+#8 50.43 Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+#8 50.44    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 310.7/310.7 kB 77.5 MB/s eta 0:00:00
+#8 50.52 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#8 50.52    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 67.5/67.5 kB 11.9 MB/s eta 0:00:00
+#8 50.61 Downloading comm-0.2.3-py3-none-any.whl (7.3 kB)
+#8 50.69 Downloading debugpy-1.8.21-py2.py3-none-any.whl (5.4 MB)
+#8 50.81    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 44.1 MB/s eta 0:00:00
+#8 50.89 Downloading ipython-9.17.1-py3-none-any.whl (639 kB)
+#8 50.91    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 639.0/639.0 kB 39.6 MB/s eta 0:00:00
+#8 50.99 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#8 51.08 Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+#8 51.09    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 91.7/91.7 kB 47.5 MB/s eta 0:00:00
+#8 51.17 Downloading matplotlib_inline-0.2.2-py3-none-any.whl (9.5 kB)
+#8 51.27 Downloading nest_asyncio2-1.7.2-py3-none-any.whl (7.8 kB)
+#8 51.35 Downloading psutil-7.2.2-cp36-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (156 kB)
+#8 51.36    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 157.0/157.0 kB 20.0 MB/s eta 0:00:00
+#8 51.44 Downloading python_json_logger-4.2.0-py3-none-any.whl (14 kB)
+#8 51.53 Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (775 kB)
+#8 51.55    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 775.6/775.6 kB 56.0 MB/s eta 0:00:00
+#8 51.63 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#8 51.72 Downloading rfc3986_validator-0.1.1-py2.py3-none-any.whl (4.2 kB)
+#8 51.80 Downloading rpds_py-2026.6.3-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (373 kB)
+#8 51.81    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 373.8/373.8 kB 35.1 MB/s eta 0:00:00
+#8 51.89 Downloading argon2_cffi_bindings-26.1.0-cp310-abi3-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl (27 kB)
+#8 51.97 Downloading ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+#8 52.06 Downloading rfc3339_validator-0.1.4-py2.py3-none-any.whl (3.5 kB)
+#8 52.14 Downloading cffi-2.1.1-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (218 kB)
+#8 52.15    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 218.7/218.7 kB 22.9 MB/s eta 0:00:00
+#8 52.23 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#8 52.32 Downloading ipython_pygments_lexers-1.1.1-py3-none-any.whl (8.1 kB)
+#8 52.40 Downloading jedi-0.20.0-py2.py3-none-any.whl (4.9 MB)
+#8 52.51    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 42.9 MB/s eta 0:00:00
+#8 52.60 Downloading jsonpointer-3.1.1-py3-none-any.whl (7.7 kB)
+#8 52.68 Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+#8 52.76 Downloading pexpect-4.9.0-py2.py3-none-any.whl (63 kB)
+#8 52.76    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.8/63.8 kB 265.8 MB/s eta 0:00:00
+#8 52.84 Downloading prompt_toolkit-3.0.53-py3-none-any.whl (392 kB)
+#8 52.85    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 392.3/392.3 kB 39.2 MB/s eta 0:00:00
+#8 52.94 Downloading rfc3987_syntax-1.1.0-py3-none-any.whl (8.0 kB)
+#8 53.02 Downloading stack_data-0.6.3-py3-none-any.whl (24 kB)
+#8 53.12 Downloading webcolors-25.10.0-py3-none-any.whl (14 kB)
+#8 53.21 Downloading fqdn-1.5.1-py3-none-any.whl (9.1 kB)
+#8 53.29 Downloading isoduration-20.11.0-py3-none-any.whl (11 kB)
+#8 53.38 Downloading uri_template-1.3.0-py3-none-any.whl (11 kB)
+#8 53.46 Downloading arrow-1.4.0-py3-none-any.whl (68 kB)
+#8 53.47    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.8/68.8 kB 15.9 MB/s eta 0:00:00
+#8 53.55 Downloading asttokens-3.0.2-py3-none-any.whl (28 kB)
+#8 53.63 Downloading executing-2.2.1-py2.py3-none-any.whl (28 kB)
+#8 53.72 Downloading lark-1.3.1-py3-none-any.whl (113 kB)
+#8 53.73    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 113.2/113.2 kB 26.4 MB/s eta 0:00:00
+#8 53.81 Downloading parso-0.8.7-py2.py3-none-any.whl (107 kB)
+#8 53.82    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 107.0/107.0 kB 15.7 MB/s eta 0:00:00
+#8 53.89 Downloading wcwidth-0.8.3-py3-none-any.whl (331 kB)
+#8 53.90    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 331.7/331.7 kB 53.5 MB/s eta 0:00:00
+#8 53.98 Downloading pure_eval-0.2.3-py3-none-any.whl (11 kB)
+#8 54.07 Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+#8 54.08    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.2/48.2 kB 5.5 MB/s eta 0:00:00
+#8 55.18 Installing collected packages: pytz, pure-eval, ptyprocess, namex, mpmath, libclang, flatbuffers, wrapt, websocket-client, webencodings, webcolors, wcwidth, urllib3, uri-template, tzdata, typing_extensions, traitlets, tornado, threadpoolctl, termcolor, tensorboard-data-server, sympy, soupsieve, six, send2trash, rpds-py, rfc3986-validator, pyzmq, pyyaml, python-json-logger, pyparsing, pygments, pycparser, psutil, protobuf, prometheus-client, platformdirs, pillow, pexpect, parso, pandocfilters, overrides, opt_einsum, numpy, nest-asyncio2, mistune, mdurl, markupsafe, markdown, lark, kiwisolver, jupyterlab-pygments, jsonpointer, json5, idna, h11, gast, fqdn, fonttools, fastjsonschema, executing, defusedxml, debugpy, cycler, comm, cloudpickle, charset_normalizer, certifi, babel, attrs, async-lru, asttokens, absl-py, werkzeug, tinycss2, terminado, stack_data, scipy, rfc3987-syntax, rfc3339-validator, requests, referencing, python-dateutil, prompt_toolkit, optree, ml_dtypes, matplotlib-inline, markdown-it-py, jupyter-core, joblib, jinja2, jedi, ipython-pygments-lexers, httpcore, h5py, grpcio, google_pasta, contourpy, cffi, bleach, beautifulsoup4, astunparse, anyio, tensorboard, scikit-learn, rich, pandas, matplotlib, jupyter-server-terminals, jupyter-client, jsonschema-specifications, ipython, httpx, arrow, argon2-cffi-bindings, keras, jsonschema, isoduration, ipykernel, argon2-cffi, tensorflow, nbformat, nbclient, jupyter-events, nbconvert, jupyter-server, notebook-shim, jupyterlab-server, jupyter-lsp, jupyterlab, notebook
+#8 81.92 Successfully installed absl-py-2.5.0 anyio-4.15.1 argon2-cffi-25.1.0 argon2-cffi-bindings-26.1.0 arrow-1.4.0 asttokens-3.0.2 astunparse-1.6.3 async-lru-2.3.0 attrs-26.1.0 babel-2.18.0 beautifulsoup4-4.15.0 bleach-6.4.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 cloudpickle-3.1.2 comm-0.2.3 contourpy-1.3.3 cycler-0.12.1 debugpy-1.8.21 defusedxml-0.7.1 executing-2.2.1 fastjsonschema-2.22.2 flatbuffers-25.12.19 fonttools-4.64.0 fqdn-1.5.1 gast-0.7.0 google_pasta-0.2.0 grpcio-1.83.1 h11-0.16.0 h5py-3.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.19 ipykernel-7.3.0 ipython-9.17.1 ipython-pygments-lexers-1.1.1 isoduration-20.11.0 jedi-0.20.0 jinja2-3.1.6 joblib-1.6.0 json5-0.15.0 jsonpointer-3.1.1 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 jupyter-client-8.10.0 jupyter-core-5.9.1 jupyter-events-0.12.1 jupyter-lsp-2.3.1 jupyter-server-2.21.0 jupyter-server-terminals-0.5.4 jupyterlab-4.4.10 jupyterlab-pygments-0.3.0 jupyterlab-server-2.28.0 keras-3.15.1 kiwisolver-1.5.1 lark-1.3.1 libclang-18.1.1 markdown-3.10.3 markdown-it-py-4.2.0 markupsafe-3.0.3 matplotlib-3.10.7 matplotlib-inline-0.2.2 mdurl-0.1.2 mistune-3.3.4 ml_dtypes-0.6.0 mpmath-1.3.0 namex-0.1.0 nbclient-0.11.0 nbconvert-7.16.6 nbformat-5.11.1 nest-asyncio2-1.7.2 notebook-7.4.7 notebook-shim-0.2.4 numpy-2.2.6 opt_einsum-3.4.0 optree-0.20.0 overrides-7.7.0 pandas-2.3.3 pandocfilters-1.5.1 parso-0.8.7 pexpect-4.9.0 pillow-12.3.0 platformdirs-4.11.8 prometheus-client-0.26.0 prompt_toolkit-3.0.53 protobuf-7.36.1 psutil-7.2.2 ptyprocess-0.7.0 pure-eval-0.2.3 pycparser-3.0 pygments-2.21.0 pyparsing-3.3.2 python-dateutil-2.9.0.post0 python-json-logger-4.2.0 pytz-2026.3.post1 pyyaml-6.0.3 pyzmq-27.2.0 referencing-0.37.0 requests-2.34.2 rfc3339-validator-0.1.4 rfc3986-validator-0.1.1 rfc3987-syntax-1.1.0 rich-15.0.0 rpds-py-2026.6.3 scikit-learn-1.7.2 scipy-1.17.1 send2trash-2.1.0 six-1.17.0 soupsieve-2.9.2 stack_data-0.6.3 sympy-1.14.0 tensorboard-2.20.0 tensorboard-data-server-0.7.2 tensorflow-2.20.0 termcolor-3.3.0 terminado-0.18.1 threadpoolctl-3.6.0 tinycss2-1.5.1 tornado-6.5.8 traitlets-5.16.1 typing_extensions-4.16.0 tzdata-2026.3 uri-template-1.3.0 urllib3-2.7.0 wcwidth-0.8.3 webcolors-25.10.0 webencodings-0.6.1 websocket-client-1.9.2 werkzeug-3.1.8 wrapt-2.4.0
+#8 81.92 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#8 82.45 
+#8 82.45 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#8 82.45 [notice] To update, run: pip install --upgrade pip
+#8 DONE 85.0s
+
+#9 [5/5] COPY notebooks/ /notebooks/
+#9 DONE 0.4s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 42.8s done
+#10 exporting manifest sha256:256e96dfa8ab5037497f6a48c3c8fdefd698ab51a60a78e39eced7b274a6ad77
+#10 exporting manifest sha256:256e96dfa8ab5037497f6a48c3c8fdefd698ab51a60a78e39eced7b274a6ad77 done
+#10 exporting config sha256:fa6613c363e93709b80cd6d4f8aae13615925a8ac2824b9f4bb57e72a8f7be69 done
+#10 exporting attestation manifest sha256:e639f53b13fc9b601eee8fb7aaa209ddce6f9d882ff37d06419a730f987ad244 done
+#10 exporting manifest list sha256:7862e085788ecb0959f41cfc2168f2dcc3096929ba1ac0b4654db01c0b7c0f77 done
+#10 naming to docker.io/practica/data-science:local done
+#10 unpacking to docker.io/practica/data-science:local
+#10 unpacking to docker.io/practica/data-science:local 14.6s done
+#10 DONE 57.5s
++ docker run -d --name jupyter-ia -p 192.168.100.3:8888:8888 --mount type=bind,source=/home/vagrant/practica-docker-ia/data-science/notebooks,target=/notebooks practica/data-science:local
+1e80353e15ea729625a3dc15d8402ef8bc0b4d787fe3b27f731540d1b9cd3f84
++ docker exec jupyter-ia jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=600 --output 01-iris-docker-ia-ejecutado.ipynb /notebooks/01-iris-docker-ia.ipynb
+[NbConvertApp] Converting notebook /notebooks/01-iris-docker-ia.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[NbConvertApp] Writing 38861 bytes to /notebooks/01-iris-docker-ia-ejecutado.ipynb
++ docker exec jupyter-ia cat /notebooks/resultados/metricas.json
+{
+  "muestras_entrenamiento": 120,
+  "muestras_prueba": 30,
+  "exactitud_sklearn": 0.9333333333333333,
+  "exactitud_tensorflow": 0.9666666666666667,
+  "tensorflow": "2.20.0",
+  "scikit_learn": "1.7.2",
+  "dispositivo": "CPU"
+}+ docker build -t practica/ml-jupyter:arm64 ./ml-jupyter-compatible
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 222B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/practica/data-science:local
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 8.93kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/practica/data-science:local@sha256:7862e085788ecb0959f41cfc2168f2dcc3096929ba1ac0b4654db01c0b7c0f77
+#5 resolve docker.io/practica/data-science:local@sha256:7862e085788ecb0959f41cfc2168f2dcc3096929ba1ac0b4654db01c0b7c0f77 done
+#5 DONE 0.0s
+
+#6 [2/3] COPY notebooks/ /notebooks/
+#6 DONE 0.0s
+
+#7 [3/3] WORKDIR /notebooks
+#7 DONE 0.0s
+
+#8 exporting to image
+#8 exporting layers 0.1s done
+#8 exporting manifest sha256:15548e6852f023e156f5b69c424e1a41a4bcf8bf85833871708c78ae9a5d5d68 done
+#8 exporting config sha256:c45837e4f6874c572f5a2865e7f71437f9df2642e009fefa40427157bba972bc done
+#8 exporting attestation manifest sha256:c7e662f74794ff53958ebb969a6bfdd4996c107a9e6a09eac946cdbf4d23f5a9 done
+#8 exporting manifest list sha256:17e4682a6e5c83d80607a37ac73d099838cd9d4e756d8abb9689d2572f13ce57 done
+#8 naming to docker.io/practica/ml-jupyter:arm64 done
+#8 unpacking to docker.io/practica/ml-jupyter:arm64
+#8 unpacking to docker.io/practica/ml-jupyter:arm64 0.0s done
+#8 DONE 0.1s
++ docker run -d --name ml-jupyter -p 192.168.100.3:8890:8888 --mount type=bind,source=/home/vagrant/practica-docker-ia/ml-jupyter-compatible/notebooks,target=/notebooks practica/ml-jupyter:arm64
+f7585ab1ba34e3a0a17ea1fe8cc0be6afb88f76fb9a4f29a05fd7bebc8165420
++ for notebook in 1.scikit-learnSample 2.TensorFlowSample 3.ScipySample
++ docker exec ml-jupyter jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=600 --output 1.scikit-learnSample-ejecutado.ipynb /notebooks/1.scikit-learnSample.ipynb
+[NbConvertApp] Converting notebook /notebooks/1.scikit-learnSample.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[NbConvertApp] Writing 57813 bytes to /notebooks/1.scikit-learnSample-ejecutado.ipynb
++ for notebook in 1.scikit-learnSample 2.TensorFlowSample 3.ScipySample
++ docker exec ml-jupyter jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=600 --output 2.TensorFlowSample-ejecutado.ipynb /notebooks/2.TensorFlowSample.ipynb
+[NbConvertApp] Converting notebook /notebooks/2.TensorFlowSample.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[NbConvertApp] Writing 10241 bytes to /notebooks/2.TensorFlowSample-ejecutado.ipynb
++ for notebook in 1.scikit-learnSample 2.TensorFlowSample 3.ScipySample
++ docker exec ml-jupyter jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=600 --output 3.ScipySample-ejecutado.ipynb /notebooks/3.ScipySample.ipynb
+[NbConvertApp] Converting notebook /notebooks/3.ScipySample.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[NbConvertApp] Writing 96327 bytes to /notebooks/3.ScipySample-ejecutado.ipynb
++ docker build -t practica/flask:v1 -f flask/Dockerfile .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 288B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#2 DONE 0.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 155B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84
+#4 resolve docker.io/library/python:3.11-slim-bookworm@sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84 0.0s done
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 2.66kB done
+#5 DONE 0.0s
+
+#6 [2/5] WORKDIR /app
+#6 DONE 0.1s
+
+#7 [3/5] RUN pip install --no-cache-dir Flask==3.1.2
+#7 1.365 Collecting Flask==3.1.2
+#7 1.764   Downloading flask-3.1.2-py3-none-any.whl.metadata (3.2 kB)
+#7 1.869 Collecting blinker>=1.9.0 (from Flask==3.1.2)
+#7 2.234   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#7 2.348 Collecting click>=8.1.3 (from Flask==3.1.2)
+#7 2.429   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#7 2.525 Collecting itsdangerous>=2.2.0 (from Flask==3.1.2)
+#7 2.601   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#7 2.714 Collecting jinja2>=3.1.2 (from Flask==3.1.2)
+#7 2.789   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#7 3.053 Collecting markupsafe>=2.1.1 (from Flask==3.1.2)
+#7 3.130   Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.7 kB)
+#7 3.241 Collecting werkzeug>=3.1.0 (from Flask==3.1.2)
+#7 3.312   Downloading werkzeug-3.1.8-py3-none-any.whl.metadata (4.0 kB)
+#7 3.388 Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+#7 3.492    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 103.3/103.3 kB 1.0 MB/s eta 0:00:00
+#7 3.560 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#7 3.633 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#7 3.682    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 125.3/125.3 kB 2.4 MB/s eta 0:00:00
+#7 3.750 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#7 3.822 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#7 3.840    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 7.9 MB/s eta 0:00:00
+#7 3.908 Downloading markupsafe-3.0.3-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (24 kB)
+#7 3.979 Downloading werkzeug-3.1.8-py3-none-any.whl (226 kB)
+#7 4.013    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 226.5/226.5 kB 6.9 MB/s eta 0:00:00
+#7 4.052 Installing collected packages: markupsafe, itsdangerous, click, blinker, werkzeug, jinja2, Flask
+#7 4.247 Successfully installed Flask-3.1.2 blinker-1.9.0 click-8.5.0 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.3 werkzeug-3.1.8
+#7 4.248 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#7 4.678 
+#7 4.678 [notice] A new release of pip is available: 24.0 -> 26.2.1
+#7 4.678 [notice] To update, run: pip install --upgrade pip
+#7 DONE 4.9s
+
+#8 [4/5] COPY referencias/docker-flask-example/app/app.py /app/app.py
+#8 DONE 0.1s
+
+#9 [5/5] COPY referencias/docker-flask-example/app/data.py /app/data.py
+#9 DONE 0.0s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 0.4s done
+#10 exporting manifest sha256:7b545332376e06f30453e8fbfba5f1a5a3ef222ab59f57c20cdcf72f94ed535b
+#10 exporting manifest sha256:7b545332376e06f30453e8fbfba5f1a5a3ef222ab59f57c20cdcf72f94ed535b done
+#10 exporting config sha256:bd39c1e00bd5e00435b43d38ca7c3e92f856e89de7cf19dc3dff1bcc9577b4d9 done
+#10 exporting attestation manifest sha256:38bf1a9ce1647ae996bff97b3d4d132778bbaa168855aed1a06122e13fdbbea9 done
+#10 exporting manifest list sha256:4197d5caf78cfba2f092779f5f334c3de0d06c351f1b3c5b6e06eed3218d2970 done
+#10 naming to docker.io/practica/flask:v1 done
+#10 unpacking to docker.io/practica/flask:v1 0.1s done
+#10 DONE 0.6s
++ docker run -d --name flask-practica -p 192.168.100.3:5000:5000 practica/flask:v1
+1ee74f334e5fb2ca01126e70f84c37f18edf755702eee53cb6a35c54bf95552f
++ sleep 3
++ curl --fail http://192.168.100.3:5000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  1646  100  1646    0     0   378k      0 --:--:-- --:--:-- --:--:--  535k
+{"my_articles": [{"id": 1, "title": "Article One", "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "author": "Mondragon", "create_date": "18-9-2020"}, {"id": 2, "title": "Article Two", "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "author": "Martinez", "create_date": "18-9-2020"}, {"id": 3, "title": "Article Three", "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "author": "Perez", "create_date": "18-9-2020"}]}+ docker logs flask-practica
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.0.8:5000
+[33mPress CTRL+C to quit[0m
+192.168.100.3 - - [09/Sep/2026 05:55:25] "GET / HTTP/1.1" 200 -
++ docker ps
+CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS                          NAMES
+1ee74f334e5f   practica/flask:v1             "python app.py"          3 seconds ago    Up 3 seconds    192.168.100.3:5000->5000/tcp   flask-practica
+f7585ab1ba34   practica/ml-jupyter:arm64     "jupyter notebook --…"   20 seconds ago   Up 20 seconds   192.168.100.3:8890->8888/tcp   ml-jupyter
+1e80353e15ea   practica/data-science:local   "jupyter notebook --…"   31 seconds ago   Up 29 seconds   192.168.100.3:8888->8888/tcp   jupyter-ia
+42e141ab715f   practica/ubuntuweb:base       "apache2ctl -D FOREG…"   3 minutes ago    Up 3 minutes    192.168.100.3:9920->80/tcp     webvolumen
+127cddc7bf4d   practica/testdir:v1           "apache2ctl -D FOREG…"   3 minutes ago    Up 3 minutes    192.168.100.3:9910->80/tcp     webcontainer
+dd9bbdb304a1   practica/sitio-docker:v1      "apache2ctl -D FOREG…"   3 minutes ago    Up 3 minutes    192.168.100.3:9001->80/tcp     webpersonal
+351fde8e1d00   practica/ubuntuweb:base       "apache2ctl -D FOREG…"   3 minutes ago    Up 3 minutes    192.168.100.3:9000->80/tcp     webprueba

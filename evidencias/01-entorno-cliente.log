@@ -1,0 +1,40 @@
+clienteUbuntu
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UP             10.0.2.15/24 metric 100 fd17:625c:f037:2:a00:27ff:fed9:fa93/64 fe80::a00:27ff:fed9:fa93/64 
+eth1             UP             192.168.100.2/24 fe80::a00:27ff:fe0b:7014/64 
+docker0          DOWN           172.17.0.1/16 fe80::f815:2fff:feca:4013/64 
+active
+Client: Docker Engine - Community
+ Version:           29.8.0
+ API version:       1.56
+ Go version:        go1.26.8
+ Git commit:        88096ef
+ Built:             Thu Sep  3 21:49:58 2026
+ OS/Arch:           linux/arm64
+ Context:           default
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          29.8.0
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.8
+  Git commit:       3ce5872
+  Built:            Thu Sep  3 21:49:58 2026
+  OS/Arch:          linux/arm64
+  Experimental:     false
+ containerd:
+  Version:          v2.3.5
+  GitCommit:        1294c24a7da8e5a793ed378161673abe94118892
+ runc:
+  Version:          1.5.1
+  GitCommit:        v1.5.1-0-g8f2685a4
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+PING 192.168.100.3 (192.168.100.3) 56(84) bytes of data.
+64 bytes from 192.168.100.3: icmp_seq=1 ttl=64 time=0.481 ms
+64 bytes from 192.168.100.3: icmp_seq=2 ttl=64 time=0.625 ms
+
+--- 192.168.100.3 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1003ms
+rtt min/avg/max/mdev = 0.481/0.553/0.625/0.072 ms

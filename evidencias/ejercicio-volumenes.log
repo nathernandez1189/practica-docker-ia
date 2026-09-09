@@ -1,0 +1,40 @@
++ docker run -d --name webvolumen -p 192.168.100.3:9920:80 --mount type=bind,source=/home/vagrant/practica-docker-ia/volumenes,target=/var/www/html,readonly practica/ubuntuweb:base
+42e141ab715f303db5fbf4be266c3c4d32ccf3d250616fe162caa304b6db4c43
++ sleep 2
++ curl --fail http://192.168.100.3:9920
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   237  100   237    0     0  72654      0 --:--:-- --:--:-- --:--:--  115k
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Volúmenes Docker</title>
+<h1>Directorio compartido entre Ubuntu y Docker</h1>
+<p>Este archivo vive en el anfitrión Ubuntu y Apache lo sirve mediante un bind mount.</p></html>
++ printf 'Cambio realizado desde el anfitrión Ubuntu\n'
++ curl --fail http://192.168.100.3:9920/cambio.txt
++ grep 'Cambio realizado'
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    44  100    44    0     0  70400      0 --:--:-- --:--:-- --:--:-- 44000
+Cambio realizado desde el anfitrión Ubuntu
++ docker inspect webvolumen --format '{{json .Mounts}}'
+[{"Type":"bind","Source":"/home/vagrant/practica-docker-ia/volumenes","Destination":"/var/www/html","Mode":"","RW":false,"Propagation":"rprivate"}]
++ docker run --rm --mount type=bind,source=/home/vagrant/practica-docker-ia/volumenes,target=/datos practica/ubuntuweb:base sh -c 'echo "Archivo escrito desde un contenedor" > /datos/desde-contenedor.txt'
++ cat volumenes/desde-contenedor.txt
+Archivo escrito desde un contenedor
++ docker volume create practica_ia_datos
+practica_ia_datos
++ docker run --rm --name escritor-persistencia --mount source=practica_ia_datos,target=/datos practica/ubuntuweb:base sh -c 'echo "Los datos sobreviven al contenedor" > /datos/evidencia.txt'
++ docker run --rm --name lector-persistencia --mount source=practica_ia_datos,target=/datos,readonly practica/ubuntuweb:base cat /datos/evidencia.txt
++ grep 'Los datos sobreviven'
+Los datos sobreviven al contenedor
++ docker volume inspect practica_ia_datos
+[
+    {
+        "CreatedAt": "2026-09-09T05:52:27Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/practica_ia_datos/_data",
+        "Name": "practica_ia_datos",
+        "Options": null,
+        "Scope": "local"
+    }
+]

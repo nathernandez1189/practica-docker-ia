@@ -1,0 +1,33 @@
+{
+  "verificado_utc": "2026-09-09T06:18:10.462945+00:00",
+  "repositorios": [
+    {
+      "repositorio": "nathernandez/ubuntuweb",
+      "url": "https://hub.docker.com/r/nathernandez/ubuntuweb",
+      "publico": true,
+      "tag": "v1",
+      "digest": "sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177",
+      "imagenes": [
+        {
+          "arquitectura": "arm64",
+          "sistema": "linux",
+          "digest": "sha256:7d33cffe8e75d98f6150b9c002ab1142a0169492c6ef5dc9ad6ff5a831ac87d2"
+        }
+      ]
+    },
+    {
+      "repositorio": "nathernandez/sitio-docker",
+      "url": "https://hub.docker.com/r/nathernandez/sitio-docker",
+      "publico": true,
+      "tag": "v1",
+      "digest": "sha256:3b9de05d882a240b123220873e907bca2cba592592e1e1591f8fe80049e8a383",
+      "imagenes": [
+        {
+          "arquitectura": "arm64",
+          "sistema": "linux",
+          "digest": "sha256:eb9c22bf291ab0d6fde0dfc9616110546c9d97246d691b068070ea51e381032c"
+        }
+      ]
+    }
+  ]
+}

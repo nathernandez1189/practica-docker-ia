@@ -1,0 +1,14 @@
+v1: Pulling from nathernandez/ubuntuweb
+Digest: sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177
+Status: Downloaded newer image for nathernandez/ubuntuweb:v1
+docker.io/nathernandez/ubuntuweb:v1
+webcliente
+webcliente
+d5e667bff06539a78796bff8488b95dbd2f8324cbf52a69622315e838d0e49a7
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<h1> Bienvenidos al servidor de prueba </h1>
+100    45  100    45    0     0  40250      0 --:--:-- --:--:-- --:--:-- 45000
+["nathernandez/ubuntuweb@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177","practica/ubuntuweb@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177"]
+CONTAINER ID   IMAGE                       COMMAND                  CREATED         STATUS         PORTS                        NAMES
+d5e667bff065   nathernandez/ubuntuweb:v1   "apache2ctl -D FOREG…"   2 seconds ago   Up 2 seconds   192.168.100.2:9900->80/tcp   webcliente

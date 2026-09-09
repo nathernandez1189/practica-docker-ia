@@ -1,0 +1,25 @@
+CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS                          NAMES
+1ee74f334e5f   practica/flask:v1             "python app.py"          24 minutes ago   Up 20 minutes   192.168.100.3:5000->5000/tcp   flask-practica
+f7585ab1ba34   practica/ml-jupyter:arm64     "jupyter notebook --…"   24 minutes ago   Up 20 minutes   192.168.100.3:8890->8888/tcp   ml-jupyter
+1e80353e15ea   practica/data-science:local   "jupyter notebook --…"   24 minutes ago   Up 20 minutes   192.168.100.3:8888->8888/tcp   jupyter-ia
+42e141ab715f   practica/ubuntuweb:base       "apache2ctl -D FOREG…"   27 minutes ago   Up 20 minutes   192.168.100.3:9920->80/tcp     webvolumen
+127cddc7bf4d   practica/testdir:v1           "apache2ctl -D FOREG…"   27 minutes ago   Up 20 minutes   192.168.100.3:9910->80/tcp     webcontainer
+dd9bbdb304a1   practica/sitio-docker:v1      "apache2ctl -D FOREG…"   27 minutes ago   Up 20 minutes   192.168.100.3:9001->80/tcp     webpersonal
+351fde8e1d00   practica/ubuntuweb:base       "apache2ctl -D FOREG…"   27 minutes ago   Up 20 minutes   192.168.100.3:9000->80/tcp     webprueba
+IMAGE                          ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest             5dd0d3e6e255       22.6kB         10.3kB        
+httpd:2.4                      979c38c2228d        207MB         47.9MB        
+nathernandez/sitio-docker:v1   3b9de05d882a        254MB         61.6MB   U    
+nathernandez/ubuntuweb:v1      84d2c76ca8e9        254MB         61.6MB   U    
+practica/data-science:local    7862e085788e       3.24GB          593MB   U    
+practica/flask:v1              4197d5caf78c        246MB         53.2MB   U    
+practica/ml-jupyter:arm64      17e4682a6e5c       3.24GB          593MB   U    
+practica/sitio-docker:v1       3b9de05d882a        254MB         61.6MB   U    
+practica/testdir:v1            8fee9ee58b50        254MB         61.6MB   U    
+practica/ubuntuweb:base        84d2c76ca8e9        254MB         61.6MB   U    
+practica/ubuntuweb:v1          84d2c76ca8e9        254MB         61.6MB   U    
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          8         6         3.723GB   207.2MB (5%)
+Containers      7         7         16.7MB    0B (0%)
+Local Volumes   1         0         35B       35B (100%)
+Build Cache     13        0         501.6MB   0B

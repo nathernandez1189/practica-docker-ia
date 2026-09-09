@@ -1,0 +1,392 @@
+[
+  {
+    "archivo": ".dockerignore",
+    "sha256": "8b771f2a3bb489c1722f73ee0bf1899fb4d987ff8314aac67019fc4dfce33a0c",
+    "bytes": 115
+  },
+  {
+    "archivo": ".gitignore",
+    "sha256": "7f79d5d9b654c6ee6f192bc80e42d70602c3214099c0508b2ac2d0fe267b6ead",
+    "bytes": 110
+  },
+  {
+    "archivo": "Abrir-laboratorio.command",
+    "sha256": "e8198694b66800e48c9953310c5851fe11c83e4dc9062473c476fc641c502dba",
+    "bytes": 577
+  },
+  {
+    "archivo": "README.md",
+    "sha256": "7e98e6ce44d81b71cf0a813927c80299898808ae2980b833f16af7b41d6f282e",
+    "bytes": 5223
+  },
+  {
+    "archivo": "Vagrantfile",
+    "sha256": "4f2c46e79558c0109b02c404439d5a1a0d42f11e7e0026c08afaad7a6a5ac483",
+    "bytes": 530
+  },
+  {
+    "archivo": "data-science/Dockerfile",
+    "sha256": "71b7e73f508a7ecb41387fbe336d8d32df40f6abbe557b33acddb2b52f4e587a",
+    "bytes": 420
+  },
+  {
+    "archivo": "data-science/notebooks/01-iris-docker-ia-ejecutado.ipynb",
+    "sha256": "3ae065d1a492d21c3fb5732aa308f859832ecd6762dfd7241f53baf77d472c42",
+    "bytes": 38872
+  },
+  {
+    "archivo": "data-science/notebooks/01-iris-docker-ia.ipynb",
+    "sha256": "1d7f46c98ad911d173bff94c8e564ca4dda0957887bbd358b8fd4c69cf63dae1",
+    "bytes": 6217
+  },
+  {
+    "archivo": "data-science/notebooks/resultados/iris.keras",
+    "sha256": "56b73ee5fb5ff34f6c9c2d509775b0d1d4623f5c75a3215bbdb5a349bfc52f67",
+    "bytes": 22634
+  },
+  {
+    "archivo": "data-science/notebooks/resultados/metricas.json",
+    "sha256": "6d33fe3d919c5ed509637f2b18398bb49bc1897397880ceda1fefa388932e1a5",
+    "bytes": 226
+  },
+  {
+    "archivo": "data-science/requirements.txt",
+    "sha256": "5bc3a56cf56bf18761d1216de2c9e1ce9c1edeced864996816bc08f343aa5b8d",
+    "bytes": 133
+  },
+  {
+    "archivo": "docs/ADAPTACIONES.md",
+    "sha256": "ec6f65a51bb1040b770f9510aed4e45ccff14eaea2699c0d81e5f19704cc6fb2",
+    "bytes": 3772
+  },
+  {
+    "archivo": "docs/INFORME.md",
+    "sha256": "fc5802c188228c8d678eef7968dac32eb10a4bb29086c4c5bb4da7aa4d0ced14",
+    "bytes": 12630
+  },
+  {
+    "archivo": "docs/Informe-Practica-Docker-IA.docx",
+    "sha256": "56e3545301c7fdf4d4549bc06bbbe33c64c656e7c54df3014c4a66cc544c2caa",
+    "bytes": 114887
+  },
+  {
+    "archivo": "docs/Informe-Practica-Docker-IA.pdf",
+    "sha256": "cbfe34e9041b33a19c1cee9ff8d49affbc2d21c63041572cca7dc6f29a436fe6",
+    "bytes": 116138
+  },
+  {
+    "archivo": "docs/requirements-informe.txt",
+    "sha256": "c5185c7faaa38dfc248954366beda7ff6e8757cb608d1f2ab1ebcc24a47cc86a",
+    "bytes": 51
+  },
+  {
+    "archivo": "evidencias/01-entorno-cliente.log",
+    "sha256": "733a043f764f1ebcb6cd2fbc4646413f8d16bdcb6bb4b331802a85f30376192a",
+    "bytes": 1452
+  },
+  {
+    "archivo": "evidencias/01-entorno-servidor.log",
+    "sha256": "50aa7f8851945b28a16bc63df8da762bd6f416f26466af69308a5b4a5ce8005f",
+    "bytes": 2251
+  },
+  {
+    "archivo": "evidencias/01-iris-docker-ia-ejecutado-7-0.png",
+    "sha256": "4894e44c0cbd5553c87b69968b1bbfcad4e13906d8649688f518eb8444d47d41",
+    "bytes": 19968
+  },
+  {
+    "archivo": "evidencias/02-instalacion-cliente.log",
+    "sha256": "7acdb57198bb0c1823e98f9d99dc4d0250f9f7f1edf86f490b8ea04e2b941745",
+    "bytes": 11481
+  },
+  {
+    "archivo": "evidencias/02-instalacion-servidor.log",
+    "sha256": "98f85b511ccfeadc6c23959889a6d3e29bf3f8fa1570b95ebf00bca2847a04c4",
+    "bytes": 11148
+  },
+  {
+    "archivo": "evidencias/03-04-06-web.log",
+    "sha256": "61a1764422484b699f39bba1495fc1b4555dadfe51b4c13905a6569e3c10eb1c",
+    "bytes": 32365
+  },
+  {
+    "archivo": "evidencias/04-sitio-personalizado.png",
+    "sha256": "e15c45d91e8497ceba74c0b52d1ec8607a82b11763a04698ebd3694ba56283dd",
+    "bytes": 59698
+  },
+  {
+    "archivo": "evidencias/05-descarga-dockerhub-cliente.log",
+    "sha256": "095d711b2f5f40ec7f4531e2f834b817a7f19794f2104e77fd89679c5f213ab2",
+    "bytes": 1133
+  },
+  {
+    "archivo": "evidencias/05-publicacion-dockerhub.log",
+    "sha256": "6c7dac6c15f7b27709b2b0691e871641325c8f029c11a6a6d8241068fb4096ad",
+    "bytes": 4298
+  },
+  {
+    "archivo": "evidencias/05-transferencia-local-cliente.log",
+    "sha256": "997b57ab24271dd41ce21b83dc8dcbe95ccf28de6d2d32df850375e9d980e03f",
+    "bytes": 413
+  },
+  {
+    "archivo": "evidencias/07-jupyter-notebooks.png",
+    "sha256": "e2ea5d8fdefd3afdd971e7865019ddf97c0d6eab86c12f5c2f51a512a5f39e9e",
+    "bytes": 35260
+  },
+  {
+    "archivo": "evidencias/1.scikit-learnSample-ejecutado-3-0.png",
+    "sha256": "51acf5bea70bd4e899243423b32bd3cb1c0f56fb8bb1a7327c0efedb18d77d52",
+    "bytes": 41176
+  },
+  {
+    "archivo": "evidencias/3.ScipySample-ejecutado-4-0.png",
+    "sha256": "fa93a9926a344e8e7f7f4291a2d9ffe584a06ca52c6e4c4d2923fbd39fc1699a",
+    "bytes": 69990
+  },
+  {
+    "archivo": "evidencias/contenedores-finales.txt",
+    "sha256": "24baa32ec949b0b1ce513c0601261ac3c6bedadde808103525383b897370293f",
+    "bytes": 1173
+  },
+  {
+    "archivo": "evidencias/dockerhub-publicacion.json",
+    "sha256": "d1374bbdf5bd646718c0f1f8fe236f724bd75bd9d5737a0ca7d25f2bf3f8f35e",
+    "bytes": 1016
+  },
+  {
+    "archivo": "evidencias/ejecucion-completa.log",
+    "sha256": "435963742e34c2421b309f878f7e008892f5a3d7db1626dbc9124d15efe15a4e",
+    "bytes": 107801
+  },
+  {
+    "archivo": "evidencias/ejercicio-volumenes.log",
+    "sha256": "41800b451678f5cdd17f9d5f95b23f4093bc05666c476ecdc22c486c152efa6f",
+    "bytes": 2606
+  },
+  {
+    "archivo": "evidencias/ejercicios-ia-flask.log",
+    "sha256": "1bd7c8b211d88af598583ded28d0ac5a1db21bc746b67a134dfb14790ae4b196",
+    "bytes": 72830
+  },
+  {
+    "archivo": "evidencias/estado-final-cliente.log",
+    "sha256": "038157964586059b099d35375c3eef6904ccbbff27abc6d53024e490b0eafaa4",
+    "bytes": 467
+  },
+  {
+    "archivo": "evidencias/estado-final-servidor.log",
+    "sha256": "5c6b5ce2d599d252f33d76ad0c4f018dcb08f54f4a13296db3791fb3ae4abf8e",
+    "bytes": 2410
+  },
+  {
+    "archivo": "evidencias/imagenes-finales.txt",
+    "sha256": "c99ac290e1f6131a858601ab663ff9668bac0b45973b5081a1c449a7ddcf5bd5",
+    "bytes": 1802
+  },
+  {
+    "archivo": "evidencias/repositorios.json",
+    "sha256": "e552db37b1982f54ed73b26a579970441a441a613fdde441ad66d48b5c773656",
+    "bytes": 284
+  },
+  {
+    "archivo": "evidencias/requirements-ejecutados.txt",
+    "sha256": "e8a8faf3438f2d766b37dd1eb7058f70c717b137bf9636893df6284445da0154",
+    "bytes": 2392
+  },
+  {
+    "archivo": "evidencias/verificacion.json",
+    "sha256": "299d5eeeac304a76132e7ab6187c9537ef45292a7090d0085a94fad92eab3cbd",
+    "bytes": 1810
+  },
+  {
+    "archivo": "flask/Dockerfile",
+    "sha256": "0e09fac87a9b4d09b782caae72e1e2117d91bb9e23705d8fdb75758cc2d3e74c",
+    "bytes": 249
+  },
+  {
+    "archivo": "ml-jupyter-compatible/Dockerfile",
+    "sha256": "09d6d5ee0aeb4bfa1e181e91e6cf782fdaa4bfba7fb86ace28a9eab6dddf01cc",
+    "bytes": 183
+  },
+  {
+    "archivo": "ml-jupyter-compatible/Dockerfile.python37-referencia",
+    "sha256": "92994173df2edf6b187c1260e1aed7df5225d02dcc9f13b5b9ce179b18e0ee8c",
+    "bytes": 1935
+  },
+  {
+    "archivo": "ml-jupyter-compatible/notebooks/1.scikit-learnSample-ejecutado.ipynb",
+    "sha256": "8775a84605502d12dd6c0ccd6fe1ab9ab5e008408d7fce2f4f4245816e27f51e",
+    "bytes": 57813
+  },
+  {
+    "archivo": "ml-jupyter-compatible/notebooks/1.scikit-learnSample.ipynb",
+    "sha256": "5cbfa6c1b6d913197ffc6391b850270f6fdc8491566b808d8978993893610896",
+    "bytes": 2374
+  },
+  {
+    "archivo": "ml-jupyter-compatible/notebooks/2.TensorFlowSample-ejecutado.ipynb",
+    "sha256": "5f759ebf18abc7de92f47eddbc8520c2211ba601859174acf4050ffc00b23ec6",
+    "bytes": 10804
+  },
+  {
+    "archivo": "ml-jupyter-compatible/notebooks/2.TensorFlowSample.ipynb",
+    "sha256": "dc9f759b1e9fedb5d2df5dab305076b033222316582040db78cba9d6d0b497c4",
+    "bytes": 3814
+  },
+  {
+    "archivo": "ml-jupyter-compatible/notebooks/3.ScipySample-ejecutado.ipynb",
+    "sha256": "865e38e810aa8e18265b0098aaf60aef14d6e096fed036be57b93ae8a49d9573",
+    "bytes": 96327
+  },
+  {
+    "archivo": "ml-jupyter-compatible/notebooks/3.ScipySample.ipynb",
+    "sha256": "5e3a551b37466939df993e2e0a3ee64d79857bd78fb1bde26edf4cdd3600a8e9",
+    "bytes": 2518
+  },
+  {
+    "archivo": "referencias/docker-flask-example/Dockerfile",
+    "sha256": "9fc16f2d4c73b936959522404cdb5bfad9db099b35f80a5cb8a4bdd1ad83686d",
+    "bytes": 169
+  },
+  {
+    "archivo": "referencias/docker-flask-example/app/app.py",
+    "sha256": "d974f53c1d064f0d082c0dc4fa65b6986e2d74a7252f1bc06304c0d21fbed4ef",
+    "bytes": 343
+  },
+  {
+    "archivo": "referencias/docker-flask-example/app/data.py",
+    "sha256": "ec860b4a91f04807e7aabb354546ada7bae6d24f4dc9577644207c2a7ce94559",
+    "bytes": 2023
+  },
+  {
+    "archivo": "referencias/docker-flask-example/requirements.txt",
+    "sha256": "2a1a661c4e3e6faadab5d001bc10cc3acccf648921aad7c279d94f138eaaf833",
+    "bytes": 6
+  },
+  {
+    "archivo": "referencias/ml-jupyter-python3/Dockerfile",
+    "sha256": "7db31c42d3106a581e533278ff0839752cfbc8f0a7f7fa9652b227b9be307126",
+    "bytes": 1952
+  },
+  {
+    "archivo": "referencias/ml-jupyter-python3/LICENSE",
+    "sha256": "18fb3e45402eac8aff011d29b69eea241fe2ebc9e60e261d413fe1748d796213",
+    "bytes": 1070
+  },
+  {
+    "archivo": "referencias/ml-jupyter-python3/README.md",
+    "sha256": "aa2b96f763e8784a88ac8b9256b9e97c44c0175d329117144f2466b077ee6976",
+    "bytes": 1683
+  },
+  {
+    "archivo": "referencias/ml-jupyter-python3/azure-pipelines.yml",
+    "sha256": "92c5bcf8bb52ccbf86ad99c008fb9d73629559db54e16e5111ac935eac8f3166",
+    "bytes": 1041
+  },
+  {
+    "archivo": "referencias/ml-jupyter-python3/notebooks/1.scikit-learnSample.ipynb",
+    "sha256": "c0426f8a8409a0eed8b64b695bac16c4e859dcf38554e79bd2336002cea856ba",
+    "bytes": 24974
+  },
+  {
+    "archivo": "referencias/ml-jupyter-python3/notebooks/2.TensorFlowSample.ipynb",
+    "sha256": "cd6e3c977c65c5ff49c03311ab77c6f24d9f9e0ab542375de46f2def76a9c752",
+    "bytes": 4888
+  },
+  {
+    "archivo": "referencias/ml-jupyter-python3/notebooks/3.ScipySample.ipynb",
+    "sha256": "860b70285bae73ac517d118f4ba5d6267b90d9be32cdd98e617043bafdacd88a",
+    "bytes": 64499
+  },
+  {
+    "archivo": "scripts/ejecutar-ia-flask.sh",
+    "sha256": "721036d09fe50ba968ab09dde376d0f07bb43cfacc7a89bababbe1b0e39a0da5",
+    "bytes": 1299
+  },
+  {
+    "archivo": "scripts/ejecutar-web.sh",
+    "sha256": "3e2a30f0db96695133d3202c0b72ffda534db358facb8d8840a5ae28d8763324",
+    "bytes": 1185
+  },
+  {
+    "archivo": "scripts/empaquetar.py",
+    "sha256": "04f77fb06a773a04a06a75f07f63172a7b11dedf0ce80ee0d42021f9b80d4992",
+    "bytes": 1273
+  },
+  {
+    "archivo": "scripts/generar-informe.py",
+    "sha256": "b4d11b2677a3e651cd6d6fce98616bad14fb4fb0f20231cc37d0c4272fdf1e1d",
+    "bytes": 6769
+  },
+  {
+    "archivo": "scripts/instalar-docker-ubuntu.sh",
+    "sha256": "37f0a9f76dec1cf5461c28130cf6bfd6a8ff220afa2e0245ffabf9e5d729d25a",
+    "bytes": 1317
+  },
+  {
+    "archivo": "scripts/probar-volumenes.sh",
+    "sha256": "5c03809b17524ed186ba6e69c8e404df6c7dca52a35e4f9a3b8ab918387890da",
+    "bytes": 1371
+  },
+  {
+    "archivo": "scripts/publicar-dockerhub.sh",
+    "sha256": "4fd1ba61b18fb5715ea102bdc29a7910304311a9b3be993bd9aba1580a028aa5",
+    "bytes": 773
+  },
+  {
+    "archivo": "scripts/verificar.py",
+    "sha256": "16cc2747b017f59c69aec0afc1e21a88ffd57d805b9e444e8671da4ec340eaec",
+    "bytes": 2488
+  },
+  {
+    "archivo": "sitio-personalizado/Dockerfile",
+    "sha256": "fd26be53ac86641fb54d337843b3cb4bcfaebf82648e00a64be97e7fbc40f32f",
+    "bytes": 105
+  },
+  {
+    "archivo": "sitio-personalizado/html1/index.html",
+    "sha256": "e0e0c5a6a203e4fb51dfe908ebe628e93d52988f2fae4315e12ff6e2ae542941",
+    "bytes": 2218
+  },
+  {
+    "archivo": "test_docker/Dockerfile",
+    "sha256": "d85f95249e61c74d8d40cf2dd16ebf809c2b88674bcc081e4ce46f9bcf366eb1",
+    "bytes": 235
+  },
+  {
+    "archivo": "test_docker/html1/index.html",
+    "sha256": "1ced21c445d93e350fe9391730bf73a526d0a83bea3c956451b6b5ddfad11ad0",
+    "bytes": 45
+  },
+  {
+    "archivo": "test_docker2/Dockerfile",
+    "sha256": "32f167ff95c8a31a88eb51619333119dbebf5fbabd0dd9a2726b0e70fca6e2b9",
+    "bytes": 181
+  },
+  {
+    "archivo": "test_docker2/voldocker/index.html",
+    "sha256": "d4ba88e5162c57462f27c4f4c352805da83081879350468d007a247c3d09662c",
+    "bytes": 68
+  },
+  {
+    "archivo": "test_docker2/voldocker/pagina1.html",
+    "sha256": "6b0cd96c9c48de30e2f55b18c8276a5befec14f18626d5e67be3413fb8872c9e",
+    "bytes": 217
+  },
+  {
+    "archivo": "volumenes/cambio.txt",
+    "sha256": "580490a63165cc00bba430c87824f579fb1b9a9edba8143e4b70c27e2e0ab3af",
+    "bytes": 44
+  },
+  {
+    "archivo": "volumenes/desde-contenedor.txt",
+    "sha256": "e538d372fe05f0485f32b81c68e88cb744e76a3038401d20114e80585d32e42a",
+    "bytes": 36
+  },
+  {
+    "archivo": "volumenes/index.html",
+    "sha256": "8c41843d4748aaffcccb95825a37d9011702eb1bed2f4e91794a4e7f23076052",
+    "bytes": 237
+  }
+]

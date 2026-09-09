@@ -1,0 +1,75 @@
+{
+  "fecha_utc": "2026-09-09T06:17:27.872729+00:00",
+  "pruebas": [
+    {
+      "prueba": "Página parte 4",
+      "url": "http://192.168.100.3:9000",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Sitio personalizado",
+      "url": "http://192.168.100.3:9001",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Copia de directorios",
+      "url": "http://192.168.100.3:9910",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Enlace segunda página",
+      "url": "http://192.168.100.3:9910/pagina1.html",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Bind mount anfitrión a contenedor",
+      "url": "http://192.168.100.3:9920/cambio.txt",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Bind mount contenedor a anfitrión",
+      "url": "http://192.168.100.3:9920/desde-contenedor.txt",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Jupyter Iris",
+      "url": "http://192.168.100.3:8888",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Jupyter repositorio",
+      "url": "http://192.168.100.3:8890",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Flask",
+      "url": "http://192.168.100.3:5000",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "Cliente con imagen descargada de Docker Hub",
+      "url": "http://192.168.100.2:9900",
+      "resultado": "OK"
+    },
+    {
+      "prueba": "2.TensorFlowSample-ejecutado.ipynb",
+      "celdas_con_codigo": 6,
+      "resultado": "OK"
+    },
+    {
+      "prueba": "3.ScipySample-ejecutado.ipynb",
+      "celdas_con_codigo": 2,
+      "resultado": "OK"
+    },
+    {
+      "prueba": "1.scikit-learnSample-ejecutado.ipynb",
+      "celdas_con_codigo": 2,
+      "resultado": "OK"
+    },
+    {
+      "prueba": "01-iris-docker-ia-ejecutado.ipynb",
+      "celdas_con_codigo": 6,
+      "resultado": "OK"
+    }
+  ]
+}

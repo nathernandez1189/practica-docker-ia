@@ -1,0 +1,5 @@
+Loaded image: practica/ubuntuweb:v1
+b568f4a1a1dff28bbc8a0d0fbf73334e3dd00a7715607c61c19aa69e05ba496f
+<h1> Bienvenidos al servidor de prueba </h1>
+CONTAINER ID   IMAGE                   COMMAND                  CREATED         STATUS         PORTS                        NAMES
+b568f4a1a1df   practica/ubuntuweb:v1   "apache2ctl -D FOREG…"   3 seconds ago   Up 2 seconds   192.168.100.2:9900->80/tcp   webcliente

@@ -1,0 +1,8 @@
+CONTAINER ID   IMAGE                         COMMAND                  CREATED          STATUS          PORTS                          NAMES
+1ee74f334e5f   practica/flask:v1             "python app.py"          24 minutes ago   Up 20 minutes   192.168.100.3:5000->5000/tcp   flask-practica
+f7585ab1ba34   practica/ml-jupyter:arm64     "jupyter notebook --…"   24 minutes ago   Up 20 minutes   192.168.100.3:8890->8888/tcp   ml-jupyter
+1e80353e15ea   practica/data-science:local   "jupyter notebook --…"   24 minutes ago   Up 20 minutes   192.168.100.3:8888->8888/tcp   jupyter-ia
+42e141ab715f   practica/ubuntuweb:base       "apache2ctl -D FOREG…"   27 minutes ago   Up 20 minutes   192.168.100.3:9920->80/tcp     webvolumen
+127cddc7bf4d   practica/testdir:v1           "apache2ctl -D FOREG…"   27 minutes ago   Up 20 minutes   192.168.100.3:9910->80/tcp     webcontainer
+dd9bbdb304a1   practica/sitio-docker:v1      "apache2ctl -D FOREG…"   27 minutes ago   Up 20 minutes   192.168.100.3:9001->80/tcp     webpersonal
+351fde8e1d00   practica/ubuntuweb:base       "apache2ctl -D FOREG…"   27 minutes ago   Up 20 minutes   192.168.100.3:9000->80/tcp     webprueba

@@ -1,0 +1,9 @@
+{
+  "muestras_entrenamiento": 120,
+  "muestras_prueba": 30,
+  "exactitud_sklearn": 0.9333333333333333,
+  "exactitud_tensorflow": 0.9666666666666667,
+  "tensorflow": "2.20.0",
+  "scikit_learn": "1.7.2",
+  "dispositivo": "CPU"
+}

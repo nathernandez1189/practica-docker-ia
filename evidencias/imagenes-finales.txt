@@ -1,0 +1,12 @@
+REPOSITORY                  TAG       DIGEST                                                                    IMAGE ID       CREATED          SIZE
+practica/flask              v1        sha256:4197d5caf78cfba2f092779f5f334c3de0d06c351f1b3c5b6e06eed3218d2970   4197d5caf78c   24 minutes ago   246MB
+practica/ml-jupyter         arm64     sha256:17e4682a6e5c83d80607a37ac73d099838cd9d4e756d8abb9689d2572f13ce57   17e4682a6e5c   24 minutes ago   3.24GB
+practica/data-science       local     sha256:7862e085788ecb0959f41cfc2168f2dcc3096929ba1ac0b4654db01c0b7c0f77   7862e085788e   25 minutes ago   3.24GB
+practica/testdir            v1        sha256:8fee9ee58b50eec6a9505960fec6802574f3732adad0e02259a2458ebdad0be2   8fee9ee58b50   27 minutes ago   254MB
+nathernandez/sitio-docker   v1        <none>                                                                    3b9de05d882a   27 minutes ago   254MB
+practica/sitio-docker       v1        sha256:3b9de05d882a240b123220873e907bca2cba592592e1e1591f8fe80049e8a383   3b9de05d882a   27 minutes ago   254MB
+nathernandez/ubuntuweb      v1        <none>                                                                    84d2c76ca8e9   27 minutes ago   254MB
+practica/ubuntuweb          base      sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177   84d2c76ca8e9   27 minutes ago   254MB
+practica/ubuntuweb          v1        sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177   84d2c76ca8e9   27 minutes ago   254MB
+httpd                       2.4       sha256:979c38c2228d28c2edfd45c6e27dcee1c7b4a101a5526721ae8ece454e89e99e   979c38c2228d   2 weeks ago      207MB
+hello-world                 latest    sha256:5dd0d3e6e255913fc30f90b9f2b1d359cc2cbdb48090cc4b65f1676e203243cc   5dd0d3e6e255   5 months ago     22.6kB

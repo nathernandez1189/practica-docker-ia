@@ -1,0 +1,75 @@
+servidorUbuntu
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UP             10.0.2.15/24 metric 100 fd17:625c:f037:2:a00:27ff:fed9:fa93/64 fe80::a00:27ff:fed9:fa93/64 
+eth1             UP             192.168.100.3/24 fe80::a00:27ff:fefa:61c8/64 
+lxdbr0           UP             10.61.70.1/24 fd42:2cfb:38e4:d53e::1/64 fe80::216:3eff:fed3:8341/64 
+vethaee63b79@if5 UP             
+veth6050987d@if7 UP             
+veth6316c77b@if11 UP             
+docker0          DOWN           172.17.0.1/16 fe80::64bf:32ff:fec6:b07e/64 
+active
+Client: Docker Engine - Community
+ Version:    29.8.0
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.37.0
+    Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.5.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-compose
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 1
+ Server Version: 29.8.0
+ Storage Driver: overlayfs
+  driver-type: io.containerd.snapshotter.v1
+ Logging Driver: json-file
+ Cgroup Driver: systemd
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 1294c24a7da8e5a793ed378161673abe94118892
+ runc version: v1.5.1-0-g8f2685a4
+ init version: de40ad0
+ Security Options:
+  apparmor
+   Profile: default
+  seccomp
+   Profile: builtin
+  cgroupns
+ Kernel Version: 5.15.0-160-generic
+ Operating System: Ubuntu 22.04.5 LTS
+ OSType: linux
+ Architecture: aarch64
+ CPUs: 2
+ Total Memory: 3.694GiB
+ Name: servidorUbuntu
+ ID: 3372c34a-8739-4a6a-87a3-001d78d127d3
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+  ::1/128
+ Live Restore Enabled: false
+ Firewall Backend: iptables
+  EnableUserlandProxy: true
+  UserlandProxyPath: /usr/bin/docker-proxy
+
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   5dd0d3e6e255       22.6kB         10.3kB        
