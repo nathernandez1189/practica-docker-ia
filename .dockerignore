@@ -1,0 +1,11 @@
+.git
+.vagrant
+.runtime
+**/.git
+**/.ipynb_checkpoints
+evidencias
+docs
+*.zip
+.env
+**/*-ejecutado.ipynb
+**/resultados
