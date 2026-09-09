@@ -8,7 +8,7 @@ Guía de referencia: *2025-03 Practica Docker_IA.docx*, profesor Oscar H. Mondra
 
 Se instalaron y probaron Docker CE en dos máquinas Ubuntu 22.04 administradas por Vagrant y VirtualBox. Se construyeron imágenes web propias, se ejecutaron ejemplos de copia de archivos y persistencia, se entrenaron modelos de IA dentro de Jupyter y se probó el desafío Docker + Flask.
 
-**Publicación completada.** Las imágenes `nathernandez/ubuntuweb:v1` y `nathernandez/sitio-docker:v1` están disponibles públicamente en Docker Hub. Se verificaron sin autenticación y se descargó `nathernandez/ubuntuweb:v1` desde clienteUbuntu; el contenedor `webcliente` respondió correctamente en el puerto 9900. El proyecto se conserva en el repositorio privado [nathernandez1189/practica-docker-ia](https://github.com/nathernandez1189/practica-docker-ia), con commits organizados por configuración, web y volúmenes, IA y Flask, y documentación y evidencias.
+**Publicación completada.** Las imágenes `nathernandez/ubuntuweb:v1` y `nathernandez/sitio-docker:v1` están disponibles públicamente en Docker Hub. Se verificaron sin autenticación y ambas se descargaron desde clienteUbuntu. El contenedor `webcliente` usa actualmente `nathernandez/sitio-docker:v1` y muestra el sitio personalizado en el puerto 9900. El proyecto se conserva en el repositorio privado [nathernandez1189/practica-docker-ia](https://github.com/nathernandez1189/practica-docker-ia), con commits organizados por configuración, web y volúmenes, IA y Flask, y documentación y evidencias.
 
 La ejecución de IA usa una adaptación para ARM64. El repositorio original utiliza una rueda TensorFlow para Intel y Python 3.7. Se conservan tanto el original como la adaptación y se explica cada cambio en `ADAPTACIONES.md`.
 
@@ -75,7 +75,9 @@ docker run -d --name webcliente -p 192.168.100.2:9900:80 nathernandez/ubuntuweb:
 curl http://192.168.100.2:9900
 ```
 
-El cliente devolvió «Bienvenidos al servidor de prueba». La imagen descargada tiene el mismo digest publicado: `sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177`. El registro completo está en `05-descarga-dockerhub-cliente.log`. Docker reutilizó las capas que ya existían tras la prueba local previa y obtuvo del registro la referencia publicada.
+El cliente devolvió «Bienvenidos al servidor de prueba». La imagen descargada tiene el mismo digest publicado: `sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177`. Después se descargó `nathernandez/sitio-docker:v1` y se recreó `webcliente` para dejar visible el sitio personalizado en la misma dirección. Su digest publicado es `sha256:3b9de05d882a240b123220873e907bca2cba592592e1e1591f8fe80049e8a383`. Los registros completos están en `05-descarga-dockerhub-cliente.log` y `05-sitio-docker-en-cliente.log`.
+
+![Sitio personalizado descargado desde Docker Hub y ejecutado en clienteUbuntu](../evidencias/05-sitio-docker-en-cliente.png)
 
 Se conserva `scripts/publicar-dockerhub.sh` para repetir la publicación de manera interactiva. Las credenciales no forman parte de los archivos de entrega.
 

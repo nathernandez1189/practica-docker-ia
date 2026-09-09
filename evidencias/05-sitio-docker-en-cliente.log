@@ -1,0 +1,20 @@
+CONTAINER ID   IMAGE                          COMMAND                  CREATED         STATUS         PORTS                        NAMES
+a660c78ef587   nathernandez/sitio-docker:v1   "apache2ctl -D FOREG…"   2 minutes ago   Up 2 minutes   192.168.100.2:9900->80/tcp   webcliente
+["nathernandez/sitio-docker@sha256:3b9de05d882a240b123220873e907bca2cba592592e1e1591f8fe80049e8a383"]
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2218  100  2218    0     0 <!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Natalia Hernández · Laboratorio Docker e IA</title>
+<style>
+:root{color-scheme:light;--ink:#122d43;--accent:#096c70}*{box-sizing:border-box}body{margin:0;background:#f3f5ef;color:var(--ink);font:18px/1.6 system-ui,sans-serif}main{max-width:1000px;margin:auto;padding:60px 28px}.eyebrow{font-size:13px;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(36px,6vw,68px);line-height:1.08;max-width:800px;margin:20px 0}h2{font-size:23px}p{max-width:690px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:42px}article{border:1px solid #cdd8cd;padding:24px;border-radius:12px;background:#fff}article span{font:700 14px ui-monospace,monospace;color:var(--accent)}footer{margin-top:50px;border-top:1px solid #cdd8cd;padding-top:18px;font-size:14px}.tag{display:inline-block;background:#dcece1;border-radius:30px;padding:6px 15px;font-size:14px}
+</style></head><body><main><div class="eyebrow">Natalia Hernández / Práctica de contenedores</div>
+<h1>Un laboratorio de ideas.<br>Dentro de Docker.</h1>
+<p>Sitio personalizado del laboratorio de Docker e inteligencia artificial. Una imagen propia con Ubuntu y Apache permite llevar esta página a otro equipo conservando el mismo entorno.</p>
+<div class="tag">Ubuntu 22.04 · Apache · Docker</div>
+<section class="grid" aria-label="Componentes del laboratorio">
+<article><span>01 / WEB</span><h2>Imágenes propias</h2><p>El Dockerfile instala Apache y copia esta página. La imagen se puede versionar y distribuir mediante Docker Hub.</p></article>
+<article><span>02 / DATOS</span><h2>Data Science e IA</h2><p>Notebooks con TensorFlow, scikit-learn y preprocesamiento de datos para ejecutar experimentos reproducibles.</p></article>
+<article><span>03 / PERSISTENCIA</span><h2>Volúmenes</h2><p>Directorios compartidos y volúmenes con nombre permiten conservar archivos al recrear un contenedor.</p></article>
+</section><footer>Laboratorio académico · Natalia Hernández · Ingeniería e inteligencia artificial</footer></main></body></html>
+ 6314k      0 --:--:-- --:--:-- --:--:-- 2166k

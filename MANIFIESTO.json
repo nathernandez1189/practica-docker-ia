@@ -16,8 +16,8 @@
   },
   {
     "archivo": "README.md",
-    "sha256": "7e98e6ce44d81b71cf0a813927c80299898808ae2980b833f16af7b41d6f282e",
-    "bytes": 5223
+    "sha256": "2b4a53a57ceab65ee4bff891bbc5fa7ca12c6a04e7b95dd66a080a907a8c013a",
+    "bytes": 5301
   },
   {
     "archivo": "Vagrantfile",
@@ -61,18 +61,18 @@
   },
   {
     "archivo": "docs/INFORME.md",
-    "sha256": "fc5802c188228c8d678eef7968dac32eb10a4bb29086c4c5bb4da7aa4d0ced14",
-    "bytes": 12630
+    "sha256": "39a0274f4bb443fb92663c167261911432c1fa39c68d15120fe64a4e403715ac",
+    "bytes": 12954
   },
   {
     "archivo": "docs/Informe-Practica-Docker-IA.docx",
-    "sha256": "56e3545301c7fdf4d4549bc06bbbe33c64c656e7c54df3014c4a66cc544c2caa",
-    "bytes": 114887
+    "sha256": "f017d7ec3e629f2dcde4760b2ef350fc77ecd5693a57d9422b10e1ff4d5151c7",
+    "bytes": 115001
   },
   {
     "archivo": "docs/Informe-Practica-Docker-IA.pdf",
-    "sha256": "cbfe34e9041b33a19c1cee9ff8d49affbc2d21c63041572cca7dc6f29a436fe6",
-    "bytes": 116138
+    "sha256": "8f7a066ba049ed71a5952e1af26053bfdc168805918dacb7be504ec94b1101a8",
+    "bytes": 117315
   },
   {
     "archivo": "docs/requirements-informe.txt",
@@ -123,6 +123,16 @@
     "archivo": "evidencias/05-publicacion-dockerhub.log",
     "sha256": "6c7dac6c15f7b27709b2b0691e871641325c8f029c11a6a6d8241068fb4096ad",
     "bytes": 4298
+  },
+  {
+    "archivo": "evidencias/05-sitio-docker-en-cliente.log",
+    "sha256": "dab26d82c693b8a3f53fec347f4df64f551dea120fad48d74172b6f52e2ae046",
+    "bytes": 2918
+  },
+  {
+    "archivo": "evidencias/05-sitio-docker-en-cliente.png",
+    "sha256": "e15c45d91e8497ceba74c0b52d1ec8607a82b11763a04698ebd3694ba56283dd",
+    "bytes": 59698
   },
   {
     "archivo": "evidencias/05-transferencia-local-cliente.log",
@@ -196,8 +206,8 @@
   },
   {
     "archivo": "evidencias/verificacion.json",
-    "sha256": "299d5eeeac304a76132e7ab6187c9537ef45292a7090d0085a94fad92eab3cbd",
-    "bytes": 1810
+    "sha256": "e975c6a0642ce0b4713fb1938fb2396a8f9fd5fc2fac758c1c306db5b80385b1",
+    "bytes": 1823
   },
   {
     "archivo": "flask/Dockerfile",
@@ -336,8 +346,8 @@
   },
   {
     "archivo": "scripts/verificar.py",
-    "sha256": "16cc2747b017f59c69aec0afc1e21a88ffd57d805b9e444e8671da4ec340eaec",
-    "bytes": 2488
+    "sha256": "2debb2e638a46fa5b9b7d306ff5722a16e4c62c9824cc0ec831af8aa3ee114f2",
+    "bytes": 2491
   },
   {
     "archivo": "sitio-personalizado/Dockerfile",

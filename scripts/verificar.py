@@ -15,7 +15,7 @@ checks = [
     ("Jupyter Iris", "http://192.168.100.3:8888", "Jupyter"),
     ("Jupyter repositorio", "http://192.168.100.3:8890", "Jupyter"),
     ("Flask", "http://192.168.100.3:5000", "my_articles"),
-    ("Cliente con imagen descargada de Docker Hub", "http://192.168.100.2:9900", "Bienvenidos al servidor de prueba"),
+    ("Cliente con sitio personalizado descargado de Docker Hub", "http://192.168.100.2:9900", "Un laboratorio de ideas"),
 ]
 results = []
 for name, url, expected in checks:

@@ -1,5 +1,5 @@
 {
-  "fecha_utc": "2026-09-09T06:17:27.872729+00:00",
+  "fecha_utc": "2026-09-09T06:32:59.919940+00:00",
   "pruebas": [
     {
       "prueba": "Página parte 4",
@@ -47,7 +47,7 @@
       "resultado": "OK"
     },
     {
-      "prueba": "Cliente con imagen descargada de Docker Hub",
+      "prueba": "Cliente con sitio personalizado descargado de Docker Hub",
       "url": "http://192.168.100.2:9900",
       "resultado": "OK"
     },
