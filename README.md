@@ -8,6 +8,7 @@ Implementación de la guía **2025-03 Practica Docker_IA.docx**, del profesor Os
 - [Imagen de prueba: nathernandez/ubuntuweb:v1](https://hub.docker.com/r/nathernandez/ubuntuweb)
 - [Sitio personalizado: nathernandez/sitio-docker:v1](https://hub.docker.com/r/nathernandez/sitio-docker)
 - [Informe PDF](docs/Informe-Practica-Docker-IA.pdf) · [Informe Word](docs/Informe-Practica-Docker-IA.docx)
+- [Informe para sustentación en vivo en PDF](docs/Informe-Sustentacion-Docker-IA.pdf) · [Word](docs/Informe-Sustentacion-Docker-IA.docx)
 
 Las imágenes publicadas son Linux ARM64. En clienteUbuntu se descargaron ambas desde Docker Hub; el servicio visible en el puerto 9900 usa actualmente `nathernandez/sitio-docker:v1`. Los originales de los repositorios de referencia se incluyen como copias de sus archivos; sus URLs y commits de origen se conservan en `evidencias/repositorios.json`.
 
