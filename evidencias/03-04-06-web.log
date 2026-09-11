@@ -1,50 +1,48 @@
 + hostname
 servidorUbuntu
 + date -Iseconds
-2026-09-09T05:51:57+00:00
+2026-09-11T23:44:20+00:00
 + docker search apache --limit 5
 NAME              DESCRIPTION                                     STARS     OFFICIAL
 apache/airflow    Apache Airflow                                  635       
 apache/superset   Apache Superset                                 331       
 apache/kafka      Apache Kafka                                    218       
 apache/tika       Container images for Apache Tika Server (htt…   56        
-apache/spark      Apache Spark                                    100       
+apache/apisix     Apache APISIX: Cloud-Native API Gateway         103       
 + docker pull httpd:2.4
 2.4: Pulling from library/httpd
-fff91e36faf1: Pulling fs layer
-4f4fb700ef54: Pulling fs layer
-bf7af0229701: Pulling fs layer
-01289bdb7344: Pulling fs layer
-cea950926c89: Pulling fs layer
-91eac6ee2743: Pulling fs layer
-d461d957ad8a: Download complete
-e78b009430d6: Download complete
-fff91e36faf1: Download complete
-4f4fb700ef54: Download complete
-01289bdb7344: Download complete
-91eac6ee2743: Download complete
-cea950926c89: Download complete
-bf7af0229701: Download complete
-4f4fb700ef54: Pull complete
-01289bdb7344: Pull complete
-bf7af0229701: Pull complete
-cea950926c89: Pull complete
-fff91e36faf1: Pull complete
-91eac6ee2743: Pull complete
 Digest: sha256:979c38c2228d28c2edfd45c6e27dcee1c7b4a101a5526721ae8ece454e89e99e
-Status: Downloaded newer image for httpd:2.4
+Status: Image is up to date for httpd:2.4
 docker.io/library/httpd:2.4
 + docker images
-IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
-hello-world:latest   5dd0d3e6e255       22.6kB         10.3kB        
-httpd:2.4            979c38c2228d        207MB         47.9MB        
+IMAGE                                                                                                 ID             DISK USAGE   CONTENT SIZE   EXTRA
+desafio-compose-web:latest                                                                            a829bebef397        246MB         54.1MB   U    
+flask-mysql-app:latest                                                                                482d61ea7cd9       1.73GB          432MB   U    
+ftp-practica-ftp:latest                                                                               3a2e957a823b       18.1MB         4.59MB   U    
+gcr.io/k8s-minikube/kicbase:v0.0.51                                                                   84eb673a845f       1.83GB          493MB        
+gcr.io/k8s-minikube/kicbase@sha256:4a1c825b61479e6c898851ea66f13c620aaeab6002746e95067fc2c4b38a0b24   4a1c825b6147       1.83GB          493MB   U    
+hello-world:latest                                                                                    5dd0d3e6e255       22.6kB         10.3kB        
+httpd:2.4                                                                                             979c38c2228d        207MB         47.9MB        
+mysql:latest                                                                                          4b40b165f348       1.32GB          286MB   U    
+nathernandez/sitio-docker:v1                                                                          3b9de05d882a        254MB         61.6MB        
+nathernandez/ubuntuweb:v1                                                                             84d2c76ca8e9        254MB         61.6MB        
+nginx:latest                                                                                          05b8cb60c354        271MB         67.9MB   U    
+practica/data-science:local                                                                           7862e085788e       3.24GB          593MB        
+practica/flask:v1                                                                                     4197d5caf78c        246MB         53.2MB        
+practica/ml-jupyter:arm64                                                                             17e4682a6e5c       3.24GB          593MB        
+practica/sitio-docker:v1                                                                              3b9de05d882a        254MB         61.6MB        
+practica/testdir:v1                                                                                   8fee9ee58b50        254MB         61.6MB        
+practica/ubuntuweb:base                                                                               84d2c76ca8e9        254MB         61.6MB        
+practica/ubuntuweb:v1                                                                                 84d2c76ca8e9        254MB         61.6MB        
+redis:latest                                                                                          298e5b3bc566        233MB         57.3MB   U    
+traefik/whoami:latest@sha256:c4717a8d1f0134a7444e24f881160e033991f23027c6c5a9a3f8fd22e70d1d44         c4717a8d1f01         18MB         4.73MB        
 + docker run -d --name web1 -p 192.168.100.3:8800:80 httpd:2.4
-68a986ebb71d81ca83abe7c2bfe87c559aff3ca995e616ac516de7e6a1fdfec2
+416a2985e494a735842e25725e72762aea4f5c3c2a402e0fb68c9d4c40afdb5f
 + sleep 2
 + curl --fail http://192.168.100.3:8800
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   191  100   191    0     0   291k      0 --:--:-- --:--:-- --:--:--  186k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   191  100   191    0     0  21916      0 --:--:-- --:--:-- --:--:-- 23875
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
@@ -56,20 +54,31 @@ httpd:2.4            979c38c2228d        207MB         47.9MB
 </html>
 + docker ps
 CONTAINER ID   IMAGE       COMMAND              CREATED         STATUS         PORTS                        NAMES
-68a986ebb71d   httpd:2.4   "httpd-foreground"   3 seconds ago   Up 2 seconds   192.168.100.3:8800->80/tcp   web1
+416a2985e494   httpd:2.4   "httpd-foreground"   2 seconds ago   Up 2 seconds   192.168.100.3:8800->80/tcp   web1
 + docker stop web1
 web1
 + docker rm web1
 web1
 + docker container ls -a
-CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED      STATUS                        PORTS     NAMES
+8640c0eb524d   ftp-practica-ftp                      "/entrypoint.sh"         2 days ago   Exited (137) 21 seconds ago             ftp-practica-ftp-1
+01d53fef8fb6   gcr.io/k8s-minikube/kicbase:v0.0.51   "/usr/local/bin/entr…"   2 days ago   Exited (130) 2 days ago                 minikube
+b3aef7654e73   flask-mysql-app                       "python app.py"          2 days ago   Exited (137) 21 seconds ago             flask-mysql-app-1
+321c8ec12fa7   mysql                                 "docker-entrypoint.s…"   2 days ago   Exited (0) 30 seconds ago               flask-mysql-db-1
+a18f8612ea92   desafio-compose-web                   "python app.py"          2 days ago   Exited (137) 21 seconds ago             desafio-compose-web-1
+129f0a4e380e   redis                                 "docker-entrypoint.s…"   2 days ago   Exited (0) 31 seconds ago               desafio-compose-redis-1
+17e6c729d21f   redis                                 "docker-entrypoint.s…"   2 days ago   Exited (0) 2 days ago                   compose-basico-database-3
+3b89241add36   redis                                 "docker-entrypoint.s…"   2 days ago   Exited (0) 2 days ago                   compose-basico-database-4
+ff8c5b59a17b   nginx                                 "/docker-entrypoint.…"   2 days ago   Exited (0) 2 days ago                   compose-basico-web-1
+09335cb19524   redis                                 "docker-entrypoint.s…"   2 days ago   Exited (0) 2 days ago                   compose-basico-database-2
+4082c99f7757   redis                                 "docker-entrypoint.s…"   2 days ago   Exited (0) 2 days ago                   compose-basico-database-1
 + docker search ubuntu --limit 5
 NAME           DESCRIPTION                                     STARS     OFFICIAL
 ubuntu         Ubuntu is a Debian-based Linux operating sys…   17871     [OK]
 ubuntu/squid   Squid is a caching proxy for the Web. Long-t…   130       
 ubuntu/nginx   Nginx, a high-performance reverse proxy & we…   143       
-ubuntu/bind9   BIND 9 is a very flexible, full-featured DNS…   120       
 ubuntu/kafka   Apache Kafka, a distributed event streaming …   62        
+ubuntu/bind9   BIND 9 is a very flexible, full-featured DNS…   120       
 + docker build -t practica/ubuntuweb:base ./test_docker
 #0 building with "default" instance using docker driver
 
@@ -78,286 +87,295 @@ ubuntu/kafka   Apache Kafka, a distributed event streaming …   62
 #1 DONE 0.0s
 
 #2 [internal] load metadata for docker.io/library/ubuntu:22.04
-#2 DONE 1.2s
+#2 ...
 
-#3 [internal] load .dockerignore
-#3 transferring context: 2B done
+#3 [auth] library/ubuntu:pull token for registry-1.docker.io
 #3 DONE 0.0s
 
-#4 [internal] load build context
-#4 transferring context: 117B done
+#2 [internal] load metadata for docker.io/library/ubuntu:22.04
+#2 DONE 1.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
 #4 DONE 0.0s
 
-#5 [1/3] FROM docker.io/library/ubuntu:22.04@sha256:2edbbc5dc405e9612ba3584ce95480277e3eb374407b5505fe26f17df77c7dbc
-#5 resolve docker.io/library/ubuntu:22.04@sha256:2edbbc5dc405e9612ba3584ce95480277e3eb374407b5505fe26f17df77c7dbc done
-#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 0B / 27.62MB 0.2s
-#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 4.19MB / 27.62MB 0.3s
-#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 17.83MB / 27.62MB 0.5s
-#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 26.21MB / 27.62MB 0.6s
-#5 sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 27.62MB / 27.62MB 0.7s done
-#5 extracting sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e
-#5 extracting sha256:231032373bb3b10375f5940876c5c9a4a630f4e007e3aee895f8e1687b00295e 0.4s done
-#5 DONE 1.1s
+#5 [internal] load build context
+#5 transferring context: 117B done
+#5 DONE 0.0s
 
-#6 [2/3] RUN apt-get update && apt-get install -y --no-install-recommends apache2 apache2-utils     && apt-get clean && rm -rf /var/lib/apt/lists/*
-#6 0.409 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
-#6 0.953 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
-#6 1.075 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
-#6 1.208 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
-#6 1.337 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
-#6 1.399 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
-#6 1.658 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
-#6 2.087 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
-#6 2.088 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [4427 kB]
-#6 2.179 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [8081 kB]
-#6 2.362 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1703 kB]
-#6 2.406 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [70.2 kB]
-#6 2.407 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [33.7 kB]
-#6 2.408 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [82.4 kB]
-#6 2.410 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [62.9 kB]
-#6 2.411 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [4110 kB]
-#6 2.498 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [7777 kB]
-#6 2.670 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1406 kB]
-#6 3.334 Fetched 47.6 MB in 3s (14.8 MB/s)
-#6 3.334 Reading package lists...
-#6 3.981 Reading package lists...
-#6 4.542 Building dependency tree...
-#6 4.692 Reading state information...
-#6 4.819 The following additional packages will be installed:
-#6 4.819   apache2-bin apache2-data libapr1 libaprutil1 libaprutil1-dbd-sqlite3
-#6 4.819   libaprutil1-ldap libbrotli1 libcurl4 libexpat1 libgdbm-compat4 libgdbm6
-#6 4.819   libicu70 libjansson4 libldap-2.5-0 liblua5.3-0 libnghttp2-14 libperl5.34
-#6 4.819   libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db libsqlite3-0 libssh-4
-#6 4.819   libxml2 mailcap media-types mime-support perl perl-base perl-modules-5.34
-#6 4.819 Suggested packages:
-#6 4.819   apache2-doc apache2-suexec-pristine | apache2-suexec-custom www-browser ufw
-#6 4.819   gdbm-l10n perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
-#6 4.819   make libtap-harness-archive-perl
-#6 4.819 Recommended packages:
-#6 4.819   ssl-cert ca-certificates libldap-common publicsuffix libsasl2-modules bzip2
-#6 4.819   file xz-utils netbase
-#6 4.862 The following NEW packages will be installed:
-#6 4.863   apache2 apache2-bin apache2-data apache2-utils libapr1 libaprutil1
-#6 4.863   libaprutil1-dbd-sqlite3 libaprutil1-ldap libbrotli1 libcurl4 libexpat1
-#6 4.863   libgdbm-compat4 libgdbm6 libicu70 libjansson4 libldap-2.5-0 liblua5.3-0
-#6 4.863   libnghttp2-14 libperl5.34 libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db
-#6 4.863   libsqlite3-0 libssh-4 libxml2 mailcap media-types mime-support perl
-#6 4.863   perl-modules-5.34
-#6 4.864 The following packages will be upgraded:
-#6 4.864   perl-base
-#6 5.337 1 upgraded, 31 newly installed, 0 to remove and 25 not upgraded.
-#6 5.337 Need to get 25.0 MB of archives.
-#6 5.337 After this operation, 98.0 MB of additional disk space will be used.
-#6 5.337 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl-base arm64 5.34.0-3ubuntu1.9 [1711 kB]
-#6 7.111 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl-modules-5.34 all 5.34.0-3ubuntu1.9 [2977 kB]
-#6 7.417 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libgdbm6 arm64 1.23-1 [34.1 kB]
-#6 7.419 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libgdbm-compat4 arm64 1.23-1 [6294 B]
-#6 7.425 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libperl5.34 arm64 5.34.0-3ubuntu1.9 [4724 kB]
-#6 7.663 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl arm64 5.34.0-3ubuntu1.9 [232 kB]
-#6 7.680 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libapr1 arm64 1.7.0-8ubuntu0.22.04.2 [106 kB]
-#6 7.687 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libexpat1 arm64 2.4.7-1ubuntu0.7 [77.5 kB]
-#6 7.692 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1 arm64 1.6.1-5ubuntu4.22.04.3 [94.5 kB]
-#6 7.700 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsqlite3-0 arm64 3.37.2-2ubuntu0.7 [636 kB]
-#6 7.730 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1-dbd-sqlite3 arm64 1.6.1-5ubuntu4.22.04.3 [11.2 kB]
-#6 7.731 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-modules-db arm64 2.1.27+dfsg2-3ubuntu1.2 [21.1 kB]
-#6 7.734 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-2 arm64 2.1.27+dfsg2-3ubuntu1.2 [55.6 kB]
-#6 7.737 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libldap-2.5-0 arm64 2.5.20+dfsg-0ubuntu0.22.04.1 [182 kB]
-#6 7.869 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1-ldap arm64 1.6.1-5ubuntu4.22.04.3 [9082 B]
-#6 7.883 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libbrotli1 arm64 1.0.9-2build6 [314 kB]
-#6 7.892 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libnghttp2-14 arm64 1.43.0-1ubuntu0.4 [76.2 kB]
-#6 7.896 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libpsl5 arm64 0.21.0-1.2build2 [58.3 kB]
-#6 7.904 Get:19 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2build4 [59.2 kB]
-#6 7.934 Get:20 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libssh-4 arm64 0.9.6-2ubuntu0.22.04.8 [187 kB]
-#6 7.937 Get:21 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libcurl4 arm64 7.81.0-1ubuntu1.27 [286 kB]
-#6 7.941 Get:22 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libjansson4 arm64 2.13.1-1.1build3 [33.6 kB]
-#6 7.942 Get:23 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 liblua5.3-0 arm64 5.3.6-1build1 [135 kB]
-#6 7.951 Get:24 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libicu70 arm64 70.1-2 [10.5 MB]
-#6 8.409 Get:25 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libxml2 arm64 2.9.13+dfsg-1ubuntu0.12 [729 kB]
-#6 8.419 Get:26 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-bin arm64 2.4.52-1ubuntu4.23 [1318 kB]
-#6 8.566 Get:27 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-data all 2.4.52-1ubuntu4.23 [165 kB]
-#6 8.568 Get:28 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-utils arm64 2.4.52-1ubuntu4.23 [88.9 kB]
-#6 8.568 Get:29 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 media-types all 7.0.0 [25.5 kB]
-#6 8.569 Get:30 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 mailcap all 3.70+nmu1ubuntu1.22.04.1 [23.9 kB]
-#6 8.570 Get:31 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 mime-support all 3.66 [3696 B]
-#6 8.570 Get:32 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2 arm64 2.4.52-1ubuntu4.23 [97.9 kB]
-#6 8.647 debconf: delaying package configuration, since apt-utils is not installed
-#6 8.667 Fetched 25.0 MB in 4s (6741 kB/s)
-#6 8.679 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4387 files and directories currently installed.)
-#6 8.679 Preparing to unpack .../perl-base_5.34.0-3ubuntu1.9_arm64.deb ...
-#6 8.685 Unpacking perl-base (5.34.0-3ubuntu1.9) over (5.34.0-3ubuntu1.7) ...
-#6 9.009 Setting up perl-base (5.34.0-3ubuntu1.9) ...
-#6 9.018 Selecting previously unselected package perl-modules-5.34.
-#6 9.018 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4387 files and directories currently installed.)
-#6 9.020 Preparing to unpack .../00-perl-modules-5.34_5.34.0-3ubuntu1.9_all.deb ...
-#6 9.021 Unpacking perl-modules-5.34 (5.34.0-3ubuntu1.9) ...
-#6 9.132 Selecting previously unselected package libgdbm6:arm64.
-#6 9.133 Preparing to unpack .../01-libgdbm6_1.23-1_arm64.deb ...
-#6 9.134 Unpacking libgdbm6:arm64 (1.23-1) ...
-#6 9.142 Selecting previously unselected package libgdbm-compat4:arm64.
-#6 9.142 Preparing to unpack .../02-libgdbm-compat4_1.23-1_arm64.deb ...
-#6 9.143 Unpacking libgdbm-compat4:arm64 (1.23-1) ...
-#6 9.148 Selecting previously unselected package libperl5.34:arm64.
-#6 9.149 Preparing to unpack .../03-libperl5.34_5.34.0-3ubuntu1.9_arm64.deb ...
-#6 9.150 Unpacking libperl5.34:arm64 (5.34.0-3ubuntu1.9) ...
-#6 9.261 Selecting previously unselected package perl.
-#6 9.261 Preparing to unpack .../04-perl_5.34.0-3ubuntu1.9_arm64.deb ...
-#6 9.265 Unpacking perl (5.34.0-3ubuntu1.9) ...
-#6 9.275 Selecting previously unselected package libapr1:arm64.
-#6 9.275 Preparing to unpack .../05-libapr1_1.7.0-8ubuntu0.22.04.2_arm64.deb ...
-#6 9.276 Unpacking libapr1:arm64 (1.7.0-8ubuntu0.22.04.2) ...
-#6 9.282 Selecting previously unselected package libexpat1:arm64.
-#6 9.283 Preparing to unpack .../06-libexpat1_2.4.7-1ubuntu0.7_arm64.deb ...
-#6 9.285 Unpacking libexpat1:arm64 (2.4.7-1ubuntu0.7) ...
-#6 9.292 Selecting previously unselected package libaprutil1:arm64.
-#6 9.293 Preparing to unpack .../07-libaprutil1_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
-#6 9.293 Unpacking libaprutil1:arm64 (1.6.1-5ubuntu4.22.04.3) ...
-#6 9.300 Selecting previously unselected package libsqlite3-0:arm64.
-#6 9.301 Preparing to unpack .../08-libsqlite3-0_3.37.2-2ubuntu0.7_arm64.deb ...
-#6 9.301 Unpacking libsqlite3-0:arm64 (3.37.2-2ubuntu0.7) ...
-#6 9.313 Selecting previously unselected package libaprutil1-dbd-sqlite3:arm64.
-#6 9.313 Preparing to unpack .../09-libaprutil1-dbd-sqlite3_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
-#6 9.314 Unpacking libaprutil1-dbd-sqlite3:arm64 (1.6.1-5ubuntu4.22.04.3) ...
-#6 9.319 Selecting previously unselected package libsasl2-modules-db:arm64.
-#6 9.320 Preparing to unpack .../10-libsasl2-modules-db_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
-#6 9.320 Unpacking libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
-#6 9.328 Selecting previously unselected package libsasl2-2:arm64.
-#6 9.329 Preparing to unpack .../11-libsasl2-2_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
-#6 9.329 Unpacking libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
-#6 9.336 Selecting previously unselected package libldap-2.5-0:arm64.
-#6 9.336 Preparing to unpack .../12-libldap-2.5-0_2.5.20+dfsg-0ubuntu0.22.04.1_arm64.deb ...
-#6 9.337 Unpacking libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
-#6 9.344 Selecting previously unselected package libaprutil1-ldap:arm64.
-#6 9.344 Preparing to unpack .../13-libaprutil1-ldap_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
-#6 9.345 Unpacking libaprutil1-ldap:arm64 (1.6.1-5ubuntu4.22.04.3) ...
-#6 9.352 Selecting previously unselected package libbrotli1:arm64.
-#6 9.353 Preparing to unpack .../14-libbrotli1_1.0.9-2build6_arm64.deb ...
-#6 9.353 Unpacking libbrotli1:arm64 (1.0.9-2build6) ...
-#6 9.362 Selecting previously unselected package libnghttp2-14:arm64.
-#6 9.364 Preparing to unpack .../15-libnghttp2-14_1.43.0-1ubuntu0.4_arm64.deb ...
-#6 9.365 Unpacking libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
-#6 9.373 Selecting previously unselected package libpsl5:arm64.
-#6 9.374 Preparing to unpack .../16-libpsl5_0.21.0-1.2build2_arm64.deb ...
-#6 9.374 Unpacking libpsl5:arm64 (0.21.0-1.2build2) ...
-#6 9.381 Selecting previously unselected package librtmp1:arm64.
-#6 9.382 Preparing to unpack .../17-librtmp1_2.4+20151223.gitfa8646d.1-2build4_arm64.deb ...
-#6 9.382 Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
-#6 9.390 Selecting previously unselected package libssh-4:arm64.
-#6 9.391 Preparing to unpack .../18-libssh-4_0.9.6-2ubuntu0.22.04.8_arm64.deb ...
-#6 9.392 Unpacking libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
-#6 9.399 Selecting previously unselected package libcurl4:arm64.
-#6 9.400 Preparing to unpack .../19-libcurl4_7.81.0-1ubuntu1.27_arm64.deb ...
-#6 9.400 Unpacking libcurl4:arm64 (7.81.0-1ubuntu1.27) ...
-#6 9.408 Selecting previously unselected package libjansson4:arm64.
-#6 9.410 Preparing to unpack .../20-libjansson4_2.13.1-1.1build3_arm64.deb ...
-#6 9.410 Unpacking libjansson4:arm64 (2.13.1-1.1build3) ...
-#6 9.416 Selecting previously unselected package liblua5.3-0:arm64.
-#6 9.417 Preparing to unpack .../21-liblua5.3-0_5.3.6-1build1_arm64.deb ...
-#6 9.418 Unpacking liblua5.3-0:arm64 (5.3.6-1build1) ...
-#6 9.425 Selecting previously unselected package libicu70:arm64.
-#6 9.426 Preparing to unpack .../22-libicu70_70.1-2_arm64.deb ...
-#6 9.427 Unpacking libicu70:arm64 (70.1-2) ...
-#6 9.545 Selecting previously unselected package libxml2:arm64.
-#6 9.547 Preparing to unpack .../23-libxml2_2.9.13+dfsg-1ubuntu0.12_arm64.deb ...
-#6 9.548 Unpacking libxml2:arm64 (2.9.13+dfsg-1ubuntu0.12) ...
-#6 9.562 Selecting previously unselected package apache2-bin.
-#6 9.562 Preparing to unpack .../24-apache2-bin_2.4.52-1ubuntu4.23_arm64.deb ...
-#6 9.563 Unpacking apache2-bin (2.4.52-1ubuntu4.23) ...
-#6 9.596 Selecting previously unselected package apache2-data.
-#6 9.597 Preparing to unpack .../25-apache2-data_2.4.52-1ubuntu4.23_all.deb ...
-#6 9.597 Unpacking apache2-data (2.4.52-1ubuntu4.23) ...
-#6 9.617 Selecting previously unselected package apache2-utils.
-#6 9.618 Preparing to unpack .../26-apache2-utils_2.4.52-1ubuntu4.23_arm64.deb ...
-#6 9.619 Unpacking apache2-utils (2.4.52-1ubuntu4.23) ...
-#6 9.628 Selecting previously unselected package media-types.
-#6 9.629 Preparing to unpack .../27-media-types_7.0.0_all.deb ...
-#6 9.629 Unpacking media-types (7.0.0) ...
-#6 9.637 Selecting previously unselected package mailcap.
-#6 9.638 Preparing to unpack .../28-mailcap_3.70+nmu1ubuntu1.22.04.1_all.deb ...
-#6 9.639 Unpacking mailcap (3.70+nmu1ubuntu1.22.04.1) ...
-#6 9.647 Selecting previously unselected package mime-support.
-#6 9.648 Preparing to unpack .../29-mime-support_3.66_all.deb ...
-#6 9.649 Unpacking mime-support (3.66) ...
-#6 9.656 Selecting previously unselected package apache2.
-#6 9.657 Preparing to unpack .../30-apache2_2.4.52-1ubuntu4.23_arm64.deb ...
-#6 9.659 Unpacking apache2 (2.4.52-1ubuntu4.23) ...
-#6 9.680 Setting up libexpat1:arm64 (2.4.7-1ubuntu0.7) ...
-#6 9.683 Setting up media-types (7.0.0) ...
-#6 9.688 Setting up libpsl5:arm64 (0.21.0-1.2build2) ...
-#6 9.690 Setting up libbrotli1:arm64 (1.0.9-2build6) ...
-#6 9.692 Setting up libsqlite3-0:arm64 (3.37.2-2ubuntu0.7) ...
-#6 9.694 Setting up libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
-#6 9.697 Setting up libapr1:arm64 (1.7.0-8ubuntu0.22.04.2) ...
-#6 9.699 Setting up perl-modules-5.34 (5.34.0-3ubuntu1.9) ...
-#6 9.701 Setting up libjansson4:arm64 (2.13.1-1.1build3) ...
-#6 9.703 Setting up libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
-#6 9.705 Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
-#6 9.708 Setting up libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
-#6 9.710 Setting up libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
-#6 9.712 Setting up liblua5.3-0:arm64 (5.3.6-1build1) ...
-#6 9.714 Setting up apache2-data (2.4.52-1ubuntu4.23) ...
-#6 9.716 Setting up libgdbm6:arm64 (1.23-1) ...
-#6 9.718 Setting up libicu70:arm64 (70.1-2) ...
-#6 9.719 Setting up libaprutil1:arm64 (1.6.1-5ubuntu4.22.04.3) ...
-#6 9.721 Setting up libaprutil1-dbd-sqlite3:arm64 (1.6.1-5ubuntu4.22.04.3) ...
-#6 9.723 Setting up libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
-#6 9.725 Setting up libgdbm-compat4:arm64 (1.23-1) ...
-#6 9.727 Setting up libcurl4:arm64 (7.81.0-1ubuntu1.27) ...
-#6 9.730 Setting up libxml2:arm64 (2.9.13+dfsg-1ubuntu0.12) ...
-#6 9.731 Setting up apache2-utils (2.4.52-1ubuntu4.23) ...
-#6 9.734 Setting up libperl5.34:arm64 (5.34.0-3ubuntu1.9) ...
-#6 9.736 Setting up libaprutil1-ldap:arm64 (1.6.1-5ubuntu4.22.04.3) ...
-#6 9.737 Setting up perl (5.34.0-3ubuntu1.9) ...
-#6 9.741 Setting up mailcap (3.70+nmu1ubuntu1.22.04.1) ...
-#6 9.750 Setting up mime-support (3.66) ...
-#6 9.752 Setting up apache2-bin (2.4.52-1ubuntu4.23) ...
-#6 9.754 Setting up apache2 (2.4.52-1ubuntu4.23) ...
-#6 9.881 Enabling module mpm_event.
-#6 9.892 Enabling module authz_core.
-#6 9.894 Enabling module authz_host.
-#6 9.905 Enabling module authn_core.
-#6 9.906 Enabling module auth_basic.
-#6 9.917 Enabling module access_compat.
-#6 9.929 Enabling module authn_file.
-#6 9.940 Enabling module authz_user.
-#6 9.952 Enabling module alias.
-#6 9.963 Enabling module dir.
-#6 9.974 Enabling module autoindex.
-#6 9.984 Enabling module env.
-#6 9.996 Enabling module mime.
-#6 10.01 Enabling module negotiation.
-#6 10.02 Enabling module setenvif.
-#6 10.03 Enabling module filter.
-#6 10.04 Enabling module deflate.
-#6 10.05 Enabling module status.
-#6 10.06 Enabling module reqtimeout.
-#6 10.07 Enabling conf charset.
-#6 10.08 Enabling conf localized-error-pages.
-#6 10.10 Enabling conf other-vhosts-access-log.
-#6 10.11 Enabling conf security.
-#6 10.12 Enabling conf serve-cgi-bin.
-#6 10.13 Enabling site 000-default.
-#6 10.13 invoke-rc.d: could not determine current runlevel
-#6 10.14 invoke-rc.d: policy-rc.d denied execution of start.
-#6 10.25 Processing triggers for libc-bin (2.35-0ubuntu3.14) ...
-#6 DONE 10.5s
+#6 [1/3] FROM docker.io/library/ubuntu:22.04@sha256:829f6df217bcbae2b371026e81711d1a787c61b2967ad09d015063663ebafbf7
+#6 resolve docker.io/library/ubuntu:22.04@sha256:829f6df217bcbae2b371026e81711d1a787c61b2967ad09d015063663ebafbf7 0.0s done
+#6 sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945 0B / 27.68MB 0.2s
+#6 sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945 3.15MB / 27.68MB 0.3s
+#6 sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945 6.29MB / 27.68MB 0.5s
+#6 sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945 12.58MB / 27.68MB 0.6s
+#6 sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945 17.83MB / 27.68MB 0.8s
+#6 sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945 26.21MB / 27.68MB 0.9s
+#6 sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945 27.68MB / 27.68MB 1.0s done
+#6 extracting sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945
+#6 extracting sha256:e4be80ccf23625c2b9f55507e92a0bef3343c6a3f274f9d593c52bd4d2fa2945 0.4s done
+#6 DONE 1.5s
 
-#7 [3/3] COPY html1/ /var/www/html/
-#7 DONE 0.0s
+#7 [2/3] RUN apt-get update && apt-get install -y --no-install-recommends apache2 apache2-utils     && apt-get clean && rm -rf /var/lib/apt/lists/*
+#7 0.617 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+#7 1.809 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+#7 2.106 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+#7 2.380 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+#7 2.662 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+#7 3.320 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+#7 3.333 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+#7 4.316 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+#7 4.320 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [4427 kB]
+#7 4.530 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [8081 kB]
+#7 4.944 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1703 kB]
+#7 5.027 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [70.2 kB]
+#7 5.030 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [33.7 kB]
+#7 5.031 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [82.4 kB]
+#7 5.036 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1406 kB]
+#7 5.104 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [7780 kB]
+#7 5.507 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [63.4 kB]
+#7 5.513 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [4110 kB]
+#7 6.040 Fetched 47.6 MB in 6s (8049 kB/s)
+#7 6.040 Reading package lists...
+#7 6.604 Reading package lists...
+#7 7.171 Building dependency tree...
+#7 7.319 Reading state information...
+#7 7.442 The following additional packages will be installed:
+#7 7.442   apache2-bin apache2-data libapr1 libaprutil1 libaprutil1-dbd-sqlite3
+#7 7.443   libaprutil1-ldap libbrotli1 libcurl4 libexpat1 libgdbm-compat4 libgdbm6
+#7 7.443   libicu70 libjansson4 libldap-2.5-0 liblua5.3-0 libnghttp2-14 libperl5.34
+#7 7.443   libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db libsqlite3-0 libssh-4
+#7 7.443   libxml2 mailcap media-types mime-support perl perl-base perl-modules-5.34
+#7 7.443 Suggested packages:
+#7 7.443   apache2-doc apache2-suexec-pristine | apache2-suexec-custom www-browser ufw
+#7 7.443   gdbm-l10n perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
+#7 7.443   make libtap-harness-archive-perl
+#7 7.443 Recommended packages:
+#7 7.443   ssl-cert ca-certificates libldap-common publicsuffix libsasl2-modules bzip2
+#7 7.443   file xz-utils netbase
+#7 7.487 The following NEW packages will be installed:
+#7 7.487   apache2 apache2-bin apache2-data apache2-utils libapr1 libaprutil1
+#7 7.487   libaprutil1-dbd-sqlite3 libaprutil1-ldap libbrotli1 libcurl4 libexpat1
+#7 7.487   libgdbm-compat4 libgdbm6 libicu70 libjansson4 libldap-2.5-0 liblua5.3-0
+#7 7.487   libnghttp2-14 libperl5.34 libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db
+#7 7.487   libsqlite3-0 libssh-4 libxml2 mailcap media-types mime-support perl
+#7 7.487   perl-modules-5.34
+#7 7.488 The following packages will be upgraded:
+#7 7.488   perl-base
+#7 7.752 1 upgraded, 31 newly installed, 0 to remove and 2 not upgraded.
+#7 7.752 Need to get 25.0 MB of archives.
+#7 7.752 After this operation, 98.0 MB of additional disk space will be used.
+#7 7.752 Get:1 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl-base arm64 5.34.0-3ubuntu1.9 [1711 kB]
+#7 8.506 Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl-modules-5.34 all 5.34.0-3ubuntu1.9 [2977 kB]
+#7 8.641 Get:3 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libgdbm6 arm64 1.23-1 [34.1 kB]
+#7 8.649 Get:4 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libgdbm-compat4 arm64 1.23-1 [6294 B]
+#7 8.652 Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libperl5.34 arm64 5.34.0-3ubuntu1.9 [4724 kB]
+#7 8.752 Get:6 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl arm64 5.34.0-3ubuntu1.9 [232 kB]
+#7 8.774 Get:7 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libapr1 arm64 1.7.0-8ubuntu0.22.04.2 [106 kB]
+#7 8.774 Get:8 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libexpat1 arm64 2.4.7-1ubuntu0.7 [77.5 kB]
+#7 8.775 Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1 arm64 1.6.1-5ubuntu4.22.04.3 [94.5 kB]
+#7 8.776 Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsqlite3-0 arm64 3.37.2-2ubuntu0.7 [636 kB]
+#7 8.786 Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1-dbd-sqlite3 arm64 1.6.1-5ubuntu4.22.04.3 [11.2 kB]
+#7 8.787 Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-modules-db arm64 2.1.27+dfsg2-3ubuntu1.2 [21.1 kB]
+#7 8.789 Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libsasl2-2 arm64 2.1.27+dfsg2-3ubuntu1.2 [55.6 kB]
+#7 8.790 Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libldap-2.5-0 arm64 2.5.20+dfsg-0ubuntu0.22.04.1 [182 kB]
+#7 8.848 Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libaprutil1-ldap arm64 1.6.1-5ubuntu4.22.04.3 [9082 B]
+#7 8.867 Get:16 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libbrotli1 arm64 1.0.9-2build6 [314 kB]
+#7 8.875 Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libnghttp2-14 arm64 1.43.0-1ubuntu0.4 [76.2 kB]
+#7 8.876 Get:18 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libpsl5 arm64 0.21.0-1.2build2 [58.3 kB]
+#7 8.877 Get:19 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 librtmp1 arm64 2.4+20151223.gitfa8646d.1-2build4 [59.2 kB]
+#7 8.878 Get:20 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libssh-4 arm64 0.9.6-2ubuntu0.22.04.8 [187 kB]
+#7 8.879 Get:21 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libcurl4 arm64 7.81.0-1ubuntu1.27 [286 kB]
+#7 8.886 Get:22 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libjansson4 arm64 2.13.1-1.1build3 [33.6 kB]
+#7 8.886 Get:23 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 liblua5.3-0 arm64 5.3.6-1build1 [135 kB]
+#7 8.888 Get:24 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libicu70 arm64 70.1-2 [10.5 MB]
+#7 9.291 Get:25 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libxml2 arm64 2.9.13+dfsg-1ubuntu0.12 [729 kB]
+#7 9.327 Get:26 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-bin arm64 2.4.52-1ubuntu4.23 [1318 kB]
+#7 9.357 Get:27 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-data all 2.4.52-1ubuntu4.23 [165 kB]
+#7 9.361 Get:28 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2-utils arm64 2.4.52-1ubuntu4.23 [88.9 kB]
+#7 9.365 Get:29 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 media-types all 7.0.0 [25.5 kB]
+#7 9.365 Get:30 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 mailcap all 3.70+nmu1ubuntu1.22.04.1 [23.9 kB]
+#7 9.366 Get:31 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 mime-support all 3.66 [3696 B]
+#7 9.366 Get:32 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 apache2 arm64 2.4.52-1ubuntu4.23 [97.9 kB]
+#7 9.430 debconf: delaying package configuration, since apt-utils is not installed
+#7 9.446 Fetched 25.0 MB in 2s (13.3 MB/s)
+#7 9.457 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4387 files and directories currently installed.)
+#7 9.457 Preparing to unpack .../perl-base_5.34.0-3ubuntu1.9_arm64.deb ...
+#7 9.461 Unpacking perl-base (5.34.0-3ubuntu1.9) over (5.34.0-3ubuntu1.8) ...
+#7 9.779 Setting up perl-base (5.34.0-3ubuntu1.9) ...
+#7 9.787 Selecting previously unselected package perl-modules-5.34.
+#7 9.787 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4387 files and directories currently installed.)
+#7 9.789 Preparing to unpack .../00-perl-modules-5.34_5.34.0-3ubuntu1.9_all.deb ...
+#7 9.790 Unpacking perl-modules-5.34 (5.34.0-3ubuntu1.9) ...
+#7 9.892 Selecting previously unselected package libgdbm6:arm64.
+#7 9.894 Preparing to unpack .../01-libgdbm6_1.23-1_arm64.deb ...
+#7 9.895 Unpacking libgdbm6:arm64 (1.23-1) ...
+#7 9.901 Selecting previously unselected package libgdbm-compat4:arm64.
+#7 9.901 Preparing to unpack .../02-libgdbm-compat4_1.23-1_arm64.deb ...
+#7 9.902 Unpacking libgdbm-compat4:arm64 (1.23-1) ...
+#7 9.911 Selecting previously unselected package libperl5.34:arm64.
+#7 9.911 Preparing to unpack .../03-libperl5.34_5.34.0-3ubuntu1.9_arm64.deb ...
+#7 9.912 Unpacking libperl5.34:arm64 (5.34.0-3ubuntu1.9) ...
+#7 10.02 Selecting previously unselected package perl.
+#7 10.02 Preparing to unpack .../04-perl_5.34.0-3ubuntu1.9_arm64.deb ...
+#7 10.02 Unpacking perl (5.34.0-3ubuntu1.9) ...
+#7 10.03 Selecting previously unselected package libapr1:arm64.
+#7 10.03 Preparing to unpack .../05-libapr1_1.7.0-8ubuntu0.22.04.2_arm64.deb ...
+#7 10.03 Unpacking libapr1:arm64 (1.7.0-8ubuntu0.22.04.2) ...
+#7 10.04 Selecting previously unselected package libexpat1:arm64.
+#7 10.04 Preparing to unpack .../06-libexpat1_2.4.7-1ubuntu0.7_arm64.deb ...
+#7 10.04 Unpacking libexpat1:arm64 (2.4.7-1ubuntu0.7) ...
+#7 10.05 Selecting previously unselected package libaprutil1:arm64.
+#7 10.05 Preparing to unpack .../07-libaprutil1_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
+#7 10.05 Unpacking libaprutil1:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#7 10.06 Selecting previously unselected package libsqlite3-0:arm64.
+#7 10.06 Preparing to unpack .../08-libsqlite3-0_3.37.2-2ubuntu0.7_arm64.deb ...
+#7 10.06 Unpacking libsqlite3-0:arm64 (3.37.2-2ubuntu0.7) ...
+#7 10.07 Selecting previously unselected package libaprutil1-dbd-sqlite3:arm64.
+#7 10.07 Preparing to unpack .../09-libaprutil1-dbd-sqlite3_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
+#7 10.07 Unpacking libaprutil1-dbd-sqlite3:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#7 10.08 Selecting previously unselected package libsasl2-modules-db:arm64.
+#7 10.08 Preparing to unpack .../10-libsasl2-modules-db_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
+#7 10.08 Unpacking libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#7 10.09 Selecting previously unselected package libsasl2-2:arm64.
+#7 10.09 Preparing to unpack .../11-libsasl2-2_2.1.27+dfsg2-3ubuntu1.2_arm64.deb ...
+#7 10.09 Unpacking libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#7 10.10 Selecting previously unselected package libldap-2.5-0:arm64.
+#7 10.10 Preparing to unpack .../12-libldap-2.5-0_2.5.20+dfsg-0ubuntu0.22.04.1_arm64.deb ...
+#7 10.10 Unpacking libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
+#7 10.11 Selecting previously unselected package libaprutil1-ldap:arm64.
+#7 10.11 Preparing to unpack .../13-libaprutil1-ldap_1.6.1-5ubuntu4.22.04.3_arm64.deb ...
+#7 10.11 Unpacking libaprutil1-ldap:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#7 10.12 Selecting previously unselected package libbrotli1:arm64.
+#7 10.12 Preparing to unpack .../14-libbrotli1_1.0.9-2build6_arm64.deb ...
+#7 10.12 Unpacking libbrotli1:arm64 (1.0.9-2build6) ...
+#7 10.13 Selecting previously unselected package libnghttp2-14:arm64.
+#7 10.13 Preparing to unpack .../15-libnghttp2-14_1.43.0-1ubuntu0.4_arm64.deb ...
+#7 10.13 Unpacking libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
+#7 10.14 Selecting previously unselected package libpsl5:arm64.
+#7 10.14 Preparing to unpack .../16-libpsl5_0.21.0-1.2build2_arm64.deb ...
+#7 10.14 Unpacking libpsl5:arm64 (0.21.0-1.2build2) ...
+#7 10.15 Selecting previously unselected package librtmp1:arm64.
+#7 10.15 Preparing to unpack .../17-librtmp1_2.4+20151223.gitfa8646d.1-2build4_arm64.deb ...
+#7 10.15 Unpacking librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
+#7 10.16 Selecting previously unselected package libssh-4:arm64.
+#7 10.16 Preparing to unpack .../18-libssh-4_0.9.6-2ubuntu0.22.04.8_arm64.deb ...
+#7 10.16 Unpacking libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
+#7 10.17 Selecting previously unselected package libcurl4:arm64.
+#7 10.17 Preparing to unpack .../19-libcurl4_7.81.0-1ubuntu1.27_arm64.deb ...
+#7 10.17 Unpacking libcurl4:arm64 (7.81.0-1ubuntu1.27) ...
+#7 10.18 Selecting previously unselected package libjansson4:arm64.
+#7 10.18 Preparing to unpack .../20-libjansson4_2.13.1-1.1build3_arm64.deb ...
+#7 10.18 Unpacking libjansson4:arm64 (2.13.1-1.1build3) ...
+#7 10.19 Selecting previously unselected package liblua5.3-0:arm64.
+#7 10.19 Preparing to unpack .../21-liblua5.3-0_5.3.6-1build1_arm64.deb ...
+#7 10.19 Unpacking liblua5.3-0:arm64 (5.3.6-1build1) ...
+#7 10.20 Selecting previously unselected package libicu70:arm64.
+#7 10.20 Preparing to unpack .../22-libicu70_70.1-2_arm64.deb ...
+#7 10.20 Unpacking libicu70:arm64 (70.1-2) ...
+#7 10.31 Selecting previously unselected package libxml2:arm64.
+#7 10.31 Preparing to unpack .../23-libxml2_2.9.13+dfsg-1ubuntu0.12_arm64.deb ...
+#7 10.31 Unpacking libxml2:arm64 (2.9.13+dfsg-1ubuntu0.12) ...
+#7 10.32 Selecting previously unselected package apache2-bin.
+#7 10.32 Preparing to unpack .../24-apache2-bin_2.4.52-1ubuntu4.23_arm64.deb ...
+#7 10.32 Unpacking apache2-bin (2.4.52-1ubuntu4.23) ...
+#7 10.35 Selecting previously unselected package apache2-data.
+#7 10.35 Preparing to unpack .../25-apache2-data_2.4.52-1ubuntu4.23_all.deb ...
+#7 10.35 Unpacking apache2-data (2.4.52-1ubuntu4.23) ...
+#7 10.37 Selecting previously unselected package apache2-utils.
+#7 10.37 Preparing to unpack .../26-apache2-utils_2.4.52-1ubuntu4.23_arm64.deb ...
+#7 10.37 Unpacking apache2-utils (2.4.52-1ubuntu4.23) ...
+#7 10.38 Selecting previously unselected package media-types.
+#7 10.38 Preparing to unpack .../27-media-types_7.0.0_all.deb ...
+#7 10.38 Unpacking media-types (7.0.0) ...
+#7 10.39 Selecting previously unselected package mailcap.
+#7 10.39 Preparing to unpack .../28-mailcap_3.70+nmu1ubuntu1.22.04.1_all.deb ...
+#7 10.39 Unpacking mailcap (3.70+nmu1ubuntu1.22.04.1) ...
+#7 10.39 Selecting previously unselected package mime-support.
+#7 10.40 Preparing to unpack .../29-mime-support_3.66_all.deb ...
+#7 10.40 Unpacking mime-support (3.66) ...
+#7 10.40 Selecting previously unselected package apache2.
+#7 10.40 Preparing to unpack .../30-apache2_2.4.52-1ubuntu4.23_arm64.deb ...
+#7 10.41 Unpacking apache2 (2.4.52-1ubuntu4.23) ...
+#7 10.42 Setting up libexpat1:arm64 (2.4.7-1ubuntu0.7) ...
+#7 10.42 Setting up media-types (7.0.0) ...
+#7 10.43 Setting up libpsl5:arm64 (0.21.0-1.2build2) ...
+#7 10.43 Setting up libbrotli1:arm64 (1.0.9-2build6) ...
+#7 10.43 Setting up libsqlite3-0:arm64 (3.37.2-2ubuntu0.7) ...
+#7 10.43 Setting up libnghttp2-14:arm64 (1.43.0-1ubuntu0.4) ...
+#7 10.44 Setting up libapr1:arm64 (1.7.0-8ubuntu0.22.04.2) ...
+#7 10.44 Setting up perl-modules-5.34 (5.34.0-3ubuntu1.9) ...
+#7 10.44 Setting up libjansson4:arm64 (2.13.1-1.1build3) ...
+#7 10.44 Setting up libsasl2-modules-db:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#7 10.44 Setting up librtmp1:arm64 (2.4+20151223.gitfa8646d.1-2build4) ...
+#7 10.45 Setting up libsasl2-2:arm64 (2.1.27+dfsg2-3ubuntu1.2) ...
+#7 10.45 Setting up libssh-4:arm64 (0.9.6-2ubuntu0.22.04.8) ...
+#7 10.45 Setting up liblua5.3-0:arm64 (5.3.6-1build1) ...
+#7 10.45 Setting up apache2-data (2.4.52-1ubuntu4.23) ...
+#7 10.45 Setting up libgdbm6:arm64 (1.23-1) ...
+#7 10.45 Setting up libicu70:arm64 (70.1-2) ...
+#7 10.46 Setting up libaprutil1:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#7 10.46 Setting up libaprutil1-dbd-sqlite3:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#7 10.46 Setting up libldap-2.5-0:arm64 (2.5.20+dfsg-0ubuntu0.22.04.1) ...
+#7 10.46 Setting up libgdbm-compat4:arm64 (1.23-1) ...
+#7 10.46 Setting up libcurl4:arm64 (7.81.0-1ubuntu1.27) ...
+#7 10.47 Setting up libxml2:arm64 (2.9.13+dfsg-1ubuntu0.12) ...
+#7 10.47 Setting up apache2-utils (2.4.52-1ubuntu4.23) ...
+#7 10.47 Setting up libperl5.34:arm64 (5.34.0-3ubuntu1.9) ...
+#7 10.47 Setting up libaprutil1-ldap:arm64 (1.6.1-5ubuntu4.22.04.3) ...
+#7 10.47 Setting up perl (5.34.0-3ubuntu1.9) ...
+#7 10.48 Setting up mailcap (3.70+nmu1ubuntu1.22.04.1) ...
+#7 10.49 Setting up mime-support (3.66) ...
+#7 10.49 Setting up apache2-bin (2.4.52-1ubuntu4.23) ...
+#7 10.49 Setting up apache2 (2.4.52-1ubuntu4.23) ...
+#7 10.61 Enabling module mpm_event.
+#7 10.62 Enabling module authz_core.
+#7 10.62 Enabling module authz_host.
+#7 10.63 Enabling module authn_core.
+#7 10.63 Enabling module auth_basic.
+#7 10.64 Enabling module access_compat.
+#7 10.66 Enabling module authn_file.
+#7 10.67 Enabling module authz_user.
+#7 10.68 Enabling module alias.
+#7 10.69 Enabling module dir.
+#7 10.70 Enabling module autoindex.
+#7 10.71 Enabling module env.
+#7 10.72 Enabling module mime.
+#7 10.73 Enabling module negotiation.
+#7 10.74 Enabling module setenvif.
+#7 10.75 Enabling module filter.
+#7 10.76 Enabling module deflate.
+#7 10.77 Enabling module status.
+#7 10.79 Enabling module reqtimeout.
+#7 10.79 Enabling conf charset.
+#7 10.81 Enabling conf localized-error-pages.
+#7 10.82 Enabling conf other-vhosts-access-log.
+#7 10.83 Enabling conf security.
+#7 10.84 Enabling conf serve-cgi-bin.
+#7 10.85 Enabling site 000-default.
+#7 10.86 invoke-rc.d: could not determine current runlevel
+#7 10.86 invoke-rc.d: policy-rc.d denied execution of start.
+#7 10.97 Processing triggers for libc-bin (2.35-0ubuntu3.14) ...
+#7 DONE 11.2s
 
-#8 exporting to image
-#8 exporting layers
-#8 exporting layers 2.2s done
-#8 exporting manifest sha256:7d33cffe8e75d98f6150b9c002ab1142a0169492c6ef5dc9ad6ff5a831ac87d2 done
-#8 exporting config sha256:04bd5b386dc789a97499def99dd98982d3610dd4f34c75fb4c2c9b20a4d63620 done
-#8 exporting attestation manifest sha256:27c60f5da3ebe05c295e302863abc03b5e1fe22c17cbb45ab1c0fa7eb47a584d done
-#8 exporting manifest list sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177 done
-#8 naming to docker.io/practica/ubuntuweb:base done
-#8 unpacking to docker.io/practica/ubuntuweb:base
-#8 unpacking to docker.io/practica/ubuntuweb:base 0.5s done
-#8 DONE 2.7s
+#8 [3/3] COPY html1/ /var/www/html/
+#8 DONE 0.0s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 2.1s done
+#9 exporting manifest sha256:b431c77143db8e2d70ff8c63539132867e54b656ac43762351f72a1365233373
+#9 exporting manifest sha256:b431c77143db8e2d70ff8c63539132867e54b656ac43762351f72a1365233373 done
+#9 exporting config sha256:a76e657c0f5eb4b44bc3a8aedc75c9b881aac3ca2fe2ca77c02ffbc1fc2afdaf done
+#9 exporting attestation manifest sha256:6a9b10ce4e6eabceff7cf8f17921eb39a66e8af68a42c292abbda0df524a379f done
+#9 exporting manifest list sha256:885437eaa0df2b4b16c3660865b25bef08e1241130e5cbb8aec9b7bea2a66f64 done
+#9 naming to docker.io/practica/ubuntuweb:base done
+#9 unpacking to docker.io/practica/ubuntuweb:base
+#9 unpacking to docker.io/practica/ubuntuweb:base 0.5s done
+#9 DONE 2.7s
 + docker tag practica/ubuntuweb:base practica/ubuntuweb:v1
 + docker run -d --name webprueba -p 192.168.100.3:9000:80 practica/ubuntuweb:base
-351fde8e1d0060011c93e0c20768ed610e6b40c191c7710fa63cc6f8d44cd1e7
+e46b7f1a9f1195537b57b687801f0fbfe299d2af8275ee9c002037c758596c3a
 + docker build -t practica/sitio-docker:v1 ./sitio-personalizado
 #0 building with "default" instance using docker driver
 
@@ -376,8 +394,8 @@ ubuntu/kafka   Apache Kafka, a distributed event streaming …   62
 #4 transferring context: 2.29kB done
 #4 DONE 0.0s
 
-#5 [1/2] FROM docker.io/practica/ubuntuweb:base@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177
-#5 resolve docker.io/practica/ubuntuweb:base@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177 done
+#5 [1/2] FROM docker.io/practica/ubuntuweb:base@sha256:885437eaa0df2b4b16c3660865b25bef08e1241130e5cbb8aec9b7bea2a66f64
+#5 resolve docker.io/practica/ubuntuweb:base@sha256:885437eaa0df2b4b16c3660865b25bef08e1241130e5cbb8aec9b7bea2a66f64 done
 #5 DONE 0.0s
 
 #6 [2/2] COPY html1/ /var/www/html/
@@ -385,16 +403,15 @@ ubuntu/kafka   Apache Kafka, a distributed event streaming …   62
 
 #7 exporting to image
 #7 exporting layers 0.0s done
-#7 exporting manifest sha256:eb9c22bf291ab0d6fde0dfc9616110546c9d97246d691b068070ea51e381032c done
-#7 exporting config sha256:17a7b321e7c8596dfdde5ff2bfcfee3413c8aa3e0712ea61bdee1561c90d53c3 done
-#7 exporting attestation manifest sha256:d50d155dad274448dee5e9a9b0b2fb3dfea8d2863576571597c2ce7da6638b26
-#7 exporting attestation manifest sha256:d50d155dad274448dee5e9a9b0b2fb3dfea8d2863576571597c2ce7da6638b26 done
-#7 exporting manifest list sha256:3b9de05d882a240b123220873e907bca2cba592592e1e1591f8fe80049e8a383 done
+#7 exporting manifest sha256:0c0cbfa85682fe5fea1a5dbda135915712ca1f51f22d93fe8b4b15ba8d33dbd3 done
+#7 exporting config sha256:ecbb578e2ba5e298e63cab49a2272f5d81fb37e7eca741e3f8da90bc7a7df11f done
+#7 exporting attestation manifest sha256:f01b559996275e484ea902a80eb65e3d0cd2cbf5e5603c2eeb5eaa13c0d5b8bd done
+#7 exporting manifest list sha256:94851fdf16bd6b4724227d5a631dfe58c5be4156263ff7dc67323f5c54d36c8f done
 #7 naming to docker.io/practica/sitio-docker:v1 done
 #7 unpacking to docker.io/practica/sitio-docker:v1 done
-#7 DONE 0.1s
+#7 DONE 0.0s
 + docker run -d --name webpersonal -p 192.168.100.3:9001:80 practica/sitio-docker:v1
-dd9bbdb304a17450e0e526cee7c3ba856aa66ff2be63d6586534816656c3091d
+06740fef9da1c88678562ef2ae054a364c12d7da09be9cee759a595210a7dd89
 + docker build -t practica/testdir:v1 ./test_docker2
 #0 building with "default" instance using docker driver
 
@@ -409,39 +426,38 @@ dd9bbdb304a17450e0e526cee7c3ba856aa66ff2be63d6586534816656c3091d
 #3 transferring context: 2B done
 #3 DONE 0.0s
 
-#4 [internal] load build context
-#4 transferring context: 418B done
-#4 DONE 0.0s
+#4 [1/2] FROM docker.io/practica/ubuntuweb:base@sha256:885437eaa0df2b4b16c3660865b25bef08e1241130e5cbb8aec9b7bea2a66f64
+#4 resolve docker.io/practica/ubuntuweb:base@sha256:885437eaa0df2b4b16c3660865b25bef08e1241130e5cbb8aec9b7bea2a66f64 done
+#4 CACHED
 
-#5 [1/2] FROM docker.io/practica/ubuntuweb:base@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177
-#5 resolve docker.io/practica/ubuntuweb:base@sha256:84d2c76ca8e902c6a99803ae0426b2a572c250b6d8374ad6f107273599fd9177 0.0s done
-#5 CACHED
+#5 [internal] load build context
+#5 transferring context: 418B done
+#5 DONE 0.0s
 
 #6 [2/2] COPY voldocker/ /var/www/html/
 #6 DONE 0.0s
 
 #7 exporting to image
 #7 exporting layers 0.0s done
-#7 exporting manifest sha256:ca46e3b0bf9fad486299b3407fa0cde0c1f3c90fd31c09ce33b92fff60aed90a
-#7 exporting manifest sha256:ca46e3b0bf9fad486299b3407fa0cde0c1f3c90fd31c09ce33b92fff60aed90a done
-#7 exporting config sha256:903424b44a55e0edde15686e7f79a52b4f26c425f7fa96028055e1eacd652819 done
-#7 exporting attestation manifest sha256:ab686c1ad7d1d6240652bb2b80304df51a9fff0d386cb43a09efcaf6dfee8c46 done
-#7 exporting manifest list sha256:8fee9ee58b50eec6a9505960fec6802574f3732adad0e02259a2458ebdad0be2 done
+#7 exporting manifest sha256:7586a12c5fdd8b0a3abac24dc5b020a7dbffac51d8f199a08e0fa45fe09a2910 done
+#7 exporting config sha256:7b788657ea3b8222abf178823db7a46ee61fd2a6154d5c70230bb6b57fc720b0 done
+#7 exporting attestation manifest sha256:6d2c572fd7952c26be2960845217c7ad8b679a3fe7e59ffcf32688b33cabded5 done
+#7 exporting manifest list sha256:da05072d8a09057f7d9a9017d8ca74ce891cbcbb1a665cce38ba4974c50125a0 done
 #7 naming to docker.io/practica/testdir:v1 done
-#7 unpacking to docker.io/practica/testdir:v1 0.0s done
-#7 DONE 0.1s
+#7 unpacking to docker.io/practica/testdir:v1 done
+#7 DONE 0.0s
 + docker run -d --name webcontainer -p 192.168.100.3:9910:80 practica/testdir:v1
-127cddc7bf4d5d420399af5560d1fc4266e112ae5a1313a6395dc2ba8ebaa366
+29710c977a3edf1c06ad2b32be24c8aa77b97bf1ff93b69a6b56c779d8a97c3d
 + sleep 2
 + curl --fail http://192.168.100.3:9000
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    45  100    45    0     0  23809      0 --:--:-- --:--:-- --:--:-- 45000
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    45  100    45    0     0  37344      0 --:--:-- --:--:-- --:--:-- 45000
 <h1> Bienvenidos al servidor de prueba </h1>
 + curl --fail http://192.168.100.3:9001
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2218  100  2218    0     0  1596k      0 --:--:-- --:--:-- --:--:-- 2166k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2218  100  2218    0     0  1967k      0 --:--:-- --:--:-- --:--:-- 2166k
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Natalia Hernández · Laboratorio Docker e IA</title>
@@ -459,20 +475,20 @@ dd9bbdb304a17450e0e526cee7c3ba856aa66ff2be63d6586534816656c3091d
 + curl --fail http://192.168.100.3:9910
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    68  100    68    0     0  74725      0 --:--:-- --:--:-- --:--:-- 68000
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    68  100    68    0     0  65259      0 --:--:-- --:--:-- --:--:-- 68000
 <h1>Prueba directorios</h1>
 <a href="pagina1.html">Ir a pagina1</a>
 + curl --fail http://192.168.100.3:9910/pagina1.html
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   217  100   217    0     0   344k      0 --:--:-- --:--:-- --:--:--  211k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   217  100   217    0     0   317k      0 --:--:-- --:--:-- --:--:--  211k
 <!doctype html><html lang="es"><meta charset="utf-8"><title>Página 1</title>
 <h1>Página 1</h1><p>Este archivo fue copiado desde voldocker al construir la imagen.</p>
 <a href="index.html">Volver al inicio</a></html>
 + docker logs webcontainer
 AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.4. Set the 'ServerName' directive globally to suppress this message
 + docker exec webcontainer bash -c 'hostname; ls -l /var/www/html; apache2ctl -v'
-127cddc7bf4d
+29710c977a3e
 total 8
 -rw-r--r-- 1 root root  68 Sep  9 05:46 index.html
 -rw-r--r-- 1 root root 217 Sep  9 05:46 pagina1.html
@@ -480,6 +496,6 @@ Server version: Apache/2.4.52 (Ubuntu)
 Server built:   2026-07-06T16:41:46
 + docker ps
 CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                        NAMES
-127cddc7bf4d   practica/testdir:v1        "apache2ctl -D FOREG…"   2 seconds ago   Up 2 seconds   192.168.100.3:9910->80/tcp   webcontainer
-dd9bbdb304a1   practica/sitio-docker:v1   "apache2ctl -D FOREG…"   2 seconds ago   Up 2 seconds   192.168.100.3:9001->80/tcp   webpersonal
-351fde8e1d00   practica/ubuntuweb:base    "apache2ctl -D FOREG…"   3 seconds ago   Up 2 seconds   192.168.100.3:9000->80/tcp   webprueba
+29710c977a3e   practica/testdir:v1        "apache2ctl -D FOREG…"   2 seconds ago   Up 2 seconds   192.168.100.3:9910->80/tcp   webcontainer
+06740fef9da1   practica/sitio-docker:v1   "apache2ctl -D FOREG…"   3 seconds ago   Up 2 seconds   192.168.100.3:9001->80/tcp   webpersonal
+e46b7f1a9f11   practica/ubuntuweb:base    "apache2ctl -D FOREG…"   3 seconds ago   Up 2 seconds   192.168.100.3:9000->80/tcp   webprueba

@@ -1,10 +1,10 @@
 + docker run -d --name webvolumen -p 192.168.100.3:9920:80 --mount type=bind,source=/home/vagrant/practica-docker-ia/volumenes,target=/var/www/html,readonly practica/ubuntuweb:base
-42e141ab715f303db5fbf4be266c3c4d32ccf3d250616fe162caa304b6db4c43
+662139a50e2ce9f578180ce603919f3e11c7d7faf68d82ead4ff5a14dbe90baf
 + sleep 2
 + curl --fail http://192.168.100.3:9920
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   237  100   237    0     0  72654      0 --:--:-- --:--:-- --:--:--  115k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   237  100   237    0     0  82520      0 --:--:-- --:--:-- --:--:--  115k
 <!doctype html><html lang="es"><meta charset="utf-8"><title>Volúmenes Docker</title>
 <h1>Directorio compartido entre Ubuntu y Docker</h1>
 <p>Este archivo vive en el anfitrión Ubuntu y Apache lo sirve mediante un bind mount.</p></html>
@@ -13,7 +13,7 @@
 + grep 'Cambio realizado'
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    44  100    44    0     0  70400      0 --:--:-- --:--:-- --:--:-- 44000
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    44  100    44    0     0  39639      0 --:--:-- --:--:-- --:--:-- 44000
 Cambio realizado desde el anfitrión Ubuntu
 + docker inspect webvolumen --format '{{json .Mounts}}'
 [{"Type":"bind","Source":"/home/vagrant/practica-docker-ia/volumenes","Destination":"/var/www/html","Mode":"","RW":false,"Propagation":"rprivate"}]
